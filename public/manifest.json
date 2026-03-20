@@ -1,0 +1,40 @@
+{
+  "name": "Fran Molina Fotografía - Bodas Premium Tarragona",
+  "short_name": "Fran Molina Foto",
+  "description": "Fotógrafo de bodas premium en Tarragona y Costa Daurada. Capturamos los momentos más emotivos de tu boda con elegancia mediterránea.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#1a365d",
+  "orientation": "portrait-primary",
+  "categories": ["photography", "lifestyle", "wedding"],
+  "lang": "es-ES",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-narrow.jpg",
+      "sizes": "720x1280",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    }
+  ]
+}

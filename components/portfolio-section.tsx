@@ -38,7 +38,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 2,
     category: "Preboda",
-    image: "https://drive.google.com/file/d/1AgfvCn5r6KJThpjVyODrMMQ671ZvqYDp/view",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/pre2.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3ByZTIuSlBHIiwiaWF0IjoxNzc0MDI0ODYwLCJleHAiOjIwODkzODQ4NjB9.vJ9sbxfLRmFqjQdgHijQJ_GtMwrHXsah_TEw5Y-q5XI",
     title: "Preboda Tarragona",
     description: "True love",
     alt: "Sesión de preboda en Tarragona con pareja enamorada en el campo"
@@ -54,7 +54,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 4,
     category: "Postboda",
-    image: "https://drive.google.com/file/d/1Fz-37C97csqHPQcyFIhs85jZhesDyZzl/view",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QxLkpQRyIsImlhdCI6MTc3NDAyNDc4NSwiZXhwIjoyMDg5Mzg0Nzg1fQ.MM7uq-yzrwHroAp9IMmqZT6gYu__c6FYTpl0fBG-uok",
     title: "Postboda Tarragona",
     description: "Love is forever",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
@@ -62,7 +62,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 5,
     category: "Preboda",
-    image: "https://drive.google.com/file/d/1AsVprMi-7a8jURxqJTEz8EEFu-kG-q0z/view",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/pre1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3ByZTEuSlBHIiwiaWF0IjoxNzc0MDI0ODM0LCJleHAiOjIwODkzODQ4MzR9.UN_KRwrC4IGSm13Lml6djjajCHKo7wwGWY-8PbLNe7g",
     title: "Preboda Tarragona",
     description: "Romantic vibes",
     alt: "Preboda romántica en Tarragona, sesión de fotos para parejas"
@@ -70,7 +70,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 6,
     category: "Postboda",
-    image: "https://drive.google.com/file/d/1yDwhqLTd44Ucz3k0D49bCMpF4Rg-hdMZ/view",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post2.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QyLkpQRyIsImlhdCI6MTc3NDAyNDgxNSwiZXhwIjoyMDg5Mzg0ODE1fQ.UPQzrSlL_W-bdW5S2vV7sihQ9wal3hLABdhekp7KKoA",
     title: "Postboda Tarragona",
     description: "Beach memories",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"

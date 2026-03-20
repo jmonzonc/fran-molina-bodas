@@ -91,8 +91,8 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: "Better with friends",
     alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
   },
-    {
-  /*  id: 9,
+    /* {
+   id: 9,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202907.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDI5MDcuSlBHIiwiaWF0IjoxNzc0MDIzMjQ3LCJleHAiOjIwODkzODMyNDd9.6Y-K3RM6rWqtMPtPjLe4OzWqT2WipZ2IyByoZ2xmY1M",
     title: "Boda 05/25 Rourell, Tarragona",

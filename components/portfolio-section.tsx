@@ -30,10 +30,10 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 1,
     category: "Boda",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
-    title: "Boda 15/06 Tarragona",
-    description: "Costa Daurada sunset",
-    alt: "Fotografía de boda al atardecer en la Costa Daurada, Tarragona - Fran Molina"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202752.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDI3NTIuSlBHIiwiaWF0IjoxNzc0MDIyMDkyLCJleHAiOjIwODkzODIwOTJ9.jbRVIMXGUixtnhLdrOnkAglr2yfTDEVjlGYpjOLaA_8",
+    title: "Boda 05/25 Rourell, Tarragona",
+    description: "Mediterranean love",
+    alt: "Pareja enamorada en Fortí del Rourell - Fran Molina"
   },
   {
     id: 2,
@@ -46,10 +46,10 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 3,
     category: "Boda",
-    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80",
-    title: "Boda 22/09 Reus",
-    description: "Elegant ceremony",
-    alt: "Ceremonia de boda elegante en Reus, fotografía nupcial profesional"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20007823.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDc4MjMuanBnIiwiaWF0IjoxNzc0MDIyMzUyLCJleHAiOjIwODkzODIzNTJ9.THK-SSDR26-Dd97hO6rJKrXUbukvwJBlNNh4iuEYm8c",
+    title: "Boda 09/25 Girona",
+    description: "Friends celebrating",
+    alt: "Amigos celebrando en Can Riera de la Pineda, Girona"
   },
   {
     id: 4,
@@ -86,10 +86,10 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 8,
     category: "Boda",
-    image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
-    title: "Boda 30/05 Tarragona",
-    description: "Cathedral elegance",
-    alt: "Boda elegante junto a la Catedral de Tarragona, reportaje premium"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%204439.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDQ0MzkuSlBHIiwiaWF0IjoxNzc0MDIyNjEyLCJleHAiOjIwODkzODI2MTJ9.cfWBQHOxaeG0DzvOogeVnwCruPXPirrhSFkI8vbl-90",
+    title: "Boda 05/25 Rourell, Tarragona",
+    description: "Friends and love",
+    alt: "En pareja, en família - Fran Molina"
   },
   {
     id: 9,
@@ -98,6 +98,14 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: "Preboda El Vendrell",
     description: "Vineyard romance",
     alt: "Sesión preboda en viñedos de El Vendrell, romance entre viñas"
+  },
+  {
+    id: 10,
+    category: "Boda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20008629.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDg2MjkuanBnIiwiaWF0IjoxNzc0MDIyNzg2LCJleHAiOjIwODkzODI3ODZ9.vsDg2k-3-nWjYgM0lJ7vMzQiqbaLt18CTGAPFwBy4xA",
+    title: "Boda 09/25 Girona",
+    description: "Better with friends",
+    alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
   },
 ]
 

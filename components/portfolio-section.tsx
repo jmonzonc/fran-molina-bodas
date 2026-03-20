@@ -85,14 +85,6 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     id: 8,
-    category: "Preboda",
-    image: "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=800&q=80",
-    title: "Preboda El Vendrell",
-    description: "Vineyard romance",
-    alt: "Sesión preboda en viñedos de El Vendrell, romance entre viñas"
-  },
-  {
-    id: 9,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20008629.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDg2MjkuanBnIiwiaWF0IjoxNzc0MDIyNzg2LCJleHAiOjIwODkzODI3ODZ9.vsDg2k-3-nWjYgM0lJ7vMzQiqbaLt18CTGAPFwBy4xA",
     title: "Boda 09/25 Girona",
@@ -100,7 +92,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
   },
     {
-    id: 10,
+    id: 9,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202907.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDI5MDcuSlBHIiwiaWF0IjoxNzc0MDIzMjQ3LCJleHAiOjIwODkzODMyNDd9.6Y-K3RM6rWqtMPtPjLe4OzWqT2WipZ2IyByoZ2xmY1M",
     title: "Boda 05/25 Rourell, Tarragona",
@@ -108,7 +100,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "Pareja en la naturaleza en Rourell, Tarragona"
   },
    {
-    id: 11,
+    id: 10,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20004068.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDQwNjguanBnIiwiaWF0IjoxNzc0MDI0Mjk5LCJleHAiOjIwODkzODQyOTl9.EGyOGJYjaoCgJXxHitZGIJUuG1BMcCTEnRd6JKzkbK0",
     title: "Boda 09/25 Girona",
@@ -116,7 +108,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "Mirada cómplice en el bosque de Can Riera de la Pineda, Girona"
   }, 
     {
-    id: 12,
+    id: 11,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%204439.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDQ0MzkuSlBHIiwiaWF0IjoxNzc0MDIyNjEyLCJleHAiOjIwODkzODI2MTJ9.cfWBQHOxaeG0DzvOogeVnwCruPXPirrhSFkI8vbl-90",
     title: "Boda 05/25 Rourell, Tarragona",
@@ -124,7 +116,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "En pareja, en família - Fran Molina"
   },
   {
-    id: 13,
+    id: 12,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20000821.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDA4MjEuanBnIiwiaWF0IjoxNzc0MDI0MTc4LCJleHAiOjIwODkzODQxNzh9.M9AWyoZs0qNkuc4WDIlxLlAkg7VvCA6-LauHzLu6P78",
     title: "Boda 09/25 Girona",

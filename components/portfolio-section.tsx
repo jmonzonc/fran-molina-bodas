@@ -30,10 +30,10 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 1,
     category: "Boda",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
-    title: "Boda 15/06 Tarragona",
-    description: "Costa Daurada sunset",
-    alt: "Fotografía de boda al atardecer en la Costa Daurada, Tarragona - Fran Molina"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202081.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDIwODEuSlBHIiwiaWF0IjoxNzc0MzA0MzgxLCJleHAiOjIwODk2NjQzODF9.BlvlBjCPkwHh80JfMZlQlB-ASsnK0kfHhe0tYM2wgHA",
+    title: "Boda 05/25 Rourell, Tarragona",
+    description: "Mediterranean love",
+    alt: "Pareja enamorada en Fortí del Rourell - Fran Molina"
   },
   {
     id: 2,
@@ -44,28 +44,28 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "Sesión de preboda en Cambrils con pareja enamorada frente al Mediterráneo"
   },
   {
-    id: 3,
+   id: 3,
     category: "Boda",
-    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80",
-    title: "Boda 22/09 Reus",
-    description: "Elegant ceremony",
-    alt: "Ceremonia de boda elegante en Reus, fotografía nupcial profesional"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%203052.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDMwNTIuSlBHIiwiaWF0IjoxNzc0MzA0MzIxLCJleHAiOjIwODk2NjQzMjF9.zMzWlycmSOG_GOv-QFS0vHzyO7oBiJiVnDrcL5_s-Uo",
+    title: "Boda 05/25 Rourell, Tarragona",
+    description: "Special moment",
+    alt: "Momento íntimo en pareja, Tarragona"
   },
   {
     id: 4,
     category: "Postboda",
-    image: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80",
-    title: "Postboda Salou",
-    description: "Beach memories",
-    alt: "Sesión de postboda en la playa de Salou, recuerdos junto al mar"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3Q0LkpQRyIsImlhdCI6MTc3NDMwNDQ3NSwiZXhwIjoyMDg5NjY0NDc1fQ.KiHTZTKKDnZkLkw-lJJTHwQ5zMDvh3Q_fki4hu8CQFMk",
+    title: "Postboda Tarragona",
+    description: "Love is forever",
+    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
   {
     id: 5,
-    category: "Boda",
-    image: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
-    title: "Boda 08/07 Vila-seca",
-    description: "Golden hour magic",
-    alt: "Fotografía de boda durante la hora dorada en Vila-seca, Tarragona"
+    category: "Postboda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QxLkpQRyIsImlhdCI6MTc3NDMwNDQzNCwiZXhwIjoyMDg5NjY0NDM0fQ.bThLsXMe4io398gTsQRHRnJg8dFkEfobssHrFvvBMIM",
+    title: "Postboda Tarragona",
+    description: "New adventure",
+    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
   {
     id: 6,
@@ -78,18 +78,18 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 7,
     category: "Postboda",
-    image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80",
-    title: "Postboda Montblanc",
-    description: "Medieval charm",
-    alt: "Postboda con encanto medieval en Montblanc, fotografía artística"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post3.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QzLkpQRyIsImlhdCI6MTc3NDMwNDQ2MiwiZXhwIjoyMDg5NjY0NDYyfQ.ShDnc7v1D3Iz5FPiohM0Z9yZCKeFRRIr15JKfkUr-ig",
+    title: "Postboda Tarragona",
+    description: "Beach memories",
+    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
-  {
+ {
     id: 8,
     category: "Boda",
-    image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
-    title: "Boda 30/05 Tarragona",
-    description: "Cathedral elegance",
-    alt: "Boda elegante junto a la Catedral de Tarragona, reportaje premium"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2024_10_12%20BODA%20LAURA&DAVID%200967.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjRfMTBfMTIgQk9EQSBMQVVSQSZEQVZJRCAwOTY3LkpQRyIsImlhdCI6MTc3NDMwNDM1MSwiZXhwIjoyMDg5NjY0MzUxfQ.ENoSrlKbvrt-JM5-ltz8UUt34wHuQQj1z9NMcSDGsNc",
+    title: "Boda Castellardal, Barcelona",
+    description: "Weeding Bouquet",
+    alt: "La novia y el ramo, Castellardal, Barcelona"
   },
   {
     id: 9,
@@ -98,6 +98,22 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: "Preboda El Vendrell",
     description: "Vineyard romance",
     alt: "Sesión preboda en viñedos de El Vendrell, romance entre viñas"
+  },
+  {
+    id: 10,
+    category: "Boda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2024_10_12%20BODA%20LAURA&DAVID%202344.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjRfMTBfMTIgQk9EQSBMQVVSQSZEQVZJRCAyMzQ0LkpQRyIsImlhdCI6MTc3NDMwNDM2MywiZXhwIjoyMDg5NjY0MzYzfQ.KX25bcGX5vPcsI3W9ikaj8Dw4UwYISPLXRAwgEsJGio",
+    title: "Boda Castellardal, Barcelona",
+    description: "Special moment",
+    alt: "Momento íntimo en pareja,  Castellardal, Barcelona"
+  },
+   {
+    id: 11,
+    category: "Postboda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post2.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QyLkpQRyIsImlhdCI6MTc3NDMwNDQ0OCwiZXhwIjoyMDg5NjY0NDQ4fQ.T6DrqRNMEeut3fuKbHZ2I5txsSvXdrt1m8utjecMTDg",
+    title: "Postboda Tarragona",
+    description: "New adventure",
+    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
 ]
 

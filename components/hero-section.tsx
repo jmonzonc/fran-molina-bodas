@@ -14,7 +14,7 @@ const ANIMATION_CONFIG = {
 }
 
 // Video URL (puede moverse a config si necesita cambiar frecuentemente)
-const HERO_VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-bride-and-groom-walking-hand-in-hand-at-sunset-44517-large.mp4"
+const HERO_VIDEO_URL = "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc0MzAzODc1LCJleHAiOjE3NzUxNjc4NzV9.fqIcsE6z4Jwib64V_puIlE1e8hdnNm7FJX9MlqdZj_Y"
 
 /**
  * Sección hero con video de fondo a pantalla completa

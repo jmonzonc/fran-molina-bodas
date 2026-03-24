@@ -86,7 +86,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
  {
     id: 8,
     category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2024_10_12%20BODA%20LAURA&DAVID%200967.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjRfMTBfMTIgQk9EQSBMQVVSQSZEQVZJRCAwOTY3LkpQRyIsImlhdCI6MTc3NDMwNDM1MSwiZXhwIjoyMDg5NjY0MzUxfQ.ENoSrlKbvrt-JM5-ltz8UUt34wHuQQj1z9NMcSDGsNc",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEuSlBHIiwiaWF0IjoxNzc0MzgwMzI0LCJleHAiOjIwODk3NDAzMjR9.I5suMDUXQUM4GkX5TDRsbrmN0Z9DXXa3wzN2WjrgHCI",
     title: "Boda Castellardal, Barcelona",
     description: "Weeding Bouquet",
     alt: "La novia y el ramo, Castellardal, Barcelona"
@@ -126,10 +126,10 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
    {
     id: 13,
     category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2024_10_12%20BODA%20LAURA&DAVID%202344.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjRfMTBfMTIgQk9EQSBMQVVSQSZEQVZJRCAyMzQ0LkpQRyIsImlhdCI6MTc3NDMwNDM2MywiZXhwIjoyMDg5NjY0MzYzfQ.KX25bcGX5vPcsI3W9ikaj8Dw4UwYISPLXRAwgEsJGio",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIuSlBHIiwiaWF0IjoxNzc0MzgwMzkzLCJleHAiOjIwODk3NDAzOTN9.T60-aoUQCYKUBXyfFlE0oHpmbFEMYsw47BxBRhVeYnI",
     title: "Boda Castellardal, Barcelona",
-    description: "Special moment",
-    alt: "Momento íntimo en pareja,  Castellardal, Barcelona"
+    description: "Previous moments",
+    alt: "Preparativo de la ceremonia en Castellardal, Barcelona"
   },
    {
     id: 13,

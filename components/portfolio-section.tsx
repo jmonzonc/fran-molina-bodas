@@ -117,15 +117,6 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
    {
     id: 12,
-    category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIuSlBHIiwiaWF0IjoxNzc0MzgwMzkzLCJleHAiOjIwODk3NDAzOTN9.T60-aoUQCYKUBXyfFlE0oHpmbFEMYsw47BxBRhVeYnI",
-    title: "Boda Castellardal, Barcelona",
-    description: "Previous moments",
-    alt: "Preparativo de la ceremonia en Castellardal, Barcelona"
-  },
-   
-   {
-    id: 13,
     category: "Preboda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20008629.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDg2MjkuanBnIiwiaWF0IjoxNzc0MzgwMDgzLCJleHAiOjIwODk3NDAwODN9.otGhnz3pnGU0hihAJH8NBH6CBac4buPdz9NLKrV14G8",
     title: "Preboda en Girona",

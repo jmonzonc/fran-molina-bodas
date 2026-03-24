@@ -38,18 +38,18 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 2,
     category: "Preboda",
-    image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80",
-    title: "Preboda Cambrils",
-    description: "Mediterranean love",
-    alt: "Sesión de preboda en Cambrils con pareja enamorada frente al Mediterráneo"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/_A741341.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL19BNzQxMzQxLkpQRyIsImlhdCI6MTc3NDM4MDExMSwiZXhwIjoyMDg5NzQwMTExfQ.2il86O8SmARlBVVQOj31aUU9VFtCIxq36Z1BsxatpaM",
+    title: "Preboda Girona",
+    description: "Peace",
+    alt: "Sesión de preboda en Girona con pareja enamorada en la naturaleza"
   },
   {
    id: 3,
     category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%203052.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDMwNTIuSlBHIiwiaWF0IjoxNzc0MzA0MzIxLCJleHAiOjIwODk2NjQzMjF9.zMzWlycmSOG_GOv-QFS0vHzyO7oBiJiVnDrcL5_s-Uo",
-    title: "Boda 05/25 Rourell, Tarragona",
-    description: "Special moment",
-    alt: "Momento íntimo en pareja, Tarragona"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006030.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYwMzAuSlBHIiwiaWF0IjoxNzc0MzgwMDU3LCJleHAiOjIwODk3NDAwNTd9.sPL31GapjedhVsHE3t-NvbVIPb1bRqEhknvrs-Vsgt4",
+    title: "Boda 09/25 Girona",
+    description: "Better with friends",
+    alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
   },
   {
     id: 4,
@@ -62,18 +62,18 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 5,
     category: "Postboda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QxLkpQRyIsImlhdCI6MTc3NDMwNDQzNCwiZXhwIjoyMDg5NjY0NDM0fQ.bThLsXMe4io398gTsQRHRnJg8dFkEfobssHrFvvBMIM",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2%20(1).JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIgKDEpLkpQRyIsImlhdCI6MTc3NDM4MDM3NCwiZXhwIjoyMDg5NzQwMzc0fQ.ZsEnvq5fFdUxTKP-Qt1veSYYkp_u9J2WKSya0tO23nU",
     title: "Postboda Tarragona",
-    description: "New adventure",
+    description: "Beach memories",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
   {
     id: 6,
     category: "Preboda",
-    image: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=800&q=80",
-    title: "Preboda Altafulla",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/AN4A5940.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL0FONEE1OTQwLkpQRyIsImlhdCI6MTc3NDM4MDI1OSwiZXhwIjoyMDg5NzQwMjU5fQ.-BgV8OUWYqlnNJfwpaK467zNhcDwsWfvBvCvxD1NZYs",
+    title: "Preboda Barcelona",
     description: "Romantic vibes",
-    alt: "Preboda romántica en Altafulla, sesión de fotos para parejas"
+    alt: "Preboda romántica en Barcelona, sesión de fotos para parejas"
   },
   {
     id: 7,
@@ -94,13 +94,37 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 9,
     category: "Preboda",
-    image: "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=800&q=80",
-    title: "Preboda El Vendrell",
-    description: "Vineyard romance",
-    alt: "Sesión preboda en viñedos de El Vendrell, romance entre viñas"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20008629.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDg2MjkuanBnIiwiaWF0IjoxNzc0MzgwMDgzLCJleHAiOjIwODk3NDAwODN9.otGhnz3pnGU0hihAJH8NBH6CBac4buPdz9NLKrV14G8",
+    title: "Preboda en Girona",
+    description: "New chapter",
+    alt: "Sesión preboda en El Girona"
   },
   {
     id: 10,
+    category: "Boda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%203052.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDMwNTIuSlBHIiwiaWF0IjoxNzc0MzA0MzIxLCJleHAiOjIwODk2NjQzMjF9.zMzWlycmSOG_GOv-QFS0vHzyO7oBiJiVnDrcL5_s-Uo",
+    title: "Boda 05/25 Rourell, Tarragona",
+    description: "Special moment",
+    alt: "Momento íntimo en pareja, Tarragona"
+  },
+   {
+    id: 11,
+    category: "Postboda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1%20(1).JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEgKDEpLkpQRyIsImlhdCI6MTc3NDM4MDM1MywiZXhwIjoyMDg5NzQwMzUzfQ.7nqkQV-S0XmLIWChiW_WhzhG5BMbww5TxcFl5bNEvpc",
+    title: "Postboda Tarragona",
+    description: "Beautiful moment",
+    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
+  },
+   {
+   id: 12,
+    category: "Boda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006384.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYzODQuSlBHIiwiaWF0IjoxNzc0MzgwMDcwLCJleHAiOjIwODk3NDAwNzB9.Qysf3DS2sKpoW13L03lk5vRWkU7yrM9W31ddpWk5Ru0",
+    title: "Boda 09/25 Girona",
+    description: "A day to remember",
+    alt: "Pareja junto con el ramo en el bosque en Girona"
+  },
+   {
+    id: 13,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2024_10_12%20BODA%20LAURA&DAVID%202344.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjRfMTBfMTIgQk9EQSBMQVVSQSZEQVZJRCAyMzQ0LkpQRyIsImlhdCI6MTc3NDMwNDM2MywiZXhwIjoyMDg5NjY0MzYzfQ.KX25bcGX5vPcsI3W9ikaj8Dw4UwYISPLXRAwgEsJGio",
     title: "Boda Castellardal, Barcelona",
@@ -108,13 +132,13 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "Momento íntimo en pareja,  Castellardal, Barcelona"
   },
    {
-    id: 11,
-    category: "Postboda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post2.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QyLkpQRyIsImlhdCI6MTc3NDMwNDQ0OCwiZXhwIjoyMDg5NjY0NDQ4fQ.T6DrqRNMEeut3fuKbHZ2I5txsSvXdrt1m8utjecMTDg",
-    title: "Postboda Tarragona",
-    description: "New adventure",
-    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
-  },
+    id: 13,
+    category: "Boda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/01.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzAxLkpQRyIsImlhdCI6MTc3NDM3OTk3MiwiZXhwIjoyMDg5NzM5OTcyfQ.M4cDRSp2dVKMnBXHJ08gnN2kpmh9epipGm6_XBTAAfw",
+    title: "Boda 09/25 Girona",
+    description: "The beginning",
+    alt: "Pareja entrando en la ceremonia en una motocicleta"
+  }
 ]
 
 // ============================================================

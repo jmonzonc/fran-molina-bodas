@@ -38,26 +38,26 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 2,
     category: "Preboda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/_A741341.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL19BNzQxMzQxLkpQRyIsImlhdCI6MTc3NDM4MDExMSwiZXhwIjoyMDg5NzQwMTExfQ.2il86O8SmARlBVVQOj31aUU9VFtCIxq36Z1BsxatpaM",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/_A741341.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL19BNzQxMzQxLkpQRyIsImlhdCI6MTc3NDM4MTg3NywiZXhwIjoyMDg5NzQxODc3fQ.eWNd6VGQehmbQoHwq4dUz7n32J4ojQZEiuuozbpV6J8",
     title: "Preboda Girona",
     description: "Peace",
     alt: "Sesión de preboda en Girona con pareja enamorada en la naturaleza"
   },
-  {
-   id: 3,
-    category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006030.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYwMzAuSlBHIiwiaWF0IjoxNzc0MzgwMDU3LCJleHAiOjIwODk3NDAwNTd9.sPL31GapjedhVsHE3t-NvbVIPb1bRqEhknvrs-Vsgt4",
-    title: "Boda 09/25 Girona",
-    description: "Better with friends",
-    alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
-  },
-  {
-    id: 4,
+   {
+    id: 3,
     category: "Postboda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3Q0LkpQRyIsImlhdCI6MTc3NDMwNTU0MywiZXhwIjoyMDg5NjY1NTQzfQ.4oRVCzXJTN7l8tAuD5v-BdzwdzPGAJ8COD0JMpAIUy0",
     title: "Postboda Tarragona",
     description: "Love is forever",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
+  },
+  {
+   id: 4,
+    category: "Boda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006030.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYwMzAuSlBHIiwiaWF0IjoxNzc0MzgwMDU3LCJleHAiOjIwODk3NDAwNTd9.sPL31GapjedhVsHE3t-NvbVIPb1bRqEhknvrs-Vsgt4",
+    title: "Boda 09/25 Girona",
+    description: "Better with friends",
+    alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
   },
   {
     id: 5,
@@ -78,7 +78,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 7,
     category: "Postboda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post3.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3QzLkpQRyIsImlhdCI6MTc3NDMwNDQ2MiwiZXhwIjoyMDg5NjY0NDYyfQ.ShDnc7v1D3Iz5FPiohM0Z9yZCKeFRRIr15JKfkUr-ig",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzQuSlBHIiwiaWF0IjoxNzc0MzgxNzg0LCJleHAiOjE3NzQ5ODY1ODR9.HCjHQNQy_DhgSJNbmt8L8JZPV6SJ8tiHwFURq_a8lvs",
     title: "Postboda Tarragona",
     description: "Beach memories",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"

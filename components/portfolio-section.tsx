@@ -91,21 +91,21 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: "Beach memories",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
-  {
+   {
     id: 9,
-    category: "Postboda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2%20(1).JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIgKDEpLkpQRyIsImlhdCI6MTc3NDM4MDM3NCwiZXhwIjoyMDg5NzQwMzc0fQ.ZsEnvq5fFdUxTKP-Qt1veSYYkp_u9J2WKSya0tO23nU",
-    title: "Postboda Tarragona",
-    description: "Beach memories",
-    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
-  },
- {
-    id: 10,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/01.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzAxLkpQRyIsImlhdCI6MTc3NDM3OTk3MiwiZXhwIjoyMDg5NzM5OTcyfQ.M4cDRSp2dVKMnBXHJ08gnN2kpmh9epipGm6_XBTAAfw",
     title: "Boda 09/25 Girona",
     description: "The beginning",
     alt: "Pareja entrando en la ceremonia en una motocicleta"
+  },
+  {
+    id: 10,
+    category: "Postboda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2%20(1).JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIgKDEpLkpQRyIsImlhdCI6MTc3NDM4MDM3NCwiZXhwIjoyMDg5NzQwMzc0fQ.ZsEnvq5fFdUxTKP-Qt1veSYYkp_u9J2WKSya0tO23nU",
+    title: "Postboda Tarragona",
+    description: "Beach memories",
+    alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
   {
     id: 11,

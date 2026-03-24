@@ -28,12 +28,12 @@ type FilterCategory = (typeof CATEGORIES)[number]
 
 const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
-    id: 1,
+   id: 1,
     category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202081.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDIwODEuSlBHIiwiaWF0IjoxNzc0MzA0MzgxLCJleHAiOjIwODk2NjQzODF9.BlvlBjCPkwHh80JfMZlQlB-ASsnK0kfHhe0tYM2wgHA",
-    title: "Boda 05/25 Rourell, Tarragona",
-    description: "Mediterranean love",
-    alt: "Pareja enamorada en Fortí del Rourell - Fran Molina"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006384.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYzODQuSlBHIiwiaWF0IjoxNzc0MzgwMDcwLCJleHAiOjIwODk3NDAwNzB9.Qysf3DS2sKpoW13L03lk5vRWkU7yrM9W31ddpWk5Ru0",
+    title: "Boda 09/25 Girona",
+    description: "A day to remember",
+    alt: "Pareja junto con el ramo en el bosque en Girona"
   },
   {
     id: 2,
@@ -52,12 +52,12 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
   {
-   id: 4,
+    id: 4,
     category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006030.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYwMzAuSlBHIiwiaWF0IjoxNzc0MzgwMDU3LCJleHAiOjIwODk3NDAwNTd9.sPL31GapjedhVsHE3t-NvbVIPb1bRqEhknvrs-Vsgt4",
-    title: "Boda 09/25 Girona",
-    description: "Better with friends",
-    alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEuSlBHIiwiaWF0IjoxNzc0MzgwMzI0LCJleHAiOjIwODk3NDAzMjR9.I5suMDUXQUM4GkX5TDRsbrmN0Z9DXXa3wzN2WjrgHCI",
+    title: "Boda Castellardal, Barcelona",
+    description: "Weeding Bouquet",
+    alt: "La novia y el ramo, Castellardal, Barcelona"
   },
   {
     id: 5,
@@ -83,13 +83,13 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: "Beach memories",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
- {
-    id: 8,
+   {
+   id: 8,
     category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEuSlBHIiwiaWF0IjoxNzc0MzgwMzI0LCJleHAiOjIwODk3NDAzMjR9.I5suMDUXQUM4GkX5TDRsbrmN0Z9DXXa3wzN2WjrgHCI",
-    title: "Boda Castellardal, Barcelona",
-    description: "Weeding Bouquet",
-    alt: "La novia y el ramo, Castellardal, Barcelona"
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006030.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYwMzAuSlBHIiwiaWF0IjoxNzc0MzgwMDU3LCJleHAiOjIwODk3NDAwNTd9.sPL31GapjedhVsHE3t-NvbVIPb1bRqEhknvrs-Vsgt4",
+    title: "Boda 09/25 Girona",
+    description: "Better with friends",
+    alt: "Celebrando juntos en Can Riera de la Pineda, Girona"
   },
   {
     id: 9,
@@ -116,23 +116,23 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar"
   },
    {
-   id: 12,
-    category: "Boda",
-    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006384.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYzODQuSlBHIiwiaWF0IjoxNzc0MzgwMDcwLCJleHAiOjIwODk3NDAwNzB9.Qysf3DS2sKpoW13L03lk5vRWkU7yrM9W31ddpWk5Ru0",
-    title: "Boda 09/25 Girona",
-    description: "A day to remember",
-    alt: "Pareja junto con el ramo en el bosque en Girona"
-  },
-   {
-    id: 13,
+    id: 12,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIuSlBHIiwiaWF0IjoxNzc0MzgwMzkzLCJleHAiOjIwODk3NDAzOTN9.T60-aoUQCYKUBXyfFlE0oHpmbFEMYsw47BxBRhVeYnI",
     title: "Boda Castellardal, Barcelona",
     description: "Previous moments",
     alt: "Preparativo de la ceremonia en Castellardal, Barcelona"
   },
-   {
+  {
     id: 13,
+    category: "Boda",
+    image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202081.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDIwODEuSlBHIiwiaWF0IjoxNzc0MzA0MzgxLCJleHAiOjIwODk2NjQzODF9.BlvlBjCPkwHh80JfMZlQlB-ASsnK0kfHhe0tYM2wgHA",
+    title: "Boda 05/25 Rourell, Tarragona",
+    description: "Mediterranean love",
+    alt: "Pareja enamorada en Fortí del Rourell - Fran Molina"
+  },
+   {
+    id: 14,
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/01.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzAxLkpQRyIsImlhdCI6MTc3NDM3OTk3MiwiZXhwIjoyMDg5NzM5OTcyfQ.M4cDRSp2dVKMnBXHJ08gnN2kpmh9epipGm6_XBTAAfw",
     title: "Boda 09/25 Girona",

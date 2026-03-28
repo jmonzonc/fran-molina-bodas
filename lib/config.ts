@@ -88,7 +88,7 @@ export const WHATSAPP_MESSAGES = {
 export const SERVICES = [
   {
     id: "preboda",
-    title: "Preboda Foto",
+    title: "Sesión Preboda",
     features: [
       "Sesión de 2-3 horas en ubicación elegida",
       "50+ fotos editadas profesionalmente",
@@ -112,7 +112,7 @@ export const SERVICES = [
   },
   {
     id: "postboda",
-    title: "Postboda Premium",
+    title: "Sesión Postboda",
     features: [
       "Sesión artística post-ceremonia",
       "Ubicación especial Costa Daurada",

@@ -64,7 +64,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Boda",
     image: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEuSlBHIiwiaWF0IjoxNzc0MzgwMzI0LCJleHAiOjIwODk3NDAzMjR9.I5suMDUXQUM4GkX5TDRsbrmN0Z9DXXa3wzN2WjrgHCI",
     title: "Boda Castellardal, Barcelona",
-    description: "Weeding Bouquet",
+    description: "Wedding Bouquet",
     alt: "La novia y el ramo, Castellardal, Barcelona"
   },
     {

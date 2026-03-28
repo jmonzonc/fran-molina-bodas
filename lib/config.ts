@@ -94,8 +94,8 @@ export const SERVICES = [
       "50+ fotos editadas profesionalmente",
       "Galería online privada",
     ],
-    price: "€1.200",
-    priceNumeric: 1200,
+    price: "€400",
+    priceNumeric: 400,
     whatsappMessage: WHATSAPP_MESSAGES.preboda,
   },
   {
@@ -106,8 +106,8 @@ export const SERVICES = [
       "Fotografía y vídeo cinematográfico",
       "400+ fotos + highlight reel",
     ],
-    price: "€3.500",
-    priceNumeric: 3500,
+    price: "€2.200",
+    priceNumeric: 2200,
     whatsappMessage: WHATSAPP_MESSAGES.bodaCompleta,
   },
   {
@@ -118,8 +118,8 @@ export const SERVICES = [
       "Ubicación especial Costa Daurada",
       "Álbum de lujo incluido",
     ],
-    price: "€900",
-    priceNumeric: 900,
+    price: "€400",
+    priceNumeric: 400,
     whatsappMessage: WHATSAPP_MESSAGES.postboda,
   },
 ] as const

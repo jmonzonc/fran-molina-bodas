@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { 
   SITE_URL, 
   EMAIL, 
-  PHONE,       // ← debe ser "+34 638 475 783" (sin "tel:"). Verifica en lib/config.ts
+  PHONE_DISPLAY as PHONE,       // ← debe ser "+34 638 475 783" (sin "tel:"). Verifica en lib/config.ts
   PHONE_LINK,  // ← esta sí lleva "tel:" y se usa solo en <a href>
   SOCIAL_LINKS, 
   SEO_KEYWORDS,

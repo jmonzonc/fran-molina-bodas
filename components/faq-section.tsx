@@ -33,7 +33,7 @@ const FAQS: FAQ[] = [
   },
   {
     question: "¿Qué incluye el paquete de boda completa?",
-    answer: "El paquete de Boda Completa incluye: cobertura de más de 10 horas (desde preparativos hasta baile), fotografía profesional con más de 400 fotos editadas, vídeo cinematográfico con highlight reel, galería online privada para compartir con invitados, y entrega en alta resolución. También ofrecemos álbumes de lujo como opción adicional."
+    answer: "El paquete de Boda Completa incluye: cobertura de más de 10 horas (desde preparativos hasta baile), fotografía profesional con más de 400 fotos editadas, vídeo cinematográfico con highlight reel, galería online privada para compartir con invitados, y entrega en alta resolución. También ofrecemos álbumes con acabados de alta calidad como opción adicional."
   },
   {
     question: "¿Cuánto tardáis en entregar las fotos de la boda?",

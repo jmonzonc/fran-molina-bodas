@@ -33,7 +33,7 @@ export function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4" itemProp="name">
-            Servicios de Fotografía de Bodas Premium
+            Servicios de Fotografía de Bodas
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto" itemProp="description">
             Cada servicio está diseñado para capturar la esencia de tu amor 

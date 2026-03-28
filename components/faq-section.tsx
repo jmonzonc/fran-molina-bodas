@@ -21,7 +21,7 @@ interface FAQ {
 const FAQS: FAQ[] = [
   {
     question: "¿Cuánto cuesta un fotógrafo de bodas en Tarragona?",
-    answer: "Nuestros paquetes de fotografía de bodas en Tarragona comienzan desde 400€ para sesiones de preboda, 2.200€ para cobertura completa del día de la boda (fotografía + vídeo), y 400€ para postbodas premium. El precio final depende de la duración, servicios adicionales y ubicación específica en la Costa Daurada."
+    answer: "Nuestros paquetes de fotografía de bodas en Tarragona comienzan desde 400€ para sesiones de preboda, 2.200€ para cobertura completa del día de la boda (fotografía + vídeo), y 400€ para sesiones de postbodas. El precio final depende de la duración, servicios adicionales y ubicación específica en la Costa Daurada."
   },
   {
     question: "¿Con cuánta antelación debo reservar mi fotógrafo de bodas?",

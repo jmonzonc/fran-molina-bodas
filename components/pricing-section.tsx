@@ -15,10 +15,10 @@ interface PricingRow {
 }
 
 const PRICING_DATA: PricingRow[] = [
-  { package: "Preboda", photography: true, video: true, price: "€1.200" },
-  { package: "Boda", photography: true, video: true, price: "€3.500" },
-  { package: "Same Day Edit", photography: false, video: true, price: "€800" },
-  { package: "Postboda", photography: true, video: false, price: "€900" },
+  { package: "Preboda", photography: true, video: false, price: "€400" },
+  { package: "Boda", photography: true, video: true, price: "€2.200" },
+  { package: "Same Day Edit", photography: false, video: true, price: "€400" },
+  { package: "Postboda", photography: true, video: false, price: "€400" },
 ]
 
 // Columnas de la tabla para evitar repetición

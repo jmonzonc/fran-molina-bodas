@@ -83,7 +83,7 @@ export function ContactSection() {
           </h2>
           <p className="text-white/70" itemProp="description">
             Cuéntanos sobre tu boda y te contactaremos en menos de 24 horas. 
-            Disponibilidad limitada para fechas 2025-2026.
+            Disponibilidad limitada para fechas 2026-2027.
           </p>
         </motion.header>
 

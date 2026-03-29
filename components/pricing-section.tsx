@@ -185,11 +185,11 @@ export function PricingSection() {
               Pack Completo — Preboda + Boda + Same Day Edit + Postboda
             </p>
             <p className="text-white/60 text-sm mt-1">
-              Todo incluido por{" "}
+              Pack de{" "}
               <span className="text-accent font-bold">
                 {PACK_COMPLETO.price}
               </span>{" "}
-              en lugar de €{PACK_COMPLETO.individualTotal.toLocaleString("es-ES")}
+              por valor de €{PACK_COMPLETO.individualTotal.toLocaleString("es-ES")}
             </p>
           </div>
           <a

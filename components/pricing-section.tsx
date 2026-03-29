@@ -1,55 +1,26 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Check, Minus } from "lucide-react"
-
-// ============================================================
-// DATOS DE PRECIOS
-// ============================================================
-
-interface PricingRow {
-  package: string
-  photography: boolean
-  video: boolean
-  price: string
-}
-
-const PRICING_DATA: PricingRow[] = [
-  { package: "Preboda", photography: true, video: false, price: "€400" },
-  { package: "Boda", photography: true, video: true, price: "€2.200" },
-  { package: "Same Day Edit", photography: false, video: true, price: "€400" },
-  { package: "Postboda", photography: true, video: false, price: "€400" },
-]
-
-// Columnas de la tabla para evitar repetición
-const TABLE_COLUMNS = [
-  { key: "package", label: "Paquete", align: "left" },
-  { key: "photography", label: "Fotografía", align: "center" },
-  { key: "video", label: "Vídeo", align: "center" },
-  { key: "price", label: "Desde", align: "right" },
-] as const
+import { Check, Minus, Star } from "lucide-react"
+import { PRICING_DATA, PACK_COMPLETO, getWhatsAppLink } from "@/lib/config"
 
 /**
- * Componente para mostrar iconos de disponibilidad
- */
-function AvailabilityIcon({ available }: { available: boolean }) {
-  return available ? (
-    <Check className="w-5 h-5 text-green-600 mx-auto" aria-label="Incluido" />
-  ) : (
-    <Minus className="w-5 h-5 text-gray-300 mx-auto" aria-label="No incluido" />
-  )
-}
-
-/**
- * Sección de precios con tabla responsive
- * Incluye schema.org implícito a través de los servicios
+ * Sección de precios con tabla detallada + recordatorio del Pack Completo
+ *
+ * REESTRUCTURACIÓN: ahora muestra 6 filas con todas las opciones reales:
+ *  - Preboda (€400)
+ *  - Boda solo foto (€1.200)
+ *  - Boda solo vídeo (€1.400)
+ *  - Boda Completa foto+vídeo (€2.200) ← destacada
+ *  - Same Day Edit (€400)
+ *  - Postboda (€400)
  */
 export function PricingSection() {
   return (
-    <section 
+    <section
       id="precios"
       className="py-20 bg-gradient-to-r from-primary/5 to-secondary/10"
-      aria-label="Tabla de precios de fotografía de bodas"
+      aria-label="Precios de fotografía y vídeo de bodas en Tarragona"
     >
       <div className="max-w-4xl mx-auto px-6">
         {/* Encabezado */}
@@ -63,69 +34,172 @@ export function PricingSection() {
             Tu boda, tu presupuesto
           </h2>
           <p className="text-muted-foreground text-lg">
-            Transparencia total en cada servicio
+            Transparencia total en cada servicio. Combínalos como prefieras.
           </p>
         </motion.header>
 
-        {/* Tabla de precios */}
+        {/* Tabla de precios detallada */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="overflow-hidden rounded-3xl shadow-2xl bg-white"
+          className="overflow-hidden rounded-3xl shadow-2xl bg-white mb-8"
         >
           <div className="overflow-x-auto">
-            <table className="w-full" role="table" aria-label="Comparativa de paquetes">
+            <table
+              className="w-full"
+              role="table"
+              aria-label="Desglose de precios de todos los servicios"
+            >
               <thead className="bg-accent/10">
                 <tr>
-                  {TABLE_COLUMNS.map(col => (
-                    <th 
-                      key={col.key}
-                      className={`py-4 px-6 font-medium text-primary ${
-                        col.align === "left" ? "text-left" : 
-                        col.align === "right" ? "text-right" : "text-center"
-                      }`}
-                      scope="col"
-                    >
-                      {col.label}
-                    </th>
-                  ))}
+                  <th
+                    className="py-4 px-6 font-medium text-primary text-left"
+                    scope="col"
+                  >
+                    Servicio
+                  </th>
+                  <th
+                    className="py-4 px-6 font-medium text-primary text-center hidden sm:table-cell"
+                    scope="col"
+                  >
+                    Fotografía
+                  </th>
+                  <th
+                    className="py-4 px-6 font-medium text-primary text-center hidden sm:table-cell"
+                    scope="col"
+                  >
+                    Vídeo
+                  </th>
+                  <th
+                    className="py-4 px-6 font-medium text-primary text-right"
+                    scope="col"
+                  >
+                    Desde
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {PRICING_DATA.map((row, index) => (
-                  <motion.tr
-                    key={row.package}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="hover:bg-accent/5 border-b border-gray-100 last:border-0 transition-colors"
-                  >
-                    <td className="py-4 px-6 font-medium text-foreground">
-                      {row.package}
-                    </td>
-                    <td className="py-4 px-6 text-center">
-                      <AvailabilityIcon available={row.photography} />
-                    </td>
-                    <td className="py-4 px-6 text-center">
-                      <AvailabilityIcon available={row.video} />
-                    </td>
-                    <td className="py-4 px-6 text-right font-semibold text-accent">
-                      {row.price}
-                    </td>
-                  </motion.tr>
-                ))}
+                {PRICING_DATA.map((row, index) => {
+                  // Destacar la Boda Completa (foto+vídeo)
+                  const isHighlighted = row.service === "Boda Completa"
+
+                  return (
+                    <motion.tr
+                      key={row.service}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.08 }}
+                      className={`border-b border-gray-100 last:border-0 transition-colors ${
+                        isHighlighted
+                          ? "bg-accent/5 hover:bg-accent/10"
+                          : "hover:bg-accent/5"
+                      }`}
+                    >
+                      <td className="py-4 px-6">
+                        <div className="flex items-center gap-2">
+                          {isHighlighted && (
+                            <Star
+                              className="w-4 h-4 text-accent fill-accent shrink-0"
+                              aria-hidden="true"
+                            />
+                          )}
+                          <div>
+                            <span
+                              className={`font-medium ${
+                                isHighlighted
+                                  ? "text-accent"
+                                  : "text-foreground"
+                              }`}
+                            >
+                              {row.service}
+                            </span>
+                            <p className="text-xs text-muted-foreground mt-0.5 hidden sm:block">
+                              {row.description}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-4 px-6 text-center hidden sm:table-cell">
+                        {row.photography ? (
+                          <Check
+                            className="w-5 h-5 text-green-600 mx-auto"
+                            aria-label="Incluido"
+                          />
+                        ) : (
+                          <Minus
+                            className="w-5 h-5 text-gray-300 mx-auto"
+                            aria-label="No incluido"
+                          />
+                        )}
+                      </td>
+                      <td className="py-4 px-6 text-center hidden sm:table-cell">
+                        {row.video ? (
+                          <Check
+                            className="w-5 h-5 text-green-600 mx-auto"
+                            aria-label="Incluido"
+                          />
+                        ) : (
+                          <Minus
+                            className="w-5 h-5 text-gray-300 mx-auto"
+                            aria-label="No incluido"
+                          />
+                        )}
+                      </td>
+                      <td
+                        className={`py-4 px-6 text-right font-semibold ${
+                          isHighlighted ? "text-accent" : "text-accent/80"
+                        }`}
+                      >
+                        {row.price}
+                      </td>
+                    </motion.tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
-          
+
           {/* Nota al pie */}
           <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
             <p className="text-sm text-gray-600 italic text-center">
-              *Precios orientativos. Personalizamos tu paquete según tus necesidades
+              *Precios orientativos. Personalizamos tu paquete según tus
+              necesidades
             </p>
           </div>
+        </motion.div>
+
+        {/* Banner Pack Completo — recordatorio */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-[#1a365d] to-[#0f2440] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <p className="text-accent font-medium text-sm uppercase tracking-wider mb-1">
+              Mejor valor
+            </p>
+            <p className="text-white text-xl font-serif">
+              Pack Completo — Preboda + Boda + Same Day Edit + Postboda
+            </p>
+            <p className="text-white/60 text-sm mt-1">
+              Todo incluido por{" "}
+              <span className="text-accent font-bold">
+                {PACK_COMPLETO.price}
+              </span>{" "}
+              en lugar de €{PACK_COMPLETO.individualTotal.toLocaleString("es-ES")}
+            </p>
+          </div>
+          <a
+            href={getWhatsAppLink(PACK_COMPLETO.whatsappMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 bg-accent text-[#1a365d] px-8 py-4 rounded-xl font-semibold hover:bg-accent/90 shadow-xl transition-all duration-300 uppercase tracking-wide text-sm"
+          >
+            Quiero el pack
+          </a>
         </motion.div>
       </div>
     </section>

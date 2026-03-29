@@ -159,7 +159,7 @@ export const PACK_COMPLETO = {
   price: "€3.000",
   priceNumeric: 3000,
   // Precio si compras todo por separado: 400 + 1200 + 1400 + 400 + 400 = 3.800
-  individualTotal: 3400,
+  individualTotal: 3800,
   savings: 800,
   whatsappMessage: WHATSAPP_MESSAGES.packCompleto,
 } as const

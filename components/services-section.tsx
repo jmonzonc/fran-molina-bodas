@@ -118,8 +118,7 @@ export function ServicesSection() {
                   </div>
                   <meta itemProp="priceCurrency" content="EUR" />
                   <p className="text-green-400 text-sm font-medium mt-1">
-                    Ahorras €{PACK_COMPLETO.savings} respecto a contratar por
-                    separado
+                    Ahorro de €{PACK_COMPLETO.savings} respecto al valor total
                   </p>
                 </div>
 

@@ -249,4 +249,4 @@ export const SEO_KEYWORDS = [
   "mejor fotógrafo bodas tarragona",
   "precio fotógrafo bodas tarragona",
   "boda costa daurada",
-] as const
+]

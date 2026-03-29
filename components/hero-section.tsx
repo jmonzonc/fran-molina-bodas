@@ -3,32 +3,28 @@
 import { motion } from "framer-motion"
 import { BUSINESS_INFO } from "@/lib/config"
 
-// ============================================================
-// CONFIGURACIÓN DE ANIMACIONES
-// ============================================================
-
 const ANIMATION_CONFIG = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.8 },
 }
 
-// Video URL (puede moverse a config si necesita cambiar frecuentemente)
-const HERO_VIDEO_URL = "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc0MzAzODc1LCJleHAiOjE3NzUxNjc4NzV9.fqIcsE6z4Jwib64V_puIlE1e8hdnNm7FJX9MlqdZj_Y"
+// ⚠️  Token JWT con fecha de expiración. Cuando caduque, el vídeo dejará de cargar.
+// TODO: Hacer el bucket público en Supabase o generar URL sin token.
+const HERO_VIDEO_URL =
+  "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc0MzAzODc1LCJleHAiOjE3NzUxNjc4NzV9.fqIcsE6z4Jwib64V_puIlE1e8hdnNm7FJX9MlqdZj_Y"
 
 /**
- * Sección hero con video de fondo a pantalla completa
- * Incluye H1 principal y CTA de reserva
+ * Hero: H1 con keyword principal, claim poético en subtítulo
  */
 export function HeroSection() {
   return (
-    <section 
+    <section
       className="relative h-screen w-full overflow-hidden"
       aria-label={`Presentación - ${BUSINESS_INFO.name}`}
-      itemScope 
+      itemScope
       itemType="https://schema.org/WPHeader"
     >
-      {/* Video de fondo */}
       <video
         autoPlay
         muted
@@ -39,19 +35,19 @@ export function HeroSection() {
         aria-hidden="true"
       >
         <source src={HERO_VIDEO_URL} type="video/mp4" />
-        <track kind="descriptions" label="Pareja de novios caminando de la mano al atardecer" />
+        <track
+          kind="descriptions"
+          label="Pareja de novios caminando de la mano al atardecer"
+        />
       </video>
 
-      {/* Overlay con gradiente */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" 
-        aria-hidden="true" 
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60"
+        aria-hidden="true"
       />
 
-      {/* Contenido principal */}
       <header className="absolute inset-0 flex items-center justify-center">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          {/* Headline principal (H1) */}
           <motion.h1
             {...ANIMATION_CONFIG}
             transition={{ ...ANIMATION_CONFIG.transition, delay: 0.2 }}
@@ -61,17 +57,16 @@ export function HeroSection() {
             {BUSINESS_INFO.tagline}
           </motion.h1>
 
-          {/* Subtítulo con nombre y ubicación */}
           <motion.p
             {...ANIMATION_CONFIG}
             transition={{ ...ANIMATION_CONFIG.transition, delay: 0.4 }}
             className="text-2xl md:text-3xl font-sans text-[#d4a574]/90 font-medium mb-10"
             itemProp="description"
           >
-            <strong>{BUSINESS_INFO.shortName}</strong> - Fotógrafo de Bodas en {BUSINESS_INFO.location.city} y {BUSINESS_INFO.location.region}
+            <strong>{BUSINESS_INFO.shortName}</strong> — Tu historia en momentos
+            eternos
           </motion.p>
 
-          {/* Botón CTA */}
           <motion.a
             href="#contacto"
             {...ANIMATION_CONFIG}
@@ -86,15 +81,11 @@ export function HeroSection() {
         </div>
       </header>
 
-      {/* Indicador de scroll */}
       <ScrollIndicator />
     </section>
   )
 }
 
-/**
- * Indicador animado de scroll en la parte inferior
- */
 function ScrollIndicator() {
   return (
     <motion.div

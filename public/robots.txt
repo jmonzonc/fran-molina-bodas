@@ -10,7 +10,7 @@ Disallow: /admin/
 Disallow: /_next/
 
 # Sitemap location
-Sitemap: https://franmolinafotografia.com/sitemap.xml
+Sitemap: https://www.franmomarchbodas.es/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

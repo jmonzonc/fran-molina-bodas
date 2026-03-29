@@ -34,7 +34,7 @@ const FAQS: FAQ[] = [
   {
     question: "¿Con cuánta antelación debo reservar mi fotógrafo de bodas?",
     answer:
-      "Recomendamos reservar con un mínimo de 9 a 12 meses de antelación, especialmente para bodas en primavera (abril–junio) y otoño (septiembre–octubre), las temporadas más demandadas en Tarragona y la Costa Daurada. Para bodas en 2025 y 2026 la disponibilidad es muy limitada. La reserva se confirma con la firma del contrato y un depósito del 20 %.",
+      "Recomendamos reservar con un mínimo de 9 a 12 meses de antelación, especialmente para bodas en primavera (abril–junio) y otoño (septiembre–octubre), las temporadas más demandadas en Tarragona y la Costa Daurada. Para bodas en 2026 y 2027 la disponibilidad es muy limitada. La reserva se confirma con la firma del contrato y un depósito del 20 %.",
   },
   {
     question: "¿Cubres bodas fuera de Tarragona y la Costa Daurada?",

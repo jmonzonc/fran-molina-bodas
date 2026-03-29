@@ -233,14 +233,12 @@ export const PRICING_DATA: PricingRow[] = [
 // ============================================================
 
 export const SEO_KEYWORDS = [
-  // Core — fotografía
+  // ── FOTOGRAFÍA · CORE ──────────────────────────────────────
   "fotógrafo bodas tarragona",
   "fotógrafo de bodas en tarragona",
   "fotografo bodas tarragona",
   "fotografo bodas costa daurada",
-  "reportaje boda tarragona",
   "mejor fotógrafo bodas tarragona",
-  "precio fotógrafo bodas tarragona",
   "fotógrafo bodas reus",
   "fotógrafo bodas salou",
   "fotógrafo bodas cambrils",
@@ -248,35 +246,59 @@ export const SEO_KEYWORDS = [
   "fotógrafo bodas tortosa",
   "fotógrafo bodas barcelona",
   "fotógrafo bodas cataluña",
+  "reportaje boda tarragona",
+  "reportaje fotografico boda tarragona",
 
-  // Core — vídeo
+  // ── VÍDEO · CORE ───────────────────────────────────────────
   "videografo bodas tarragona",
   "videógrafo bodas tarragona",
   "video boda tarragona",
   "video cinematografico boda tarragona",
   "video boda costa daurada",
   "videografo bodas reus",
+  "videografo bodas cataluña",
   "video boda cataluña",
 
-  // Foto + vídeo combinado
+  // ── FOTO + VÍDEO (paquete combinado) ──────────────────────
   "foto y video boda tarragona",
   "fotografo y videografo bodas tarragona",
   "paquete foto video boda tarragona",
+  "foto video boda costa daurada",
 
-  // Sesiones específicas
+  // ── SESIONES ──────────────────────────────────────────────
   "preboda tarragona",
   "preboda costa daurada",
   "postboda tarragona",
   "postboda costa daurada",
+  "sesion preboda tarragona",
   "same day edit boda tarragona",
 
-  // Long tail / alta intención
-  "reportaje fotografico boda tarragona",
-  "fotografo boda costa dorada",
-  "video boda cinematografico tarragona",
-  "fotógrafo bodas tarragona opiniones",
+  // ── PRECIO · FOTOGRAFÍA ───────────────────────────────────
+  "precio fotógrafo bodas tarragona",
+  "cuanto cuesta fotografo bodas tarragona",
+  "cuánto cuesta un fotógrafo de bodas en tarragona",
+  "precio reportaje boda tarragona",
+  "presupuesto fotografo boda tarragona",
+  "precio fotógrafo boda costa daurada",
+  "tarifas fotografo bodas tarragona",
 
-  // Genérico de zona
-  "boda costa daurada",
-  "boda tarragona fotografia",
+  // ── PRECIO · VÍDEO ────────────────────────────────────────
+  "precio video boda tarragona",
+  "cuanto cuesta video boda tarragona",
+  "precio videografo bodas tarragona",
+  "presupuesto video boda tarragona",
+  "precio video cinematografico boda cataluña",
+
+  // ── PRECIO · PAQUETE COMBINADO ────────────────────────────
+  "precio foto y video boda tarragona",
+  "cuanto cuesta foto y video boda tarragona",
+  "precio paquete bodas tarragona",
+
+  // ── LONG TAIL · ALTA INTENCIÓN ────────────────────────────
+  "fotógrafo bodas tarragona opiniones",
+  "mejor videografo bodas tarragona",
+  "fotografo boda costa dorada",
+  "fotografia nupcial tarragona",
+  "boda costa daurada fotografia",
+  "boda tarragona fotografia video",
 ]

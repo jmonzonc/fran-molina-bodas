@@ -86,13 +86,15 @@ export const WHATSAPP_MESSAGES = {
 // ============================================================
 
 export interface ServiceItem {
-  id: string
-  title: string
-  subtitle?: string
-  features: string[]
-  price: string
-  priceNumeric: number
-  whatsappMessage: string
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  priceNumeric: number;
+  priceOriginal?: number;
+  saving?: number;
+  featured?: boolean;
+  includes: readonly string[];
 }
 
 export const SERVICES: ServiceItem[] = [

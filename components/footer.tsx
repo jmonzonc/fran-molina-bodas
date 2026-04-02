@@ -91,7 +91,7 @@ export function Footer() {
               <p className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-accent" aria-hidden="true" />
                 <a 
-                  href={`tel:${PHONE_LINK}`} 
+                  href={`:${PHONE_LINK}`} 
                   className="hover:text-accent transition-colors" 
                   itemProp="telephone"
                 >

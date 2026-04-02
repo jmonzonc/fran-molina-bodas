@@ -1,156 +1,149 @@
+// ─── Tipos ────────────────────────────────────────────────────────────────────
+
 /**
- * Configuración centralizada del sitio web de Fran Molina Fotografía
- *
- * ⚠️  REESTRUCTURACIÓN COMPLETA respecto al original:
- *  1. SITE_URL corregida → franmomarchbodas.es
- *  2. Precios reales según briefing del cliente
- *  3. Servicios reorganizados: individuales + Pack Completo destacado
- *  4. Tagline SEO en español (sin "frames")
- *  5. Keywords refinadas para mercado local
+ * `name` es el campo canónico (Schema.org). El componente y el JSON-LD
+ * leen del mismo campo — sin duplicados title/name ni features/includes.
  */
-
-// ============================================================
-// DATOS DE CONTACTO
-// ============================================================
-
-export const WHATSAPP_NUMBER = "34638475783"
-export const PHONE_DISPLAY = "+34 638 475 783"
-export const PHONE_LINK = "+34638475783"
-export const EMAIL = "francescmolinamarch@gmail.com"
-
-// ============================================================
-// REDES SOCIALES
-// ============================================================
-
-export const SOCIAL_LINKS = {
-  instagram:
-    "https://www.instagram.com/fran_momarch_wedding?igsh=MWNmbHh5YzV3bWIzMg==",
-  facebook: "https://facebook.com/franmolinafotografia",
-  youtube: "https://youtube.com/@franmolinafoto",
-} as const
-
-// ============================================================
-// DATOS DEL NEGOCIO
-// ============================================================
-
-export const BUSINESS_INFO = {
-  name: "Fran Molina Fotografía",
-  shortName: "Fran Molina",
-  tagline: "Fotógrafo de Bodas en Tarragona y Costa Daurada",
-  description:
-    "Fotografía y vídeo de bodas premium en Tarragona, Reus, Salou, Cambrils y toda la Costa Daurada. Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015.",
-  location: {
-    city: "Tarragona",
-    region: "Costa Daurada",
-    country: "ES",
-    coordinates: {
-      latitude: 41.1189,
-      longitude: 1.2445,
-    },
-  },
-  priceRange: "€€-€€€",
-  foundedYear: 2015,
-} as const
-
-// ============================================================
-// URL DEL SITIO
-// ============================================================
-
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.franmomarchbodas.es"
-
-// ============================================================
-// WHATSAPP
-// ============================================================
-
-export function getWhatsAppLink(message: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
-}
-
-export const WHATSAPP_MESSAGES = {
-  general:
-    "Hola Fran! Me gustaría más información sobre tus servicios de fotografía de bodas.",
-  preboda: "Hola Fran, me interesa la sesión de Preboda",
-  bodaFoto: "Hola Fran, me interesa el reportaje fotográfico de Boda",
-  bodaVideo: "Hola Fran, me interesa el vídeo cinematográfico de Boda",
-  bodaCompleta:
-    "Hola Fran, me interesa la Boda Completa con fotografía y vídeo",
-  sameDayEdit: "Hola Fran, me interesa el Same Day Edit",
-  postboda: "Hola Fran, me interesa la sesión de Postboda",
-  packCompleto:
-    "Hola Fran, me interesa el Pack Completo (Preboda + Boda + Same Day Edit + Postboda)",
-} as const
-
-// ============================================================
-// SERVICIOS INDIVIDUALES
-// ============================================================
-
 export interface ServiceItem {
   id: string;
   name: string;
+  subtitle?: string;
   description: string;
   price: string;
   priceNumeric: number;
-  priceOriginal?: number;
-  saving?: number;
-  featured?: boolean;
-  includes: readonly string[];
+  features: string[]; // usado en UI y en JSON-LD (itemOffered description)
+  whatsappMessage: string;
 }
+
+// ─── Contacto ─────────────────────────────────────────────────────────────────
+
+export const PHONE_DISPLAY = "+34 638 475 783";
+export const PHONE_LINK = "tel:+34638475783";
+export const EMAIL = "francescmolinamarch@gmail.com";
+export const SITE_URL = "https://www.franmomarchbodas.es";
+
+// ─── Negocio ──────────────────────────────────────────────────────────────────
+
+export const BUSINESS_INFO = {
+  name: "Fran Molina Fotografía",
+  legalName: "Fran Molina March",
+  tagline: "Tu historia en momentos eternos",
+  description:
+    "Fotografía y vídeo de bodas premium en Tarragona, Reus, Salou, Cambrils " +
+    "y toda la Costa Daurada. Reportajes de preboda, boda completa y postboda " +
+    "con estilo natural y elegante mediterráneo desde 2015.",
+  location: "Tarragona, Costa Daurada",
+  coordinates: {
+    lat: 41.1189,
+    lng: 1.2445,
+  },
+  priceRange: "€€€",
+  foundingYear: 2015,
+} as const;
+
+// ─── Social ───────────────────────────────────────────────────────────────────
+
+export const SOCIAL_LINKS = {
+  instagram: "https://www.instagram.com/franmolinafoto",
+  facebook: "",
+  youtube: "",
+} as const;
+
+// ─── SEO ──────────────────────────────────────────────────────────────────────
+
+export const SEO_KEYWORDS: string[] = [
+  "fotógrafo bodas Tarragona",
+  "videógrafo bodas Tarragona",
+  "fotografía bodas Costa Daurada",
+  "fotógrafo bodas Reus",
+  "fotógrafo bodas Salou",
+  "fotógrafo bodas Cambrils",
+  "fotógrafo bodas Cataluña",
+  "fotógrafo bodas premium Tarragona",
+  "reportaje fotográfico boda Tarragona",
+  "preboda Tarragona",
+  "postboda Costa Daurada",
+  "same day edit boda",
+  "álbum lujo boda",
+  "Fran Molina March fotógrafo",
+];
+
+// ─── WhatsApp helper ──────────────────────────────────────────────────────────
+
+export function getWhatsAppLink(message: string): string {
+  return `https://wa.me/34638475783?text=${encodeURIComponent(message)}`;
+}
+
+// ─── Servicios individuales ───────────────────────────────────────────────────
 
 export const SERVICES: ServiceItem[] = [
   {
     id: "preboda",
-    title: "Preboda",
+    name: "Preboda",
     subtitle: "Sesión de pareja",
+    description:
+      "Sesión de pareja de 2-3 horas en ubicación elegida. " +
+      "50+ fotos editadas profesionalmente y galería online privada.",
+    price: "€400",
+    priceNumeric: 400,
     features: [
       "Sesión de 2-3 horas en ubicación elegida",
       "50+ fotos editadas profesionalmente",
       "Galería online privada",
     ],
-    price: "€400",
-    priceNumeric: 400,
-    whatsappMessage: WHATSAPP_MESSAGES.preboda,
+    whatsappMessage: "Hola Fran, me interesa la sesión de Preboda",
   },
   {
     id: "boda-completa",
-    title: "Boda Completa",
+    name: "Boda Completa",
     subtitle: "Foto + Vídeo",
+    description:
+      "Cobertura del día completo (10h+) con fotografía y vídeo cinematográfico. " +
+      "400+ fotos editadas, highlight reel y galería privada descargable.",
+    price: "€2.200",
+    priceNumeric: 2200,
     features: [
       "Cobertura del día completo (10h+)",
       "Fotografía y vídeo cinematográfico",
       "400+ fotos editadas + highlight reel",
       "Galería online privada descargable",
     ],
-    price: "€2.200",
-    priceNumeric: 2200,
-    whatsappMessage: WHATSAPP_MESSAGES.bodaCompleta,
+    whatsappMessage:
+      "Hola Fran, me interesa la Boda Completa con fotografía y vídeo",
   },
   {
     id: "postboda",
-    title: "Postboda",
+    name: "Postboda",
     subtitle: "Sesión artística",
+    description:
+      "Sesión artística post-ceremonia en la Costa Daurada con álbum de lujo incluido.",
+    price: "€400",
+    priceNumeric: 400,
     features: [
       "Sesión artística post-ceremonia",
       "Ubicación especial Costa Daurada",
       "Álbum de lujo incluido",
     ],
-    price: "€400",
-    priceNumeric: 400,
-    whatsappMessage: WHATSAPP_MESSAGES.postboda,
+    whatsappMessage: "Hola Fran, me interesa la sesión de Postboda",
   },
-]
+];
 
-// ============================================================
-// PACK COMPLETO (valor diferencial)
-// ============================================================
+// ─── Pack Completo ────────────────────────────────────────────────────────────
 
 export const PACK_COMPLETO = {
   id: "pack-completo",
-  title: "Pack Completo",
+  name: "Pack Completo",
   subtitle: "Tu boda de principio a fin",
   description:
-    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda y tu Same Day Edit para sorprender a los invitados.",
-  includes: [
+    "La experiencia completa: desde la sesión de preboda hasta la postboda, " +
+    "con cobertura total del día de la boda y tu Same Day Edit para sorprender a los invitados.",
+  price: "€3.000",
+  priceNumeric: 3000,
+  individualTotal: 3800,
+  savings: 800,
+  whatsappMessage:
+    "Hola Fran, me interesa el Pack Completo (Preboda + Boda + Same Day Edit + Postboda)",
+  features: [
     "Sesión de Preboda",
     "Boda Completa — fotografía + vídeo (10h+)",
     "Same Day Edit para proyectar en el banquete",
@@ -158,149 +151,4 @@ export const PACK_COMPLETO = {
     "500+ fotos editadas + highlight reel",
     "Galería online privada descargable",
   ],
-  price: "€3.000",
-  priceNumeric: 3000,
-  // Precio si compras todo por separado: 400 + 1200 + 1400 + 400 + 400 = 3.800
-  individualTotal: 3800,
-  savings: 800,
-  whatsappMessage: WHATSAPP_MESSAGES.packCompleto,
-} as const
-
-// ============================================================
-// TABLA DE PRECIOS (detalle completo)
-// ============================================================
-
-export interface PricingRow {
-  service: string
-  description: string
-  photography: boolean
-  video: boolean
-  price: string
-  priceNumeric: number
-}
-
-export const PRICING_DATA: PricingRow[] = [
-  {
-    service: "Preboda",
-    description: "Sesión de pareja, 2-3 horas",
-    photography: true,
-    video: false,
-    price: "€400",
-    priceNumeric: 400,
-  },
-  {
-    service: "Boda — Solo foto",
-    description: "Reportaje fotográfico del día completo",
-    photography: true,
-    video: false,
-    price: "€1.200",
-    priceNumeric: 1200,
-  },
-  {
-    service: "Boda — Solo vídeo",
-    description: "Vídeo cinematográfico del día completo",
-    photography: false,
-    video: true,
-    price: "€1.400",
-    priceNumeric: 1400,
-  },
-  {
-    service: "Boda Completa",
-    description: "Fotografía + vídeo del día completo",
-    photography: true,
-    video: true,
-    price: "€2.200",
-    priceNumeric: 2200,
-  },
-  {
-    service: "Same Day Edit",
-    description: "Vídeo editado para proyectar en el banquete",
-    photography: false,
-    video: true,
-    price: "€400",
-    priceNumeric: 400,
-  },
-  {
-    service: "Postboda",
-    description: "Sesión artística + álbum de lujo",
-    photography: true,
-    video: false,
-    price: "€400",
-    priceNumeric: 400,
-  },
-]
-
-// ============================================================
-// KEYWORDS SEO
-// ============================================================
-
-export const SEO_KEYWORDS = [
-  // ── FOTOGRAFÍA · CORE ──────────────────────────────────────
-  "fotógrafo bodas tarragona",
-  "fotógrafo de bodas en tarragona",
-  "fotografo bodas tarragona",
-  "fotografo bodas costa daurada",
-  "mejor fotógrafo bodas tarragona",
-  "fotógrafo bodas reus",
-  "fotógrafo bodas salou",
-  "fotógrafo bodas cambrils",
-  "fotógrafo bodas valls",
-  "fotógrafo bodas tortosa",
-  "fotógrafo bodas barcelona",
-  "fotógrafo bodas cataluña",
-  "reportaje boda tarragona",
-  "reportaje fotografico boda tarragona",
-
-  // ── VÍDEO · CORE ───────────────────────────────────────────
-  "videografo bodas tarragona",
-  "videógrafo bodas tarragona",
-  "video boda tarragona",
-  "video cinematografico boda tarragona",
-  "video boda costa daurada",
-  "videografo bodas reus",
-  "videografo bodas cataluña",
-  "video boda cataluña",
-
-  // ── FOTO + VÍDEO (paquete combinado) ──────────────────────
-  "foto y video boda tarragona",
-  "fotografo y videografo bodas tarragona",
-  "paquete foto video boda tarragona",
-  "foto video boda costa daurada",
-
-  // ── SESIONES ──────────────────────────────────────────────
-  "preboda tarragona",
-  "preboda costa daurada",
-  "postboda tarragona",
-  "postboda costa daurada",
-  "sesion preboda tarragona",
-  "same day edit boda tarragona",
-
-  // ── PRECIO · FOTOGRAFÍA ───────────────────────────────────
-  "precio fotógrafo bodas tarragona",
-  "cuanto cuesta fotografo bodas tarragona",
-  "cuánto cuesta un fotógrafo de bodas en tarragona",
-  "precio reportaje boda tarragona",
-  "presupuesto fotografo boda tarragona",
-  "precio fotógrafo boda costa daurada",
-  "tarifas fotografo bodas tarragona",
-
-  // ── PRECIO · VÍDEO ────────────────────────────────────────
-  "precio video boda tarragona",
-  "cuanto cuesta video boda tarragona",
-  "precio videografo bodas tarragona",
-  "presupuesto video boda tarragona",
-  "precio video cinematografico boda cataluña",
-
-  // ── PRECIO · PAQUETE COMBINADO ────────────────────────────
-  "precio foto y video boda tarragona",
-  "cuanto cuesta foto y video boda tarragona",
-  "precio paquete bodas tarragona",
-
-  // ── LONG TAIL · ALTA INTENCIÓN ────────────────────────────
-  "fotógrafo bodas tarragona opiniones",
-  "mejor videografo bodas tarragona",
-  "fotografo boda costa dorada",
-  "fotografia nupcial tarragona",
-  "boda costa daurada fotografia",
-  "boda tarragona fotografia video",
-]
+} as const;

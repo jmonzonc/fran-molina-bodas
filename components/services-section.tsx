@@ -11,21 +11,12 @@ import {
 } from "lucide-react"
 import { SERVICES, PACK_COMPLETO, getWhatsAppLink } from "@/lib/config"
 
-// Mapeo de iconos por servicio
 const SERVICE_ICONS: Record<string, LucideIcon> = {
   preboda: Camera,
   "boda-completa": Film,
   postboda: Sparkles,
 }
 
-/**
- * Sección de servicios reestructurada:
- *  1. Pack Completo destacado como hero (mayor margen, mejor propuesta)
- *  2. Servicios individuales debajo como alternativa
- *
- * Estrategia: anclar el precio del Pack Completo primero → los servicios
- * individuales parecen caros en comparación → empuja hacia el pack.
- */
 export function ServicesSection() {
   return (
     <section
@@ -36,7 +27,6 @@ export function ServicesSection() {
       itemType="https://schema.org/Service"
     >
       <div className="max-w-6xl mx-auto px-6">
-        {/* Encabezado */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +57,6 @@ export function ServicesSection() {
           itemScope
           itemType="https://schema.org/Offer"
         >
-          {/* Badge "Más elegido" */}
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
             <span className="bg-accent text-[#1a365d] text-sm font-bold px-6 py-2 rounded-full shadow-lg uppercase tracking-wider">
               Más elegido
@@ -76,7 +65,6 @@ export function ServicesSection() {
 
           <div className="bg-gradient-to-br from-[#1a365d] to-[#0f2440] rounded-3xl p-8 md:p-12 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border border-white/10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              {/* Columna izquierda: info */}
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-3 rounded-xl bg-accent/20">
@@ -91,7 +79,7 @@ export function ServicesSection() {
                       className="text-3xl font-serif text-white"
                       itemProp="name"
                     >
-                      {PACK_COMPLETO.title}
+                      {PACK_COMPLETO.name}
                     </h3>
                     <p className="text-accent/80 text-sm font-medium">
                       {PACK_COMPLETO.subtitle}
@@ -103,7 +91,6 @@ export function ServicesSection() {
                   {PACK_COMPLETO.description}
                 </p>
 
-                {/* Precio con ahorro */}
                 <div className="mb-6">
                   <div className="flex items-baseline gap-3">
                     <span
@@ -133,13 +120,12 @@ export function ServicesSection() {
                 </a>
               </div>
 
-              {/* Columna derecha: qué incluye */}
               <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
                 <p className="text-white font-medium mb-4 text-sm uppercase tracking-wider">
                   El pack incluye
                 </p>
                 <ul className="space-y-3">
-                  {PACK_COMPLETO.includes.map((item, i) => (
+                  {PACK_COMPLETO.features.map((item, i) => (
                     <li
                       key={i}
                       className="flex items-start gap-3 text-white/80"
@@ -181,7 +167,6 @@ export function ServicesSection() {
                 itemScope
                 itemType="https://schema.org/Offer"
               >
-                {/* Icono */}
                 <div className="flex justify-center mb-6">
                   <div className="p-4 rounded-2xl bg-accent/10">
                     <Icon
@@ -192,7 +177,6 @@ export function ServicesSection() {
                   </div>
                 </div>
 
-                {/* Título */}
                 <h3
                   className="text-2xl font-serif mb-1 text-primary text-center"
                   itemProp="name"
@@ -205,7 +189,6 @@ export function ServicesSection() {
                   </p>
                 )}
 
-                {/* Features */}
                 <ul
                   className="space-y-3 text-gray-700 leading-relaxed mb-8"
                   aria-label={`Características de ${service.name}`}
@@ -220,7 +203,6 @@ export function ServicesSection() {
                   ))}
                 </ul>
 
-                {/* Precio */}
                 <div className="text-center mb-6">
                   <span
                     className="text-2xl font-bold text-accent"
@@ -231,7 +213,6 @@ export function ServicesSection() {
                   <meta itemProp="priceCurrency" content="EUR" />
                 </div>
 
-                {/* CTA */}
                 <a
                   href={getWhatsAppLink(service.whatsappMessage)}
                   target="_blank"

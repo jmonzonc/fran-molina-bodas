@@ -163,10 +163,11 @@ export function ServicesSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
                 whileHover={{ y: -8 }}
-                className="max-w-sm mx-auto w-full bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-2xl hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-500 border border-white/50"
+                className="flex flex-col max-w-sm mx-auto w-full bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-2xl hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-500 border border-white/50"
                 itemScope
                 itemType="https://schema.org/Offer"
               >
+                {/* Icono */}
                 <div className="flex justify-center mb-6">
                   <div className="p-4 rounded-2xl bg-accent/10">
                     <Icon
@@ -177,6 +178,7 @@ export function ServicesSection() {
                   </div>
                 </div>
 
+                {/* Título + subtítulo */}
                 <h3
                   className="text-2xl font-serif mb-1 text-primary text-center"
                   itemProp="name"
@@ -189,8 +191,9 @@ export function ServicesSection() {
                   </p>
                 )}
 
+                {/* Features — crece para ocupar espacio variable */}
                 <ul
-                  className="space-y-3 text-gray-700 leading-relaxed mb-8"
+                  className="flex-grow space-y-3 text-gray-700 leading-relaxed mb-8"
                   aria-label={`Características de ${service.name}`}
                 >
                   {service.features.map((feature, i) => (
@@ -203,25 +206,28 @@ export function ServicesSection() {
                   ))}
                 </ul>
 
-                <div className="text-center mb-6">
-                  <span
-                    className="text-2xl font-bold text-accent"
-                    itemProp="price"
-                  >
-                    Desde {service.price}
-                  </span>
-                  <meta itemProp="priceCurrency" content="EUR" />
-                </div>
+                {/* Precio + CTA — siempre anclados abajo */}
+                <div className="mt-auto">
+                  <div className="text-center mb-6">
+                    <span
+                      className="text-2xl font-bold text-accent"
+                      itemProp="price"
+                    >
+                      Desde {service.price}
+                    </span>
+                    <meta itemProp="priceCurrency" content="EUR" />
+                  </div>
 
-                <a
-                  href={getWhatsAppLink(service.whatsappMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center bg-accent/10 text-accent border-2 border-accent/30 px-8 py-4 rounded-xl font-semibold hover:bg-accent hover:text-[#1a365d] transition-all duration-300"
-                  aria-label={`Reservar ${service.name} por WhatsApp`}
-                >
-                  Reservar
-                </a>
+                  <a
+                    href={getWhatsAppLink(service.whatsappMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center bg-accent/10 text-accent border-2 border-accent/30 px-8 py-4 rounded-xl font-semibold hover:bg-accent hover:text-[#1a365d] transition-all duration-300"
+                    aria-label={`Reservar ${service.name} por WhatsApp`}
+                  >
+                    Reservar
+                  </a>
+                </div>
               </motion.article>
             )
           })}

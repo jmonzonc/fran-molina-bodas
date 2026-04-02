@@ -197,7 +197,7 @@ export function ServicesSection() {
                   className="text-2xl font-serif mb-1 text-primary text-center"
                   itemProp="name"
                 >
-                  {service.title}
+                  {service.name}
                 </h3>
                 {service.subtitle && (
                   <p className="text-muted-foreground text-sm text-center mb-4">
@@ -208,7 +208,7 @@ export function ServicesSection() {
                 {/* Features */}
                 <ul
                   className="space-y-3 text-gray-700 leading-relaxed mb-8"
-                  aria-label={`Características de ${service.title}`}
+                  aria-label={`Características de ${service.name}`}
                 >
                   {service.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
@@ -237,7 +237,7 @@ export function ServicesSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full text-center bg-accent/10 text-accent border-2 border-accent/30 px-8 py-4 rounded-xl font-semibold hover:bg-accent hover:text-[#1a365d] transition-all duration-300"
-                  aria-label={`Reservar ${service.title} por WhatsApp`}
+                  aria-label={`Reservar ${service.name} por WhatsApp`}
                 >
                   Reservar
                 </a>

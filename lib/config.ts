@@ -4,7 +4,7 @@
 
 export const WHATSAPP_NUMBER = "34638475783"
 export const PHONE_DISPLAY = "+34 638 475 783"
-export const PHONE_LINK = "+34638475783"
+export const PHONE_LINK = "tel:+34638475783"           // fix: prefijo tel:
 export const EMAIL = "francescmolinamarch@gmail.com"
 
 // ============================================================
@@ -35,7 +35,7 @@ export const BUSINESS_INFO = {
     country: "ES",
   },
   coordinates: {
-    lat: 41.1189,
+    lat: 41.1189,                                      // alineado con layout.tsx
     lng: 1.2445,
   },
   priceRange: "€€-€€€",
@@ -77,12 +77,12 @@ export const WHATSAPP_MESSAGES = {
 
 export interface ServiceItem {
   id: string
-  name: string
+  name: string                // canónico Schema.org — componentes leen .name
   subtitle?: string
-  description: string
+  description: string         // JSON-LD + futuras páginas /servicios/[slug]
   price: string
   priceNumeric: number
-  features: string[]
+  features: string[]          // lista UI + fuente JSON-LD
   whatsappMessage: string
 }
 
@@ -229,6 +229,7 @@ export const PRICING_DATA: PricingRow[] = [
 // ============================================================
 
 export const SEO_KEYWORDS: string[] = [
+  // ── FOTOGRAFÍA · CORE ──────────────────────────────────────
   "fotógrafo bodas tarragona",
   "fotógrafo de bodas en tarragona",
   "fotografo bodas tarragona",
@@ -243,6 +244,8 @@ export const SEO_KEYWORDS: string[] = [
   "fotógrafo bodas cataluña",
   "reportaje boda tarragona",
   "reportaje fotografico boda tarragona",
+
+  // ── VÍDEO · CORE ───────────────────────────────────────────
   "videografo bodas tarragona",
   "videógrafo bodas tarragona",
   "video boda tarragona",
@@ -251,16 +254,22 @@ export const SEO_KEYWORDS: string[] = [
   "videografo bodas reus",
   "videografo bodas cataluña",
   "video boda cataluña",
+
+  // ── FOTO + VÍDEO ──────────────────────────────────────────
   "foto y video boda tarragona",
   "fotografo y videografo bodas tarragona",
   "paquete foto video boda tarragona",
   "foto video boda costa daurada",
+
+  // ── SESIONES ──────────────────────────────────────────────
   "preboda tarragona",
   "preboda costa daurada",
   "postboda tarragona",
   "postboda costa daurada",
   "sesion preboda tarragona",
   "same day edit boda tarragona",
+
+  // ── PRECIO · FOTOGRAFÍA ───────────────────────────────────
   "precio fotógrafo bodas tarragona",
   "cuanto cuesta fotografo bodas tarragona",
   "cuánto cuesta un fotógrafo de bodas en tarragona",
@@ -268,14 +277,20 @@ export const SEO_KEYWORDS: string[] = [
   "presupuesto fotografo boda tarragona",
   "precio fotógrafo boda costa daurada",
   "tarifas fotografo bodas tarragona",
+
+  // ── PRECIO · VÍDEO ────────────────────────────────────────
   "precio video boda tarragona",
   "cuanto cuesta video boda tarragona",
   "precio videografo bodas tarragona",
   "presupuesto video boda tarragona",
   "precio video cinematografico boda cataluña",
+
+  // ── PRECIO · PAQUETE ──────────────────────────────────────
   "precio foto y video boda tarragona",
   "cuanto cuesta foto y video boda tarragona",
   "precio paquete bodas tarragona",
+
+  // ── LONG TAIL · ALTA INTENCIÓN ────────────────────────────
   "fotógrafo bodas tarragona opiniones",
   "mejor videografo bodas tarragona",
   "fotografo boda costa dorada",

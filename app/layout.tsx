@@ -311,73 +311,130 @@ const jsonLd = {
         name: `${BUSINESS_INFO.location.city}, ${BUSINESS_INFO.location.region}`,
       },
       hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Paquetes de Fotografía de Bodas — Tarragona y Costa Daurada',
-        itemListElement: [
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Preboda Foto',
-              description:
-                'Sesión de preboda de 2-3 horas en ubicación elegida. Incluye 50+ fotos editadas profesionalmente y galería online privada descargable.',
-            },
-            price: '1200',
-            priceCurrency: 'EUR',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              price: '1200',
-              priceCurrency: 'EUR',
-              valueAddedTaxIncluded: false,
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Boda Completa',
-              description:
-                'Cobertura completa del día de la boda (10h+) con fotografía y vídeo cinematográfico. Más de 400 fotos editadas y highlight reel.',
-            },
-            price: '3500',
-            priceCurrency: 'EUR',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              price: '3500',
-              priceCurrency: 'EUR',
-              valueAddedTaxIncluded: false,
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Same Day Edit',
-              description:
-                'Vídeo cinematográfico editado y listo para proyectar el mismo día de la boda durante el banquete.',
-            },
-            price: '800',
-            priceCurrency: 'EUR',
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Postboda Premium',
-              description:
-                'Sesión artística post-ceremonia en ubicación especial de la Costa Daurada. Incluye álbum de lujo.',
-            },
-            price: '900',
-            priceCurrency: 'EUR',
-            priceSpecification: {
-              '@type': 'PriceSpecification',
-              price: '900',
-              priceCurrency: 'EUR',
-              valueAddedTaxIncluded: false,
-            },
-          },
-        ],
+  "@type": "OfferCatalog",
+  name: "Paquetes de Fotografía de Bodas — Tarragona y Costa Daurada",
+  itemListElement: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Preboda",
+        description:
+          "Sesión de preboda de 2-3 horas en ubicación elegida. Incluye 50+ fotos editadas profesionalmente y galería online privada descargable.",
       },
+      price: "400",           // ← era 1200
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        price: "400",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Boda — Solo foto",
+        description:
+          "Reportaje fotográfico del día completo (10h+). Más de 400 fotos editadas y galería online privada descargable.",
+      },
+      price: "1200",          // ← servicio nuevo
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        price: "1200",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Boda — Solo vídeo",
+        description:
+          "Vídeo cinematográfico del día completo (10h+) con highlight reel y galería online privada descargable.",
+      },
+      price: "1400",          // ← servicio nuevo
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        price: "1400",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Boda Completa",
+        description:
+          "Cobertura completa del día de la boda (10h+) con fotografía y vídeo cinematográfico. Más de 400 fotos editadas y highlight reel.",
+      },
+      price: "2200",          // ← era 3500
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        price: "2200",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Same Day Edit",
+        description:
+          "Vídeo cinematográfico editado y listo para proyectar el mismo día de la boda durante el banquete.",
+      },
+      price: "400",           // ← era 800
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        price: "400",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Postboda",
+        description:
+          "Sesión artística post-ceremonia en ubicación especial de la Costa Daurada. Incluye álbum de lujo.",
+      },
+      price: "400",           // ← era 900
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        price: "400",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Pack Completo",
+        description:
+          "Preboda + Boda Completa (foto y vídeo, 10h+) + Same Day Edit + Postboda con álbum de lujo. 500+ fotos editadas, highlight reel y galería privada.",
+      },
+      price: "3000",          // ← servicio nuevo
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        price: "3000",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+    },
+  ],
+},
     },
 
     // ----------------------------------------------------------

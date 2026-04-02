@@ -199,8 +199,8 @@ const jsonLd = {
       },
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: BUSINESS_INFO.location.coordinates.latitude,
-        longitude: BUSINESS_INFO.location.coordinates.longitude,
+        latitude: BUSINESS_INFO.coordinates.lat,
+        longitude: BUSINESS_INFO.coordinates.lng,
       },
       // ContactPoint ayuda a Google a correlacionar el schema con GMB.
       contactPoint: {

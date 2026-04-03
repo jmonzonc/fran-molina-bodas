@@ -108,4 +108,22 @@ export default function AdminPage() {
           <Progress value={progress} />
         </div>
       )}
-      
+      {uploadedFiles.length > 0 && (
+        <div className="space-y-3">
+          <h2 className="font-medium">Archivos subidos en esta sesión</h2>
+          {uploadedFiles.map((file, i) => (
+            <div key={i} className="flex items-center gap-3 p-3 border rounded-lg bg-muted/30">
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium truncate">{file.name}</p>
+                <p className="text-xs text-muted-foreground truncate">{file.url}</p>
+              </div>
+              <Button size="sm" variant="outline" onClick={() => copyUrl(file.url)}>
+                <Copy className="w-4 h-4" />
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

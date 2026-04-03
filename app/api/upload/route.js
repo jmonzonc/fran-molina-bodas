@@ -16,8 +16,11 @@ export async function POST(request) {
     ContentLength: contentLength,
   });
 
-  const signedUrl = await getSignedUrl(s3, command, { expiresIn: 900 });
-  const publicUrl = `${process.env.NEXT_PUBLIC_CDN_URL}/${key}`;
+  const signedUrl = await getSignedUrl(s3, command, {
+    expiresIn: 900,
+    unhoistableHeaders: new Set(["x-amz-checksum-crc32"]),
+  });
 
+  const publicUrl = `${process.env.NEXT_PUBLIC_CDN_URL}/${key}`;
   return Response.json({ signedUrl, publicUrl });
 }

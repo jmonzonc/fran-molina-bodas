@@ -12,7 +12,7 @@ const ANIMATION_CONFIG = {
 // ⚠️  Token JWT con fecha de expiración. Cuando caduque, el vídeo dejará de cargar.
 // TODO: Hacer el bucket público en Supabase o generar URL sin token.
 const HERO_VIDEO_URL =
-  "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc0MzAzODc1LCJleHAiOjE3NzUxNjc4NzV9.fqIcsE6z4Jwib64V_puIlE1e8hdnNm7FJX9MlqdZj_Y"
+  "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc1MjI4NTAzLCJleHAiOjIwOTA1ODg1MDN9.su-8GN2oqVOuv92gQCXwINxy2cClzQQKI6-FsAOUePs"
 
 /**
  * Hero: H1 con keyword principal, claim poético en subtítulo

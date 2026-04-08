@@ -94,7 +94,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     id: 8,
     category: "Postboda",
     image:
-      "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzQuSlBHIiwiaWF0IjoxNzc0MzgxNzg0LCJleHAiOjE3NzQ5ODY1ODR9.HCjHQNQy_DhgSJNbmt8L8JZPV6SJ8tiHwFURq_a8lvs",
+      "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzQuSlBHIiwiaWF0IjoxNzc1NjcxNzMyLCJleHAiOjIwOTEwMzE3MzJ9.DTiLk2R8b7k683nZxbOOI2LjV2yeDNQjkuDJPApZRhM",
     title: "Postboda en Tarragona — Playa",
     description: "Recuerdos junto al mar",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar",

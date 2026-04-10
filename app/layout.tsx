@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: SITE_URL,
     siteName: BUSINESS_INFO.name,
-    title: `${BUSINESS_INFO.name} | Fotógrafo de Bodas Premium en Tarragona`,
+    title: "Fotógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina — Foto y Vídeo",
     description:
       "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
       "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.000 €.",

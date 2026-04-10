@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
+import { Navbar } from "@/components/navbar"
 import "./globals.css"
 import {
   SITE_URL,
@@ -333,7 +334,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+     <body className="font-sans antialiased">
+  <Navbar />
+  {children}
+</body>
     </html>
   )
 }

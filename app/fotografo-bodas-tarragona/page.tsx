@@ -401,14 +401,14 @@ export default function FotografoBodasTarragona() {
 
             <nav className="mt-12 pt-8 border-t border-white/10 text-white/50 text-sm space-y-2">
               <p>También trabajo en:</p>
-              <p>
-                <Link
-                  href="/fotografo-bodas-barcelona"
-                  className="text-accent/70 hover:text-accent transition-colors"
-                >
-                  Fotógrafo de bodas en Barcelona
+              <div className="flex justify-center gap-6">
+                <Link href="/fotografo-bodas-barcelona" className="text-accent/70 hover:text-accent transition-colors">
+                  Barcelona
                 </Link>
-              </p>
+                <Link href="/fotografo-bodas-girona" className="text-accent/70 hover:text-accent transition-colors">
+                  Girona
+                </Link>
+              </div>
             </nav>
           </div>
         </section>

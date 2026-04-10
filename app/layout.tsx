@@ -32,9 +32,9 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${BUSINESS_INFO.name} | Fotógrafo de Bodas Premium en Tarragona`,
-    template: `%s | ${BUSINESS_INFO.name}`,
-  },
+  default: "Fotógrafo de Bodas en Tarragona y Costa Daurada | Fran Momarch — Foto y Vídeo",
+  template: `%s | ${BUSINESS_INFO.name}`,
+},
   description:
     "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
     "Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015. " +

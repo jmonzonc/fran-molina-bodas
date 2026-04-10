@@ -7,13 +7,11 @@ import { SITE_URL } from '@/lib/config'
  * IMPORTANTE: Los anchors (#portfolio, #servicios, etc.) NO deben
  * incluirse en el sitemap. Google los ignora porque son fragmentos
  * del lado del cliente, no URLs rastreables independientemente.
- * Solo se incluyen rutas que generan un documento HTML distinto.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
   return [
-    // Página principal — máxima prioridad
     {
       url: SITE_URL,
       lastModified: currentDate,
@@ -28,8 +26,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${SITE_URL}/fotografo-bodas-barcelona`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/fotografo-bodas-girona`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
 
-    // Páginas legales
+    // ─── LEGALES ───
     {
       url: `${SITE_URL}/privacidad`,
       lastModified: currentDate,

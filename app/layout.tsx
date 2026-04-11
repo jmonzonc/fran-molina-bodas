@@ -318,7 +318,7 @@ const videoObjectSchema = {
   description:
     "Showreel de fotografía y vídeo de bodas premium en Tarragona y la Costa Daurada. Estilo cinematográfico natural.",
   thumbnailUrl: `${SITE_URL}/images/hero-poster.jpg`,
-  uploadDate: "2025-06-01",
+  uploadDate: "2026-03-23",
   contentUrl:
     "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc1MjI4NTAzLCJleHAiOjIwOTA1ODg1MDN9.su-8GN2oqVOuv92gQCXwINxy2cClzQQKI6-FsAOUePs",
 }

@@ -47,11 +47,14 @@ const serviceSchema = {
   description:
     "Servicio de fotografía y videografía de bodas premium en Barcelona. Reportajes de preboda, boda completa, postboda y same day edit con estilo natural y cinematográfico.",
   provider: { "@id": `${SITE_URL}/#business` },
-  areaServed: {
-    "@type": "City",
-    name: "Barcelona",
-    sameAs: "https://es.wikipedia.org/wiki/Barcelona",
-  },
+ areaServed: [
+  { "@type": "City", name: "Barcelona" },
+  { "@type": "AdministrativeArea", name: "Maresme" },
+  { "@type": "AdministrativeArea", name: "Vallès" },
+  { "@type": "AdministrativeArea", name: "Penedès" },
+  { "@type": "AdministrativeArea", name: "Garraf" },
+  { "@type": "AdministrativeArea", name: "Baix Llobregat" },
+],
   serviceType: "Fotografía de bodas",
   offers: SERVICES.map((s) => ({
     "@type": "Offer",

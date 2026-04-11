@@ -1,13 +1,6 @@
 import { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/config'
 
-/**
- * Genera el sitemap.xml dinámicamente para SEO.
- *
- * IMPORTANTE: Los anchors (#portfolio, #servicios, etc.) NO deben
- * incluirse en el sitemap. Google los ignora porque son fragmentos
- * del lado del cliente, no URLs rastreables independientemente.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString()
 
@@ -34,6 +27,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/fotografo-bodas-girona`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+
+    // ─── VÍDEO ───
+    {
+      url: `${SITE_URL}/video-boda-tarragona`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,

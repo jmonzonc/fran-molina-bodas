@@ -9,7 +9,6 @@ import {
   PHONE_LINK,
   EMAIL,
   SOCIAL_LINKS,
-  SEO_KEYWORDS,
 } from "@/lib/config"
 
 const inter = Inter({
@@ -33,14 +32,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-  default: "Fotógrafo de Bodas en Tarragona y Costa Daurada | Fran Momarch — Foto y Vídeo",
-  template: `%s | ${BUSINESS_INFO.name}`,
-},
+    default:
+      "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
+    template: `%s | ${BUSINESS_INFO.name}`,
+  },
   description:
     "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
     "Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015. " +
     "Pack completo desde 3.000 €.",
-  keywords: SEO_KEYWORDS,
   authors: [{ name: "Fran Molina March", url: SITE_URL }],
   creator: "Fran Molina March",
   publisher: BUSINESS_INFO.name,
@@ -59,7 +58,8 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: SITE_URL,
     siteName: BUSINESS_INFO.name,
-    title: "Fotógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina — Foto y Vídeo",
+    title:
+      "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
     description:
       "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
       "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.000 €.",
@@ -83,8 +83,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
-  // Descomenta tras verificar en GSC:
-  // verification: { google: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" },
 }
 
 // ─── JSON-LD ──────────────────────────────────────────────────────────────────
@@ -313,6 +311,77 @@ const websiteSchema = {
   publisher: { "@id": `${SITE_URL}/#business` },
 }
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Inicio",
+      item: SITE_URL,
+    },
+  ],
+}
+
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Cuánto cuesta un fotógrafo de bodas en Tarragona?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "En Fran Molina Fotografía ofrecemos diferentes opciones según tus necesidades. La sesión de preboda o postboda comienza desde 400 €. El reportaje fotográfico de boda parte desde 1.200 € y el vídeo cinematográfico desde 1.400 €. La Boda Completa con fotografía y vídeo tiene un precio desde 2.200 €. Y el Pack Completo (preboda + boda completa + same day edit + postboda) desde 3.000 €. Todos los precios son orientativos y personalizamos cada propuesta según la ubicación y los detalles de tu boda en Tarragona, Reus, Salou, Cambrils o cualquier punto de la Costa Daurada.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Con cuánta antelación debo reservar mi fotógrafo de bodas?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Recomendamos reservar con un mínimo de 9 a 12 meses de antelación, especialmente para bodas en primavera (abril–junio) y otoño (septiembre–octubre), las temporadas más demandadas en Tarragona y la Costa Daurada. Para bodas en 2026 y 2027 la disponibilidad es muy limitada. La reserva se confirma con la firma del contrato y un depósito del 20 %.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cubres bodas fuera de Tarragona y la Costa Daurada?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí. Cubrimos bodas en toda Cataluña: Tarragona, Reus, Salou, Cambrils, Valls, Tortosa, Barcelona, Girona, Sitges, Lleida y alrededores. También viajamos a otras comunidades autónomas y al extranjero para bodas destino. Consúltanos disponibilidad y condiciones de desplazamiento sin compromiso.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué incluye el paquete de boda completa?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La Boda Completa cubre el día entero desde los preparativos hasta el baile (10 horas o más). Incluye fotografía y vídeo cinematográfico en alta resolución, más de 400 fotos editadas profesionalmente entregadas en galería online privada, y un highlight reel de 3–5 minutos. Puedes añadir el Same Day Edit para proyectar un vídeo durante el banquete, y combinarlo con preboda y postboda en el Pack Completo con un ahorro de 400 €.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cuánto tardáis en entregar las fotos de la boda?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución. Para álbumes físicos de lujo el plazo es de 8 a 12 semanas adicionales.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué es el Same Day Edit?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El Same Day Edit es un vídeo cinematográfico que editamos el mismo día de tu boda para proyectarlo durante el banquete. Recoge los mejores momentos de los preparativos y la ceremonia en un montaje de 3–5 minutos que sorprende a todos los invitados. Está disponible como servicio individual por 400 € o incluido en el Pack Completo.",
+      },
+    },
+  ],
+}
+
+// TODO: Añadir VideoObject cuando el usuario proporcione uploadDate y contentUrl
+// const videoObjectSchema = { ... }
+
 // ─── Root Layout ──────────────────────────────────────────────────────────────
 
 export default function RootLayout({
@@ -330,14 +399,16 @@ export default function RootLayout({
               personSchema,
               localBusinessSchema,
               websiteSchema,
+              breadcrumbSchema,
+              faqPageSchema,
             ]),
           }}
         />
       </head>
-     <body className="font-sans antialiased">
-  <Navbar />
-  {children}
-</body>
+      <body className="font-sans antialiased">
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }

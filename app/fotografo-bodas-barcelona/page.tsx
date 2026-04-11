@@ -117,12 +117,20 @@ const faqSchema = {
 const HERO_IMAGE = "/images/barcelona/hero-boda-barcelona.jpg"
 
 const BARCELONA_PORTFOLIO = [
-  { id: 1, image: "/images/barcelona/boda-masia-penedes.jpg", title: "Boda en masía del Penedès", alt: "Boda Barcelona — ceremonia en masía del Penedès entre viñedos" },
-  { id: 2, image: "/images/barcelona/ceremonia-hotel-w-barcelona.jpg", title: "Ceremonia en el Hotel W", alt: "Boda Barcelona — ceremonia con vistas al mar en el Hotel W" },
-  { id: 3, image: "/images/barcelona/pareja-gotico-barcelona.jpg", title: "Pareja en el Barrio Gótico", alt: "Boda Barcelona — pareja paseando por el Barrio Gótico" },
-  { id: 4, image: "/images/barcelona/banquete-boda-barcelona.jpg", title: "Banquete de boda en Barcelona", alt: "Boda Barcelona — banquete y celebración en finca exclusiva" },
-  { id: 5, image: "/images/barcelona/atardecer-boda-barcelona.jpg", title: "Atardecer en boda de Barcelona", alt: "Boda Barcelona — pareja al atardecer con skyline de fondo" },
-  { id: 6, image: "/images/barcelona/preboda-ciutadella-barcelona.jpg", title: "Preboda en la Ciutadella", alt: "Boda Barcelona — sesión de preboda en el Parc de la Ciutadella" },
+  {
+    id: 1,
+    image:
+      "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEuSlBHIiwiaWF0IjoxNzc0MzgwMzI0LCJleHAiOjIwODk3NDAzMjR9.I5suMDUXQUM4GkX5TDRsbrmN0Z9DXXa3wzN2WjrgHCI",
+    title: "Boda en masía de Castellardal, Barcelona",
+    alt: "Boda Barcelona — ramo de novia en masía de Castellardal",
+  },
+  {
+    id: 2,
+    image:
+      "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/AN4A5940.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL0FONEE1OTQwLkpQRyIsImlhdCI6MTc3NDM4MDI1OSwiZXhwIjoyMDg5NzQwMjU5fQ.-BgV8OUWYqlnNJfwpaK467zNhcDwsWfvBvCvxD1NZYs",
+    title: "Preboda romántica en Barcelona",
+    alt: "Boda Barcelona — sesión de preboda romántica para parejas",
+  },
 ]
 
 export default function FotografoBodasBarcelona() {
@@ -182,7 +190,7 @@ export default function FotografoBodasBarcelona() {
         <section className="py-20 px-6 bg-secondary/10">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-serif text-center mb-16 text-primary">Bodas en Barcelona</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {BARCELONA_PORTFOLIO.map((item) => (
                 <article key={item.id} className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500">
                   <figure className="relative h-80 md:h-96">

@@ -47,11 +47,14 @@ const serviceSchema = {
   description:
     "Servicio de fotografía y videografía de bodas premium en Girona y la Costa Brava. Reportajes de preboda, boda completa, postboda y same day edit con estilo natural y cinematográfico.",
   provider: { "@id": `${SITE_URL}/#business` },
-  areaServed: {
-    "@type": "City",
-    name: "Girona",
-    sameAs: "https://es.wikipedia.org/wiki/Gerona",
-  },
+ areaServed: [
+  { "@type": "City", name: "Girona" },
+  { "@type": "AdministrativeArea", name: "Costa Brava" },
+  { "@type": "AdministrativeArea", name: "Empordà" },
+  { "@type": "AdministrativeArea", name: "Garrotxa" },
+  { "@type": "AdministrativeArea", name: "Gironès" },
+  { "@type": "AdministrativeArea", name: "Baix Empordà" },
+],
   serviceType: "Fotografía de bodas",
   offers: SERVICES.map((s) => ({
     "@type": "Offer",

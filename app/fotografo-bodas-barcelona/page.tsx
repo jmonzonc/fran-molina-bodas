@@ -6,11 +6,10 @@ import {
   BUSINESS_INFO,
   SERVICES,
   PHONE_DISPLAY,
+  PHONE_LINK,
   getWhatsAppLink,
 } from "@/lib/config"
 import { Footer } from "@/components/footer"
-
-// ─── METADATA ────────────────────────────────────────────────
 
 export const metadata: Metadata = {
   title: "Fotógrafo de Bodas en Barcelona | Fran Molina — Foto y Vídeo",
@@ -30,15 +29,13 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/images/og/og-fotografo-bodas-barcelona.jpg`,
-       alt: "Fotógrafo de bodas en Barcelona — Fran Molina",
         width: 1200,
         height: 630,
+        alt: "Fotógrafo de bodas en Barcelona — Fran Molina",
       },
     ],
   },
 }
-
-// ─── JSON-LD ─────────────────────────────────────────────────
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -47,14 +44,14 @@ const serviceSchema = {
   description:
     "Servicio de fotografía y videografía de bodas premium en Barcelona. Reportajes de preboda, boda completa, postboda y same day edit con estilo natural y cinematográfico.",
   provider: { "@id": `${SITE_URL}/#business` },
- areaServed: [
-  { "@type": "City", name: "Barcelona" },
-  { "@type": "AdministrativeArea", name: "Maresme" },
-  { "@type": "AdministrativeArea", name: "Vallès" },
-  { "@type": "AdministrativeArea", name: "Penedès" },
-  { "@type": "AdministrativeArea", name: "Garraf" },
-  { "@type": "AdministrativeArea", name: "Baix Llobregat" },
-],
+  areaServed: [
+    { "@type": "City", name: "Barcelona" },
+    { "@type": "AdministrativeArea", name: "Maresme" },
+    { "@type": "AdministrativeArea", name: "Vallès" },
+    { "@type": "AdministrativeArea", name: "Penedès" },
+    { "@type": "AdministrativeArea", name: "Garraf" },
+    { "@type": "AdministrativeArea", name: "Baix Llobregat" },
+  ],
   serviceType: "Fotografía de bodas",
   offers: SERVICES.map((s) => ({
     "@type": "Offer",
@@ -63,6 +60,20 @@ const serviceSchema = {
     price: String(s.priceNumeric),
     priceCurrency: "EUR",
   })),
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Fotógrafo de Bodas en Barcelona",
+      item: `${SITE_URL}/fotografo-bodas-barcelona`,
+    },
+  ],
 }
 
 const BARCELONA_FAQS = [
@@ -103,26 +114,16 @@ const faqSchema = {
   })),
 }
 
-// ─── PORTFOLIO BARCELONA ─────────────────────────────────────
+const HERO_IMAGE = "/images/barcelona/hero-boda-barcelona.jpg"
 
 const BARCELONA_PORTFOLIO = [
-  {
-    id: 5,
-    image:
-      "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEuSlBHIiwiaWF0IjoxNzc0MzgwMzI0LCJleHAiOjIwODk3NDAzMjR9.I5suMDUXQUM4GkX5TDRsbrmN0Z9DXXa3wzN2WjrgHCI",
-    title: "Boda en Castellardal, Barcelona",
-    alt: "Ramo de novia en boda en Castellardal, Barcelona — fotógrafo de bodas Barcelona",
-  },
-  {
-    id: 7,
-    image:
-      "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/AN4A5940.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL0FONEE1OTQwLkpQRyIsImlhdCI6MTc3NDM4MDI1OSwiZXhwIjoyMDg5NzQwMjU5fQ.-BgV8OUWYqlnNJfwpaK467zNhcDwsWfvBvCvxD1NZYs",
-    title: "Preboda en Barcelona",
-    alt: "Sesión de preboda romántica en Barcelona — fotografía de bodas Barcelona",
-  },
+  { id: 1, image: "/images/barcelona/boda-masia-penedes.jpg", title: "Boda en masía del Penedès", alt: "Boda Barcelona — ceremonia en masía del Penedès entre viñedos" },
+  { id: 2, image: "/images/barcelona/ceremonia-hotel-w-barcelona.jpg", title: "Ceremonia en el Hotel W", alt: "Boda Barcelona — ceremonia con vistas al mar en el Hotel W" },
+  { id: 3, image: "/images/barcelona/pareja-gotico-barcelona.jpg", title: "Pareja en el Barrio Gótico", alt: "Boda Barcelona — pareja paseando por el Barrio Gótico" },
+  { id: 4, image: "/images/barcelona/banquete-boda-barcelona.jpg", title: "Banquete de boda en Barcelona", alt: "Boda Barcelona — banquete y celebración en finca exclusiva" },
+  { id: 5, image: "/images/barcelona/atardecer-boda-barcelona.jpg", title: "Atardecer en boda de Barcelona", alt: "Boda Barcelona — pareja al atardecer con skyline de fondo" },
+  { id: 6, image: "/images/barcelona/preboda-ciutadella-barcelona.jpg", title: "Preboda en la Ciutadella", alt: "Boda Barcelona — sesión de preboda en el Parc de la Ciutadella" },
 ]
-
-// ─── PAGE ────────────────────────────────────────────────────
 
 export default function FotografoBodasBarcelona() {
   const whatsappBarcelona = getWhatsAppLink(
@@ -131,26 +132,13 @@ export default function FotografoBodasBarcelona() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <main itemScope itemType="https://schema.org/WebPage">
-        {/* ─── HERO ─── */}
         <section className="relative h-[70vh] w-full overflow-hidden">
-          <Image
-            src={BARCELONA_PORTFOLIO[0].image}
-            alt="Fotógrafo de bodas en Barcelona — Fran Molina"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
+          <Image src={HERO_IMAGE} alt="Fotógrafo de bodas en Barcelona — Fran Molina" fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
           <header className="absolute inset-0 flex items-center justify-center">
             <div className="max-w-4xl mx-auto px-6 text-center">
@@ -158,20 +146,15 @@ export default function FotografoBodasBarcelona() {
                 Fotógrafo de Bodas en Barcelona
               </h1>
               <p className="text-xl md:text-2xl text-[#d4a574]/90 font-medium mb-10">
-                <strong>{BUSINESS_INFO.shortName}</strong> — Reportajes de boda
-                con alma mediterránea
+                <strong>{BUSINESS_INFO.shortName}</strong> — Reportajes de boda con alma mediterránea
               </p>
-              <a
-                href="#contacto-barcelona"
-                className="inline-block bg-[#d4a574] hover:bg-[#d4a574]/90 text-[#1a365d] px-10 py-5 rounded-2xl text-xl font-semibold shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 uppercase tracking-wide"
-              >
+              <a href="#contacto-barcelona" className="inline-block bg-[#d4a574] hover:bg-[#d4a574]/90 text-[#1a365d] px-10 py-5 rounded-2xl text-xl font-semibold shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 uppercase tracking-wide">
                 Pide presupuesto
               </a>
             </div>
           </header>
         </section>
 
-        {/* ─── INTRO ─── */}
         <section className="py-20 bg-background">
           <div className="max-w-3xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-serif text-primary mb-8 text-center">
@@ -179,60 +162,31 @@ export default function FotografoBodasBarcelona() {
             </h2>
             <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
               <p>
-                Barcelona es una de las ciudades más deseadas para celebrar una
-                boda. Desde masías con encanto en el Penedès hasta venues con
-                vistas al Mediterráneo, cada rincón de Barcelona ofrece un
-                escenario único para tu historia de amor. Como{" "}
-                <strong>fotógrafo de bodas en Barcelona</strong>, capturo la
-                esencia de tu día con un estilo natural, cinematográfico y
-                cuidado hasta el último detalle.
+                Barcelona es una de las ciudades más deseadas para celebrar una boda. Desde masías con encanto en el Penedès hasta venues con vistas al Mediterráneo, cada rincón de Barcelona ofrece un escenario único para tu historia de amor. Como <strong>fotógrafo de bodas en Barcelona</strong>, capturo la esencia de tu día con un estilo natural, cinematográfico y cuidado hasta el último detalle.
               </p>
               <p>
-                Con más de {new Date().getFullYear() - BUSINESS_INFO.foundedYear}{" "}
-                años de experiencia fotografiando bodas en Cataluña, conozco la
-                luz, los tiempos y los venues de Barcelona como pocos. Trabajo
-                con parejas que buscan un reportaje auténtico, sin poses
-                forzadas, donde la emoción sea la protagonista.
+                Con más de {new Date().getFullYear() - BUSINESS_INFO.foundedYear} años de experiencia fotografiando bodas en Cataluña, conozco la luz, los tiempos y los venues de Barcelona como pocos. Trabajo con parejas que buscan un reportaje auténtico, sin poses forzadas, donde la emoción sea la protagonista.
               </p>
               <p>
-                Cada boda es irrepetible. Por eso ofrezco un servicio
-                personalizado que se adapta a tu estilo y a los espacios que
-                habéis elegido. Desde los preparativos hasta el último baile,
-                estaré ahí para que no se pierda ningún momento.
+                Cada boda es irrepetible. Por eso ofrezco un servicio personalizado que se adapta a tu estilo y a los espacios que habéis elegido. Desde los preparativos hasta el último baile, estaré ahí para que no se pierda ningún momento.
               </p>
             </div>
-
             <nav className="mt-10 text-sm text-muted-foreground" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-accent transition-colors">
-                Inicio
-              </Link>
+              <Link href="/" className="hover:text-accent transition-colors">Inicio</Link>
               <span className="mx-2">›</span>
               <span className="text-foreground">Fotógrafo de Bodas en Barcelona</span>
             </nav>
           </div>
         </section>
 
-        {/* ─── PORTFOLIO ─── */}
         <section className="py-20 px-6 bg-secondary/10">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-serif text-center mb-16 text-primary">
-              Bodas en Barcelona
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <h2 className="text-4xl md:text-5xl font-serif text-center mb-16 text-primary">Bodas en Barcelona</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {BARCELONA_PORTFOLIO.map((item) => (
-                <article
-                  key={item.id}
-                  className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500"
-                >
+                <article key={item.id} className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500">
                   <figure className="relative h-80 md:h-96">
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      loading="lazy"
-                    />
+                    <Image src={item.image} alt={item.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" />
                   </figure>
                   <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <h3 className="text-white font-medium text-lg">{item.title}</h3>
@@ -241,77 +195,51 @@ export default function FotografoBodasBarcelona() {
               ))}
             </div>
             <p className="text-center mt-10 text-muted-foreground">
-              <Link
-                href="/#portfolio"
-                className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors"
-              >
-                Ver portfolio completo →
-              </Link>
+              <Link href="/#portfolio" className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors">Ver portfolio completo →</Link>
             </p>
           </div>
         </section>
 
-        {/* ─── SERVICIOS ─── */}
         <section className="py-20 bg-gradient-to-b from-secondary/20 to-transparent">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4 text-center">
-              Servicios de Fotografía de Bodas en Barcelona
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-center mb-16">
-              Todos los servicios incluyen desplazamiento a Barcelona y provincia sin coste adicional.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {SERVICES.map((service) => (
-                <article
-                  key={service.id}
-                  className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 flex flex-col"
-                >
-                  <h3 className="text-2xl font-serif text-primary mb-2">{service.name}</h3>
-                  {service.subtitle && (
-                    <p className="text-accent text-sm font-medium mb-4">{service.subtitle}</p>
-                  )}
-                  <ul className="flex-grow space-y-3 text-gray-700 leading-relaxed mb-8">
-                    {service.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-accent mt-1" aria-hidden="true">•</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-auto">
-                    <div className="text-center mb-6">
-                      <span className="text-2xl font-bold text-accent">Desde {service.price}</span>
-                    </div>
-                    <a
-                      href={getWhatsAppLink(service.whatsappMessage)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full text-center bg-accent/10 text-accent border-2 border-accent/30 px-8 py-4 rounded-xl font-semibold hover:bg-accent hover:text-[#1a365d] transition-all duration-300"
-                    >
-                      Reservar
-                    </a>
-                  </div>
-                </article>
-              ))}
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4 text-center">Servicios de Fotografía de Bodas en Barcelona</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-center mb-16">Desplazamiento a Barcelona y provincia incluido en todos los servicios.</p>
+            <div className="space-y-8">
+              <article className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+                <h3 className="text-2xl font-serif text-primary mb-3">Preboda en Barcelona</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Sesiones de pareja en escenarios icónicos de Barcelona: el Barrio Gótico, el Parc de la Ciutadella, playas del Maresme o cualquier rincón que os represente. 2-3 horas de sesión con más de 50 fotos editadas. <strong>Desde 400 €.</strong>
+                </p>
+                <Link href="/#servicios" className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors">Ver detalles completos →</Link>
+              </article>
+              <article className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+                <h3 className="text-2xl font-serif text-primary mb-3">Boda Completa en Barcelona</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Cobertura integral del día de vuestra boda en masías del Penedès, el Hotel W, Can Ribas o cualquier venue de Barcelona y alrededores. Fotografía y vídeo cinematográfico, más de 400 fotos editadas y highlight reel incluido. <strong>Desde 2.200 €.</strong>
+                </p>
+                <Link href="/#servicios" className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors">Ver detalles completos →</Link>
+              </article>
+              <article className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+                <h3 className="text-2xl font-serif text-primary mb-3">Postboda en Barcelona</h3>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Sesión artística en localizaciones exclusivas de Barcelona y alrededores: Montjuïc al atardecer, calas del Garraf, viñedos del Penedès o la arquitectura modernista de l'Eixample. Incluye álbum de lujo. <strong>Desde 400 €.</strong>
+                </p>
+                <Link href="/#servicios" className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors">Ver detalles completos →</Link>
+              </article>
+            </div>
+            <div className="text-center mt-12">
+              <Link href="/#servicios" className="inline-block bg-accent/10 text-accent border-2 border-accent/30 px-10 py-4 rounded-xl font-semibold hover:bg-accent hover:text-[#1a365d] transition-all duration-300">Ver todos los servicios y precios</Link>
             </div>
           </div>
         </section>
 
-        {/* ─── FAQS ─── */}
         <section className="py-24 bg-background" aria-label="Preguntas frecuentes sobre fotografía de bodas en Barcelona">
           <div className="max-w-3xl mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4 text-center">
-              Preguntas Frecuentes — Bodas en Barcelona
-            </h2>
-            <p className="text-muted-foreground text-lg text-center mb-12">
-              Todo lo que necesitas saber sobre contratar un fotógrafo de bodas en Barcelona
-            </p>
+            <h2 className="text-4xl md:text-5xl font-serif text-primary mb-4 text-center">Preguntas Frecuentes — Bodas en Barcelona</h2>
+            <p className="text-muted-foreground text-lg text-center mb-12">Todo lo que necesitas saber sobre contratar un fotógrafo de bodas en Barcelona</p>
             <div className="space-y-6">
               {BARCELONA_FAQS.map((faq, index) => (
-                <details
-                  key={index}
-                  className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 group open:shadow-lg transition-shadow"
-                >
+                <details key={index} className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 group open:shadow-lg transition-shadow">
                   <summary className="font-medium text-foreground cursor-pointer list-none flex items-center justify-between">
                     {faq.question}
                     <span className="ml-4 text-accent transition-transform group-open:rotate-45 text-xl">+</span>
@@ -323,37 +251,22 @@ export default function FotografoBodasBarcelona() {
           </div>
         </section>
 
-        {/* ─── CTA ─── */}
         <section id="contacto-barcelona" className="py-24 bg-gradient-to-b from-[#111827] to-gray-900">
           <div className="max-w-lg mx-auto px-6 text-center">
             <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">¿Te casas en Barcelona?</h2>
-            <p className="text-white/70 mb-10 text-lg">
-              Cuéntame sobre tu boda y te envío una propuesta personalizada en menos de 24 horas. Sin compromiso.
-            </p>
-            <a
-              href={whatsappBarcelona}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white py-5 px-10 rounded-2xl text-xl font-semibold shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(34,197,94,0.4)] uppercase tracking-wide transition-all duration-300"
-              aria-label="Contactar por WhatsApp para boda en Barcelona"
-            >
+            <p className="text-white/70 mb-10 text-lg">Cuéntame sobre tu boda y te envío una propuesta personalizada en menos de 24 horas. Sin compromiso.</p>
+            <a href={whatsappBarcelona} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white py-5 px-10 rounded-2xl text-xl font-semibold shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(34,197,94,0.4)] uppercase tracking-wide transition-all duration-300" aria-label="Contactar por WhatsApp para boda en Barcelona">
               💬 Chatear por WhatsApp
             </a>
             <p className="mt-6 text-white/50 text-sm">
               o llámame al{" "}
-              <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="text-accent hover:text-accent/80 transition-colors">
-                {PHONE_DISPLAY}
-              </a>
+              <a href={PHONE_LINK} className="text-accent hover:text-accent/80 transition-colors">{PHONE_DISPLAY}</a>
             </p>
             <nav className="mt-12 pt-8 border-t border-white/10 text-white/50 text-sm space-y-2">
               <p>También trabajo en:</p>
               <div className="flex justify-center gap-6">
-                <Link href="/fotografo-bodas-tarragona" className="text-accent/70 hover:text-accent transition-colors">
-                  Tarragona
-                </Link>
-                <Link href="/fotografo-bodas-girona" className="text-accent/70 hover:text-accent transition-colors">
-                  Girona
-                </Link>
+                <Link href="/fotografo-bodas-tarragona" className="text-accent/70 hover:text-accent transition-colors">Tarragona</Link>
+                <Link href="/fotografo-bodas-girona" className="text-accent/70 hover:text-accent transition-colors">Girona</Link>
               </div>
             </nav>
           </div>

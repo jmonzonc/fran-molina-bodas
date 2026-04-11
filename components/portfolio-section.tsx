@@ -4,10 +4,6 @@ import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 
-// ============================================================
-// TIPOS
-// ============================================================
-
 interface PortfolioItem {
   id: number
   category: Category
@@ -22,17 +18,13 @@ type Category = "Preboda" | "Boda" | "Postboda"
 const CATEGORIES = ["Todas", "Preboda", "Boda", "Postboda"] as const
 type FilterCategory = (typeof CATEGORIES)[number]
 
-// ============================================================
-// DATOS — Descripciones traducidas a español, títulos con localización
-// ============================================================
-
 const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: 1,
     category: "Boda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006384.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYzODQuSlBHIiwiaWF0IjoxNzc0MzgwMDcwLCJleHAiOjIwODk3NDAwNzB9.Qysf3DS2sKpoW13L03lk5vRWkU7yrM9W31ddpWk5Ru0",
-    title: "Boda en Girona — Can Riera de la Pineda",
+    title: "Fotógrafo de boda en Girona — Can Riera de la Pineda",
     description: "Un día para recordar",
     alt: "Pareja junto con el ramo en el bosque en Girona",
   },
@@ -41,7 +33,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Postboda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/post4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL3Bvc3Q0LkpQRyIsImlhdCI6MTc3NDMwNTU0MywiZXhwIjoyMDg5NjY1NTQzfQ.4oRVCzXJTN7l8tAuD5v-BdzwdzPGAJ8COD0JMpAIUy0",
-    title: "Postboda en Tarragona — Bosque de la Marquesa",
+    title: "Fotógrafo de boda en Tarragona — Bosque de la Marquesa",
     description: "El amor es para siempre",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar",
   },
@@ -50,7 +42,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Preboda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/_A741341.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL19BNzQxMzQxLkpQRyIsImlhdCI6MTc3NDM4MTg3NywiZXhwIjoyMDg5NzQxODc3fQ.eWNd6VGQehmbQoHwq4dUz7n32J4ojQZEiuuozbpV6J8",
-    title: "Preboda en Girona",
+    title: "Fotógrafo de boda en Girona — Preboda en la naturaleza",
     description: "Tranquilidad en pareja",
     alt: "Sesión de preboda en Girona con pareja enamorada en la naturaleza",
   },
@@ -59,7 +51,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Boda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202081.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDIwODEuSlBHIiwiaWF0IjoxNzc0MzA0MzgxLCJleHAiOjIwODk2NjQzODF9.BlvlBjCPkwHh80JfMZlQlB-ASsnK0kfHhe0tYM2wgHA",
-    title: "Boda en el Rourell, Tarragona",
+    title: "Fotógrafo de boda en Tarragona — El Rourell",
     description: "Amor mediterráneo",
     alt: "Pareja enamorada en Fortí del Rourell - Fran Molina",
   },
@@ -68,7 +60,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Boda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/1.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzEuSlBHIiwiaWF0IjoxNzc0MzgwMzI0LCJleHAiOjIwODk3NDAzMjR9.I5suMDUXQUM4GkX5TDRsbrmN0Z9DXXa3wzN2WjrgHCI",
-    title: "Boda en Castellardal, Barcelona",
+    title: "Fotógrafo de boda en Barcelona — Castellardal",
     description: "Ramo de novia",
     alt: "La novia y el ramo, Castellardal, Barcelona",
   },
@@ -77,7 +69,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Boda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006030.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYwMzAuSlBHIiwiaWF0IjoxNzc0MzgwMDU3LCJleHAiOjIwODk3NDAwNTd9.sPL31GapjedhVsHE3t-NvbVIPb1bRqEhknvrs-Vsgt4",
-    title: "Boda en Girona — Celebración",
+    title: "Fotógrafo de boda en Girona — Celebración",
     description: "Mejor con amigos",
     alt: "Celebrando juntos en Can Riera de la Pineda, Girona",
   },
@@ -86,7 +78,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Preboda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/AN4A5940.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL0FONEE1OTQwLkpQRyIsImlhdCI6MTc3NDM4MDI1OSwiZXhwIjoyMDg5NzQwMjU5fQ.-BgV8OUWYqlnNJfwpaK467zNhcDwsWfvBvCvxD1NZYs",
-    title: "Preboda en Barcelona",
+    title: "Fotógrafo de boda en Barcelona — Preboda",
     description: "Momentos románticos",
     alt: "Preboda romántica en Barcelona, sesión de fotos para parejas",
   },
@@ -95,7 +87,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Postboda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzQuSlBHIiwiaWF0IjoxNzc1NjcxNzMyLCJleHAiOjIwOTEwMzE3MzJ9.DTiLk2R8b7k683nZxbOOI2LjV2yeDNQjkuDJPApZRhM",
-    title: "Postboda en Tarragona — Playa",
+    title: "Fotógrafo de boda en Tarragona — Playa",
     description: "Recuerdos junto al mar",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar",
   },
@@ -104,7 +96,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Boda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/01.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzAxLkpQRyIsImlhdCI6MTc3NDM3OTk3MiwiZXhwIjoyMDg5NzM5OTcyfQ.M4cDRSp2dVKMnBXHJ08gnN2kpmh9epipGm6_XBTAAfw",
-    title: "Boda en Girona — Llegada",
+    title: "Fotógrafo de boda en Girona — Llegada",
     description: "El comienzo",
     alt: "Pareja entrando en la ceremonia en una motocicleta",
   },
@@ -113,7 +105,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Postboda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2%20(1).JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIgKDEpLkpQRyIsImlhdCI6MTc3NDM4MDM3NCwiZXhwIjoyMDg5NzQwMzc0fQ.ZsEnvq5fFdUxTKP-Qt1veSYYkp_u9J2WKSya0tO23nU",
-    title: "Postboda en Tarragona — Atardecer",
+    title: "Fotógrafo de boda en Tarragona — Atardecer",
     description: "Recuerdos en la playa",
     alt: "Sesión de postboda en el Bosque de la Marquesa, recuerdos junto al mar",
   },
@@ -122,7 +114,7 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Boda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%203052.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDMwNTIuSlBHIiwiaWF0IjoxNzc0MzA0MzIxLCJleHAiOjIwODk2NjQzMjF9.zMzWlycmSOG_GOv-QFS0vHzyO7oBiJiVnDrcL5_s-Uo",
-    title: "Boda en el Rourell, Tarragona — Pareja",
+    title: "Fotógrafo de boda en Tarragona — El Rourell, pareja",
     description: "Momento especial",
     alt: "Momento íntimo en pareja, Tarragona",
   },
@@ -131,15 +123,11 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     category: "Preboda",
     image:
       "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20008629.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDg2MjkuanBnIiwiaWF0IjoxNzc0MzgwMDgzLCJleHAiOjIwODk3NDAwODN9.otGhnz3pnGU0hihAJH8NBH6CBac4buPdz9NLKrV14G8",
-    title: "Preboda en Girona",
+    title: "Fotógrafo de boda en Girona — Preboda en pareja",
     description: "Nuevo capítulo",
     alt: "Sesión preboda en Girona",
   },
 ]
-
-// ============================================================
-// COMPONENTES
-// ============================================================
 
 function FilterButton({
   category,
@@ -221,7 +209,7 @@ export function PortfolioSection() {
     <section
       id="portfolio"
       className="py-20 px-6 bg-background"
-      aria-label="Portfolio de fotografía de bodas en Tarragona y Costa Daurada"
+      aria-label="Portfolio de fotografía de bodas en Tarragona, Barcelona y Girona"
       itemScope
       itemType="https://schema.org/ImageGallery"
     >
@@ -233,7 +221,7 @@ export function PortfolioSection() {
           className="text-4xl md:text-5xl font-serif text-center mb-16 text-primary"
           itemProp="name"
         >
-          Momentos que perduran
+          Portfolio de Bodas en Tarragona, Barcelona y Girona
         </motion.h2>
 
         <motion.nav

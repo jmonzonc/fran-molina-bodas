@@ -47,11 +47,14 @@ const serviceSchema = {
   description:
     "Servicio de fotografía y videografía de bodas premium en Tarragona y la Costa Daurada. Reportajes de preboda, boda completa, postboda y same day edit con estilo natural y cinematográfico.",
   provider: { "@id": `${SITE_URL}/#business` },
-  areaServed: {
-    "@type": "City",
-    name: "Tarragona",
-    sameAs: "https://es.wikipedia.org/wiki/Tarragona",
-  },
+  areaServed: [
+  { "@type": "City", name: "Tarragona" },
+  { "@type": "AdministrativeArea", name: "Reus" },
+  { "@type": "AdministrativeArea", name: "Salou" },
+  { "@type": "AdministrativeArea", name: "Cambrils" },
+  { "@type": "AdministrativeArea", name: "Valls" },
+  { "@type": "AdministrativeArea", name: "Tortosa" },
+],
   serviceType: "Fotografía de bodas",
   offers: SERVICES.map((s) => ({
     "@type": "Offer",

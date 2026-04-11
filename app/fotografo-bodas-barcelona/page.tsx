@@ -194,7 +194,7 @@ export default function FotografoBodasBarcelona() {
               {BARCELONA_PORTFOLIO.map((item) => (
                 <article key={item.id} className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500">
                   <figure className="relative h-80 md:h-96">
-                    <Image src={item.image} alt={item.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" />
+                    <Image src={item.image} alt={item.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
                   </figure>
                   <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <h3 className="text-white font-medium text-lg">{item.title}</h3>

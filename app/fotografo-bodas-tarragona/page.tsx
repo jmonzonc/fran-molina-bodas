@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     siteName: BUSINESS_INFO.name,
     images: [
       {
-        url: `${SITE_URL}/images/og-image.jpg`,
+        url: `${SITE_URL}/images/og/og-fotografo-bodas-tarragona.jpg`,
+        alt: "Fotógrafo de bodas en Tarragona — Fran Molina",
         width: 1200,
         height: 630,
-        alt: "Fotógrafo de bodas en Tarragona — Fran Molina",
       },
     ],
   },

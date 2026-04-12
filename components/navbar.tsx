@@ -14,7 +14,7 @@ const LOCATIONS = [
 
 const NAV_LINKS = [
   { href: "/#portfolio", label: "Portfolio" },
-  { href: "/#servicios", label: "Servicios" },
+  { href: "/servicios", label: "Servicios" },
   { href: "/#precios", label: "Precios" },
   { href: "/#preguntas-frecuentes", label: "FAQ" },
 ]

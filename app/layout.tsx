@@ -80,27 +80,11 @@ export const metadata: Metadata = {
       "Estilo natural y elegante mediterráneo.",
     images: [`${SITE_URL}/images/og-image.jpg`],
   },
- alternates: {
+  alternates: {
     canonical: SITE_URL,
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: "/favicon.ico",
-  },
-  // ── Favicon / Icons ──────────────────────────────────────────────────────
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "48x48" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
-    ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: "/favicon.ico",
-  },
 }
+
 // ─── JSON-LD ──────────────────────────────────────────────────────────────────
 
 const personSchema = {
@@ -414,34 +398,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-return (
-  <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
-  <head>
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify([
-        personSchema,
-        localBusinessSchema,
-        websiteSchema,
-        videoObjectSchema,
-        breadcrumbSchema,
-        faqPageSchema,
-      ]),
-    }}
-  />
-  {process.env.NEXT_PUBLIC_GA_ID && (
-    <Script
-      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-      strategy="afterInteractive"
-    />
-  )}
-</head>
-    <body className="font-sans antialiased">
-      <Navbar />
-      {children}
-      <CookieBanner />
-    </body>
-  </html>
-)
+  return (
+    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              personSchema,
+              localBusinessSchema,
+              websiteSchema,
+              videoObjectSchema,
+              breadcrumbSchema,
+              faqPageSchema,
+            ]),
+          }}
+        />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+            strategy="afterInteractive"
+          />
+        )}
+      </head>
+      <body className="font-sans antialiased">
+        <Navbar />
+        {children}
+        <CookieBanner />
+      </body>
+    </html>
+  )
 }

@@ -33,8 +33,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
+ title: {
+    default:
+      "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina",
     template: `%s | ${BUSINESS_INFO.name}`,
   },
   description:

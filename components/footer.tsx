@@ -31,7 +31,6 @@ function openCookiePreferences() {
   window.dispatchEvent(new CustomEvent("open-cookie-preferences"))
 }
 
-// Subcomponente extraído — fix para bug parser Next.js 16 + itemScope en padre
 function SocialIcon({ href, label, icon: Icon }: SocialLink) {
   return (
     
@@ -52,58 +51,44 @@ export function Footer() {
   return (
     <footer
       className="bg-[#111827] text-white/80 py-12 border-t border-white/10"
-      itemScope
-      itemType="https://schema.org/LocalBusiness"
       role="contentinfo"
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-          {/* Columna 1: Marca */}
           <div>
-            <h3 className="font-serif text-2xl text-white mb-4" itemProp="name">
+            <h3 className="font-serif text-2xl text-white mb-4">
               {BUSINESS_INFO.name}
             </h3>
-            <p className="text-white/60 leading-relaxed" itemProp="description">
+            <p className="text-white/60 leading-relaxed">
               {BUSINESS_INFO.description}
             </p>
-            <meta itemProp="priceRange" content={BUSINESS_INFO.priceRange} />
           </div>
 
-          {/* Columna 2: Contacto */}
           <nav aria-label="Información de contacto">
             <h4 className="font-medium text-white mb-4">Contacto</h4>
-            <address
-              className="not-italic space-y-3"
-              itemProp="address"
-              itemScope
-              itemType="https://schema.org/PostalAddress"
-            >
+            <address className="not-italic space-y-3">
               <p className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-accent" aria-hidden="true" />
-                <a href={PHONE_LINK} className="hover:text-accent transition-colors" itemProp="telephone">
+                <a href={PHONE_LINK} className="hover:text-accent transition-colors">
                   {PHONE_DISPLAY}
                 </a>
               </p>
               <p className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-accent" aria-hidden="true" />
-                <a href={`mailto:${EMAIL}`} className="hover:text-accent transition-colors" itemProp="email">
+                <a href={`mailto:${EMAIL}`} className="hover:text-accent transition-colors">
                   {EMAIL}
                 </a>
               </p>
               <p className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-accent" aria-hidden="true" />
                 <span>
-                  <span itemProp="addressLocality">{BUSINESS_INFO.location.city}</span>
-                  {", "}
-                  <span itemProp="addressRegion">{BUSINESS_INFO.location.region}</span>
+                  {BUSINESS_INFO.location.city}, {BUSINESS_INFO.location.region}
                 </span>
               </p>
-              <meta itemProp="addressCountry" content={BUSINESS_INFO.location.country} />
             </address>
           </nav>
 
-          {/* Columna 3: Redes sociales */}
           <nav aria-label="Redes sociales y enlaces útiles">
             <h4 className="font-medium text-white mb-4">Sígueme</h4>
             <div className="flex gap-4 mb-6">
@@ -111,9 +96,6 @@ export function Footer() {
                 <SocialIcon key={social.href} {...social} />
               ))}
             </div>
-            <meta itemProp="sameAs" content={SOCIAL_LINKS.instagram} />
-            <meta itemProp="sameAs" content={SOCIAL_LINKS.facebook} />
-            <meta itemProp="sameAs" content={SOCIAL_LINKS.youtube} />
             <p className="text-white/40 text-xs leading-relaxed">
               Fotógrafo de bodas en Tarragona, Reus, Salou, Cambrils y toda la Costa Daurada.
               Prebodas y postbodas.
@@ -121,13 +103,12 @@ export function Footer() {
           </nav>
         </div>
 
-        {/* Barra inferior */}
         <div className="mt-10 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-sm">
           <p>© {currentYear} {BUSINESS_INFO.name}. Todos los derechos reservados.</p>
           <nav aria-label="Enlaces legales" className="flex flex-wrap gap-4 md:gap-6 items-center">
-            {LEGAL_LINKS.map(({ href, label }) => (
-              <a key={href} href={href} className="hover:text-accent transition-colors">
-                {label}
+            {LEGAL_LINKS.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-accent transition-colors">
+                {link.label}
               </a>
             ))}
             <button

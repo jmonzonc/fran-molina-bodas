@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import { Navbar } from "@/components/navbar"
 import { CookieBanner } from "@/components/cookie-banner"
+import Script from "next/script"
 import "./globals.css"
 import {
   SITE_URL,
@@ -401,21 +402,27 @@ export default function RootLayout({
 }) {
 return (
   <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
-    <head>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            personSchema,
-            localBusinessSchema,
-            websiteSchema,
-            videoObjectSchema,
-            breadcrumbSchema,
-            faqPageSchema,
-          ]),
-        }}
-      />
-    </head>
+  <head>
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify([
+        personSchema,
+        localBusinessSchema,
+        websiteSchema,
+        videoObjectSchema,
+        breadcrumbSchema,
+        faqPageSchema,
+      ]),
+    }}
+  />
+  {process.env.NEXT_PUBLIC_GA_ID && (
+    <Script
+      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+      strategy="afterInteractive"
+    />
+  )}
+</head>
     <body className="font-sans antialiased">
       <Navbar />
       {children}

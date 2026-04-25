@@ -30,6 +30,10 @@ const LEGAL_LINKS = [
 const SOCIAL_ICON_CLASSES =
   "w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-[#1a365d] transition-all duration-300"
 
+function openCookiePreferences() {
+  window.dispatchEvent(new CustomEvent("open-cookie-preferences"))
+}
+
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
@@ -99,12 +103,15 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className={SOCIAL_ICON_CLASSES}
                   aria-label={label}
-                  itemProp="sameAs"
                 >
                   <Icon className="w-5 h-5" aria-hidden="true" />
                 </a>
               ))}
             </div>
+            {/* sameAs como meta estáticos — evita bug parser JSX de Next.js 16 con itemProp en maps */}
+            <meta itemProp="sameAs" content={SOCIAL_LINKS.instagram} />
+            <meta itemProp="sameAs" content={SOCIAL_LINKS.facebook} />
+            <meta itemProp="sameAs" content={SOCIAL_LINKS.youtube} />
             <p className="text-white/40 text-xs leading-relaxed">
               Fotógrafo de bodas en Tarragona, Reus, Salou, Cambrils y toda la Costa Daurada.
               Prebodas y postbodas.
@@ -123,7 +130,7 @@ export function Footer() {
             ))}
             <button
               type="button"
-              onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-preferences"))}
+              onClick={openCookiePreferences}
               className="hover:text-accent transition-colors"
             >
               Configurar cookies

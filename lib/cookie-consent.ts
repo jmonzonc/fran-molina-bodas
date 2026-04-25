@@ -73,15 +73,22 @@ export function initGoogleConsentDefaults(): void {
   const gtag = (...args: unknown[]) => window.dataLayer!.push(args)
   window.gtag = window.gtag || gtag
 
+  // PRIMERO: consent default (antes de cualquier hit)
   window.gtag("consent", "default", {
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-    analytics_storage: "denied",
-    functionality_storage: "granted",
+    ad_storage:              "denied",
+    ad_user_data:            "denied",
+    ad_personalization:      "denied",
+    analytics_storage:       "denied",
+    functionality_storage:   "granted",
     personalization_storage: "denied",
-    security_storage: "granted",
-    wait_for_update: 500,
+    security_storage:        "granted",
+    wait_for_update:         500,
+  })
+
+  // DESPUÉS: config
+  window.gtag("js", new Date())
+  window.gtag("config", process.env.NEXT_PUBLIC_GA_ID!, {
+    send_page_view: true,
   })
 }
 

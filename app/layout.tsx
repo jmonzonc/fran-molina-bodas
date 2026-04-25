@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import { Navbar } from "@/components/navbar"
+import { CookieBanner } from "@/components/cookie-banner"
 import "./globals.css"
 import {
   SITE_URL,

@@ -34,8 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
+    default: "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
     template: `%s | ${BUSINESS_INFO.name}`,
   },
   description:
@@ -60,8 +59,7 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: SITE_URL,
     siteName: BUSINESS_INFO.name,
-    title:
-      "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
+    title: "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
     description:
       "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
       "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.000 €.",
@@ -85,8 +83,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+  // ── Favicon / Icons ──────────────────────────────────────────────────────
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
 }
-
 // ─── JSON-LD ──────────────────────────────────────────────────────────────────
 
 const personSchema = {

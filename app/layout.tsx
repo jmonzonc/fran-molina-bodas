@@ -399,27 +399,28 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([
-              personSchema,
-              localBusinessSchema,
-              websiteSchema,
-              videoObjectSchema,
-              breadcrumbSchema,
-              faqPageSchema,
-            ]),
-          }}
-        />
-      </head>
-      <body className="font-sans antialiased">
-        <Navbar />
-        {children}
-      </body>
-    </html>
-  )
+return (
+  <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+    <head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            personSchema,
+            localBusinessSchema,
+            websiteSchema,
+            videoObjectSchema,
+            breadcrumbSchema,
+            faqPageSchema,
+          ]),
+        }}
+      />
+    </head>
+    <body className="font-sans antialiased">
+      <Navbar />
+      {children}
+      <CookieBanner />
+    </body>
+  </html>
+)
 }

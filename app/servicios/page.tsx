@@ -323,8 +323,7 @@ export default function ServiciosPage() {
                     editadas profesionalmente
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> Galería online
-                    privada descargable
+                    <span className="text-[#d4a574]">✓</span> Descargable online
                   </li>
                 </ul>
 
@@ -658,16 +657,14 @@ export default function ServiciosPage() {
 
                 <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> Sesión artística
-                    post-ceremonia
+                    <span className="text-[#d4a574]">✓</span> Sesión artística de 2-3 horas en ubicación elegida
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> Ubicación
-                    especial en la Costa Daurada
+                    <span className="text-[#d4a574]">✓</span> 50+ fotos editadas profesionalmente
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> Álbum de lujo
-                    incluido
+                    <span className="text-[#d4a574]">✓</span> Descargable online
+                    
                   </li>
                 </ul>
 

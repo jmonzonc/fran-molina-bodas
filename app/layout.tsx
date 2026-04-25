@@ -38,10 +38,10 @@ export const metadata: Metadata = {
       "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina",
     template: `%s | ${BUSINESS_INFO.name}`,
   },
-  description:
+ description:
     "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
     "Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015. " +
-    "Pack completo desde 3.000 €.",
+    "Pack completo desde 3.300 €.",
   authors: [{ name: "Fran Molina March", url: SITE_URL }],
   creator: "Fran Molina March",
   publisher: BUSINESS_INFO.name,
@@ -60,10 +60,11 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: SITE_URL,
     siteName: BUSINESS_INFO.name,
-    title: "Fotógrafo de Bodas en Tarragona | Fran Molina — Foto y Vídeo",
+    title:
+      "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina",
     description:
       "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
-      "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.000 €.",
+      "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.300 €.",
     images: [
       {
         url: `${SITE_URL}/images/og-image.jpg`,
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${BUSINESS_INFO.name} | Fotógrafo de Bodas en Tarragona`,
+    title: `${BUSINESS_INFO.name} | Fotógrafo y Videógrafo de Bodas en Tarragona`,
     description:
       "Fotografía y vídeo de bodas premium en Tarragona y Costa Daurada. " +
       "Estilo natural y elegante mediterráneo.",

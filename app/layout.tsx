@@ -262,13 +262,13 @@ const localBusinessSchema = {
           valueAddedTaxIncluded: false,
         },
       },
-      {
+ {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: "Postboda",
           description:
-            "Sesión artística post-ceremonia en ubicación especial de la Costa Daurada. Incluye álbum de lujo.",
+            "Sesión artística post-ceremonia en ubicación especial de la Costa Daurada.",
         },
         price: "400",
         priceCurrency: "EUR",
@@ -279,19 +279,36 @@ const localBusinessSchema = {
           valueAddedTaxIncluded: false,
         },
       },
-      {
+     {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: "Pack Completo",
           description:
-            "Preboda + Boda Completa (foto y vídeo, 10h+) + Same Day Edit + Postboda con álbum de lujo. 500+ fotos editadas, highlight reel y galería privada.",
+            "Preboda + Boda Completa (foto y vídeo, 10h+) + Same Day Edit + Postboda + Álbum de Bodas 28×28 cm (50 páginas, ~200 fotos). 900+ fotos editadas, highlight reel y galería privada.",
         },
-        price: "3000",
+        price: "3300",
         priceCurrency: "EUR",
         priceSpecification: {
           "@type": "PriceSpecification",
-          price: "3000",
+          price: "3300",
+          priceCurrency: "EUR",
+          valueAddedTaxIncluded: false,
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Álbum de Bodas",
+          description:
+            "Álbum de bodas premium de 28×28 cm con 50 páginas y aproximadamente 200 imágenes. Add-on para Boda solo foto y Boda Completa, incluido en Pack Completo.",
+        },
+        price: "400",
+        priceCurrency: "EUR",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          price: "400",
           priceCurrency: "EUR",
           valueAddedTaxIncluded: false,
         },
@@ -347,7 +364,7 @@ const faqPageSchema = {
       name: "¿Cuánto cuesta un fotógrafo de bodas en Tarragona?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "En Fran Molina Fotografía ofrecemos diferentes opciones según tus necesidades. La sesión de preboda o postboda comienza desde 400 €. El reportaje fotográfico de boda parte desde 1.200 € y el vídeo cinematográfico desde 1.400 €. La Boda Completa con fotografía y vídeo tiene un precio desde 2.200 €. Y el Pack Completo (preboda + boda completa + same day edit + postboda) desde 3.000 €. Todos los precios son orientativos y personalizamos cada propuesta según la ubicación y los detalles de tu boda en Tarragona, Reus, Salou, Cambrils o cualquier punto de la Costa Daurada.",
+        text: "En Fran Molina Fotografía ofrecemos diferentes opciones según tus necesidades. La sesión de preboda o postboda comienza desde 400 €. El reportaje fotográfico de boda parte desde 1.200 € y el vídeo cinematográfico desde 1.400 €. La Boda Completa con fotografía y vídeo tiene un precio desde 2.200 €. Y el Pack Completo (preboda + boda completa + same day edit + postboda) desde 3.300 €. Todos los precios son orientativos y personalizamos cada propuesta según la ubicación y los detalles de tu boda en Tarragona, Reus, Salou, Cambrils o cualquier punto de la Costa Daurada.",
       },
     },
     {
@@ -379,7 +396,7 @@ const faqPageSchema = {
       name: "¿Cuánto tardáis en entregar las fotos de la boda?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución. Para álbumes físicos de lujo el plazo es de 8 a 12 semanas adicionales.",
+        "text": "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución. Para el Álbum de Bodas (28×28 cm, 50 páginas, ~200 fotos) el plazo es de 8 a 12 semanas adicionales.",
       },
     },
     {

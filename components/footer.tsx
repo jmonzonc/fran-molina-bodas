@@ -27,11 +27,23 @@ const LEGAL_LINKS = [
   { href: "/aviso-legal", label: "Aviso Legal" },
 ] as const
 
-const SOCIAL_ICON_CLASSES =
-  "w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-[#1a365d] transition-all duration-300"
-
 function openCookiePreferences() {
   window.dispatchEvent(new CustomEvent("open-cookie-preferences"))
+}
+
+// Subcomponente extraído — fix para bug parser Next.js 16 + itemScope en padre
+function SocialIcon({ href, label, icon: Icon }: SocialLink) {
+  return (
+    
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-[#1a365d] transition-all duration-300"
+      aria-label={label}
+    >
+      <Icon className="w-5 h-5" aria-hidden="true" />
+    </a>
+  )
 }
 
 export function Footer() {
@@ -95,20 +107,10 @@ export function Footer() {
           <nav aria-label="Redes sociales y enlaces útiles">
             <h4 className="font-medium text-white mb-4">Sígueme</h4>
             <div className="flex gap-4 mb-6">
-              {SOCIAL_CONFIG.map(({ href, label, icon: Icon }) => (
-                
-                  key={href}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={SOCIAL_ICON_CLASSES}
-                  aria-label={label}
-                >
-                  <Icon className="w-5 h-5" aria-hidden="true" />
-                </a>
+              {SOCIAL_CONFIG.map((social) => (
+                <SocialIcon key={social.href} {...social} />
               ))}
             </div>
-            {/* sameAs como meta estáticos — evita bug parser JSX de Next.js 16 con itemProp en maps */}
             <meta itemProp="sameAs" content={SOCIAL_LINKS.instagram} />
             <meta itemProp="sameAs" content={SOCIAL_LINKS.facebook} />
             <meta itemProp="sameAs" content={SOCIAL_LINKS.youtube} />

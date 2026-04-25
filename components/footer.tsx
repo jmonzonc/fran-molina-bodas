@@ -33,7 +33,7 @@ function openCookiePreferences() {
 
 function SocialIcon({ href, label, icon: Icon }: SocialLink) {
   return (
-    
+    <a>
       href={href}
       target="_blank"
       rel="noopener noreferrer"

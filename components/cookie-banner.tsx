@@ -53,34 +53,40 @@ export function CookieBanner() {
 
   if (!visible) return null
 
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex items-end justify-center pointer-events-none"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cookie-banner-title"
-    >
-      {view === "preferences" && (
-        <button
-          type="button"
-          aria-label="Cerrar preferencias de cookies"
-          onClick={() => setVisible(false)}
-          className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-auto"
-        />
-      )}
-
+  // ─── Banner inferior ────────────────────────────────────────────
+  if (view === "banner") {
+    return (
       <div
-        className={`pointer-events-auto bg-white shadow-2xl border border-neutral-200 w-full max-w-3xl m-4 rounded-2xl overflow-hidden ${
-          view === "preferences" ? "max-h-[90vh] overflow-y-auto" : ""
-        }`}
+        className="fixed bottom-0 left-0 right-0 z-[100] p-4 flex justify-center"
+        role="dialog"
+        aria-labelledby="cookie-banner-title"
       >
-        {view === "banner" ? (
+        <div className="bg-white shadow-2xl border border-neutral-200 w-full max-w-3xl rounded-2xl overflow-hidden">
           <BannerView
             onAcceptAll={handleAcceptAll}
             onRejectAll={handleRejectAll}
             onCustomize={() => setView("preferences")}
           />
-        ) : (
+        </div>
+      </div>
+    )
+  }
+
+  // ─── Modal de preferencias ──────────────────────────────────────
+  return (
+    <div
+      className="fixed inset-0 z-[100] overflow-y-auto"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-banner-title"
+    >
+      <div
+        className="fixed inset-0 bg-black/50"
+        onClick={() => setVisible(false)}
+        aria-hidden="true"
+      />
+      <div className="relative min-h-full flex items-center justify-center p-4">
+        <div className="relative z-10 bg-white shadow-2xl border border-neutral-200 w-full max-w-2xl rounded-2xl">
           <PreferencesView
             prefs={prefs}
             setPrefs={setPrefs}
@@ -89,7 +95,7 @@ export function CookieBanner() {
             onSave={handleSavePreferences}
             onClose={() => setVisible(false)}
           />
-        )}
+        </div>
       </div>
     </div>
   )
@@ -106,26 +112,15 @@ function BannerView({
 }) {
   return (
     <div className="p-6 md:p-8">
-      <h2
-        id="cookie-banner-title"
-        className="font-serif text-xl md:text-2xl text-neutral-900 mb-3"
-      >
+      <h2 id="cookie-banner-title" className="font-serif text-xl md:text-2xl text-neutral-900 mb-3">
         Tu privacidad importa
       </h2>
       <p className="text-sm md:text-base text-neutral-600 leading-relaxed mb-6">
-        Usamos cookies propias y de terceros para mejorar tu experiencia,
-        analizar el tráfico de la web y, si lo aceptas, mostrarte contenido
-        personalizado. Puedes aceptar todas, rechazarlas o configurar tus
-        preferencias. Más info en nuestra{" "}
-        <Link
-          href="/cookies"
-          className="text-[#1a365d] underline underline-offset-2 hover:text-[#0f2440]"
-        >
+        Usamos cookies propias y de terceros para mejorar tu experiencia, analizar el tráfico y, si lo aceptas, mostrarte contenido personalizado. Más info en nuestra{" "}
+        <Link href="/cookies" className="text-[#1a365d] underline underline-offset-2 hover:text-[#0f2440]">
           Política de Cookies
-        </Link>
-        .
+        </Link>.
       </p>
-
       <div className="flex flex-col sm:flex-row gap-3 sm:justify-end">
         <button
           type="button"
@@ -169,7 +164,7 @@ function PreferencesView({
   onClose: () => void
 }) {
   return (
-    <div className="p-6 md:p-8">
+    <div className="p-6 md:p-8 max-h-[90vh] overflow-y-auto">
       <div className="flex items-start justify-between mb-6">
         <h2 id="cookie-banner-title" className="font-serif text-2xl text-neutral-900">
           Preferencias de cookies
@@ -185,9 +180,7 @@ function PreferencesView({
       </div>
 
       <p className="text-sm text-neutral-600 leading-relaxed mb-6">
-        Activa o desactiva cada categoría según tus preferencias. Las cookies
-        técnicas son necesarias para el funcionamiento del sitio y no pueden
-        desactivarse.
+        Activa o desactiva cada categoría según tus preferencias. Las cookies técnicas son necesarias para el funcionamiento del sitio.
       </p>
 
       <div className="space-y-3 mb-8">
@@ -205,7 +198,7 @@ function PreferencesView({
         />
         <CategoryRow
           title="Marketing"
-          description="Se usan para mostrar anuncios relevantes y medir campañas (Google Ads, Meta)."
+          description="Se usan para mostrar anuncios relevantes y medir campañas."
           checked={prefs.marketing}
           onChange={(v) => setPrefs({ ...prefs, marketing: v })}
         />

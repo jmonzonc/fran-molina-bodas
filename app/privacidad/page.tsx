@@ -26,7 +26,6 @@ export default function PrivacidadPage() {
           </h2>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Responsable:</strong> Francesc Molina March</li>
-            <li><strong>NIF:</strong> 47769710K</li>
             <li><strong>Domicilio:</strong> Camí Terres Cavades 1, 43007 Tarragona, España</li>
             <li><strong>Correo electrónico:</strong> {EMAIL}</li>
             <li><strong>Teléfono:</strong> {PHONE_DISPLAY}</li>

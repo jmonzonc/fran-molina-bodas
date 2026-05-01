@@ -6,6 +6,7 @@ import {
   BUSINESS_INFO,
   SERVICES,
   PACK_COMPLETO,
+  ALBUM_BODAS,
   PHONE_DISPLAY,
   getWhatsAppLink,
 } from "@/lib/config"
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title:
     "Servicios de Fotografía y Vídeo de Bodas | Fran Molina — Tarragona",
   description:
-    "Servicios de fotografía y vídeo de bodas en Tarragona: preboda, boda completa, same day edit y postboda. Descubre cómo trabajamos y qué incluye cada servicio.",
+    "Servicios de fotografía y vídeo de bodas en Tarragona: preboda, boda completa, same day edit, postboda y álbum de bodas premium. Descubre cómo trabajamos.",
   alternates: {
     canonical: `${SITE_URL}/servicios`,
   },
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     title:
       "Servicios de Fotografía y Vídeo de Bodas | Fran Molina — Tarragona",
     description:
-      "Preboda, boda completa, same day edit y postboda. Conoce nuestro proceso y cada servicio en detalle. Pack completo desde 3.000 €.",
+      "Preboda, boda completa, same day edit, postboda y álbum de bodas. Conoce nuestro proceso y cada servicio en detalle. Pack completo desde 3.300 €.",
     url: `${SITE_URL}/servicios`,
     type: "website",
     locale: "es_ES",
@@ -48,7 +49,7 @@ const serviceSchema = {
   "@type": "Service",
   name: "Servicios de Fotografía y Vídeo de Bodas — Fran Molina",
   description:
-    "Servicios profesionales de fotografía y videografía de bodas en Tarragona y Cataluña. Preboda, boda completa con foto y vídeo, same day edit, postboda y álbum de lujo.",
+    "Servicios profesionales de fotografía y videografía de bodas en Tarragona y Cataluña. Preboda, boda completa con foto y vídeo, same day edit, postboda, álbum de bodas y pack completo.",
   provider: { "@id": `${SITE_URL}/#business` },
   areaServed: {
     "@type": "AdministrativeArea",
@@ -63,6 +64,13 @@ const serviceSchema = {
       price: String(s.priceNumeric),
       priceCurrency: "EUR",
     })),
+    {
+      "@type": "Offer",
+      name: ALBUM_BODAS.name,
+      description: ALBUM_BODAS.description,
+      price: String(ALBUM_BODAS.priceNumeric),
+      priceCurrency: "EUR",
+    },
     {
       "@type": "Offer",
       name: PACK_COMPLETO.name,
@@ -182,9 +190,7 @@ export default function ServiciosPage() {
           </header>
         </section>
 
-        {/* ═══════════════════════════════════════════════════════
-            BREADCRUMB
-        ═══════════════════════════════════════════════════════ */}
+        {/* BREADCRUMB */}
         <div className="bg-background border-b border-gray-100">
           <nav
             className="max-w-3xl mx-auto px-6 py-4 text-sm text-muted-foreground"
@@ -246,7 +252,7 @@ export default function ServiciosPage() {
                 {
                   step: "04",
                   title: "Entrega",
-                  text: "Galería privada, vídeo y álbum de lujo",
+                  text: "Galería privada, vídeo y álbum opcional",
                 },
               ].map((item) => (
                 <div key={item.step} className="text-center">
@@ -272,7 +278,6 @@ export default function ServiciosPage() {
         >
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Imagen */}
               <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src={IMAGES.preboda}
@@ -284,7 +289,6 @@ export default function ServiciosPage() {
                 />
               </div>
 
-              {/* Texto */}
               <div>
                 <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
                   El inicio de todo
@@ -312,15 +316,12 @@ export default function ServiciosPage() {
                   </p>
                 </div>
 
-                {/* Features */}
                 <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> Sesión de 2-3
-                    horas en ubicación elegida
+                    <span className="text-[#d4a574]">✓</span> Sesión de 2-3 horas en ubicación elegida
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> 50+ fotos
-                    editadas profesionalmente
+                    <span className="text-[#d4a574]">✓</span> 50+ fotos editadas profesionalmente
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-[#d4a574]">✓</span> Descargable online
@@ -343,7 +344,6 @@ export default function ServiciosPage() {
               </div>
             </div>
 
-            {/* Video placeholder */}
             <div className="mt-16 max-w-3xl mx-auto">
               <VideoPlaceholder
                 label="Vídeo de preboda — Cómo es una sesión con nosotros"
@@ -359,7 +359,6 @@ export default function ServiciosPage() {
         <section id="same-day-edit" className="py-24 bg-[#111827]">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Texto (izquierda en desktop) */}
               <div>
                 <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
                   Emoción en tiempo real
@@ -374,9 +373,9 @@ export default function ServiciosPage() {
                   </p>
                   <p>
                     El Same Day Edit es una experiencia única y profundamente
-                    emotiva. Durante el banquete, proyectamos un resumen editado
-                    el mismo día con los momentos vividos horas antes: miradas,
-                    abrazos, nervios, felicidad.
+                    emotiva. Durante el banquete, proyectamos un resumen
+                    editado el mismo día con los momentos vividos horas antes:
+                    miradas, abrazos, nervios, felicidad.
                   </p>
                   <p>
                     Es un instante mágico donde vosotros y vuestros invitados
@@ -401,7 +400,6 @@ export default function ServiciosPage() {
                 </div>
               </div>
 
-              {/* Video placeholder */}
               <VideoPlaceholder
                 label="Ejemplo de Same Day Edit — Emoción en estado puro"
                 id="video-same-day-edit"
@@ -416,7 +414,6 @@ export default function ServiciosPage() {
         <section id="boda" className="py-24 bg-background">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Imagen */}
               <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl lg:order-2">
                 <Image
                   src={IMAGES.boda}
@@ -428,7 +425,6 @@ export default function ServiciosPage() {
                 />
               </div>
 
-              {/* Texto */}
               <div className="lg:order-1">
                 <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
                   Donde ocurre la magia
@@ -463,20 +459,17 @@ export default function ServiciosPage() {
                   <div className="bg-secondary/30 rounded-xl p-5 border border-gray-100">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="font-serif text-primary">Solo Fotografía</h3>
-                      <span className="text-[#d4a574] font-bold">
-                        Desde €1.200
-                      </span>
+                      <span className="text-[#d4a574] font-bold">Desde €1.200</span>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      400+ fotos editadas, cobertura completa del día (10h+)
+                      900+ fotos editadas, cobertura completa del día (10h+).
+                      Álbum de Bodas opcional (+€400)
                     </p>
                   </div>
                   <div className="bg-secondary/30 rounded-xl p-5 border border-gray-100">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="font-serif text-primary">Solo Vídeo</h3>
-                      <span className="text-[#d4a574] font-bold">
-                        Desde €1.400
-                      </span>
+                      <span className="text-[#d4a574] font-bold">Desde €1.400</span>
                     </div>
                     <p className="text-sm text-muted-foreground">
                       Vídeo cinematográfico documental + highlight reel
@@ -487,13 +480,12 @@ export default function ServiciosPage() {
                       <h3 className="font-serif text-primary">
                         Boda Completa — Foto + Vídeo
                       </h3>
-                      <span className="text-[#d4a574] font-bold">
-                        Desde €2.200
-                      </span>
+                      <span className="text-[#d4a574] font-bold">Desde €2.200</span>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Lo mejor de ambos mundos: fotografía + vídeo
-                      cinematográfico, 10h+ de cobertura
+                      Lo mejor de ambos mundos: 900+ fotos editadas + vídeo
+                      cinematográfico, 10h+ de cobertura. Álbum de Bodas
+                      opcional (+€400)
                     </p>
                   </div>
                 </div>
@@ -503,132 +495,11 @@ export default function ServiciosPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════
-            ENTREGA — GALERÍA, ÁLBUM, CEREMONIA
-        ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 bg-gradient-to-b from-secondary/10 to-background">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
-                Después de la boda
-              </span>
-              <h2 className="text-3xl md:text-5xl font-serif text-primary mt-2 mb-6">
-                Lo que recibiréis
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Una vez finalizado el trabajo, os entregaremos todo el material
-                a través de una galería privada online, para que podáis acceder
-                fácilmente, compartirlo con vuestros seres queridos y
-                conservarlo siempre.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Galería online */}
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#d4a574]/10 flex items-center justify-center">
-                  <svg
-                    className="w-7 h-7 text-[#d4a574]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V4.5a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v15a1.5 1.5 0 001.5 1.5z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-serif text-xl text-primary mb-3">
-                  Galería Privada
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  400+ fotos editadas en alta resolución. Galería online privada
-                  descargable para compartir con familia y amigos. Entrega en 4-6
-                  semanas.
-                </p>
-              </div>
-
-              {/* Álbum de boda */}
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#d4a574]/10 flex items-center justify-center">
-                  <svg
-                    className="w-7 h-7 text-[#d4a574]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-serif text-xl text-primary mb-3">
-                  Álbum de Lujo
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Un recuerdo tangible que os acompañará toda la vida. Diseño
-                  personalizado, impresión premium y encuadernación artesanal.
-                  Plazo: 8-12 semanas.
-                </p>
-              </div>
-
-              {/* Ceremonia editada */}
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#d4a574]/10 flex items-center justify-center">
-                  <svg
-                    className="w-7 h-7 text-[#d4a574]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 12 6 12.504 6 13.125M15 12h-4.875"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-serif text-xl text-primary mb-3">
-                  Ceremonia Editada
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Vuestra ceremonia completamente editada para revivir cada
-                  instante. Cada palabra, cada mirada, cada promesa — sin perder
-                  ni un solo detalle.
-                </p>
-              </div>
-            </div>
-
-            {/* Videos álbum + ceremonia */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <VideoPlaceholder
-                label="Así es un álbum de boda de lujo"
-                id="video-album"
-              />
-              <VideoPlaceholder
-                label="Ejemplo de ceremonia editada"
-                id="video-ceremonia"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════
             POSTBODA
         ═══════════════════════════════════════════════════════ */}
-        <section id="postboda" className="py-24 bg-background">
+        <section id="postboda" className="py-24 bg-gradient-to-b from-secondary/10 to-background">
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Texto */}
               <div>
                 <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
                   El broche final
@@ -638,8 +509,8 @@ export default function ServiciosPage() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Las últimas fotos donde os tendréis que poner el vestido por
-                    última vez. El momento de{" "}
+                    Las últimas fotos donde os tendréis que poner el vestido
+                    por última vez. El momento de{" "}
                     <strong className="text-foreground">
                       disfrutar sin prisas, sin protocolos, sin horarios.
                     </strong>
@@ -664,7 +535,6 @@ export default function ServiciosPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="text-[#d4a574]">✓</span> Descargable online
-                    
                   </li>
                 </ul>
 
@@ -683,7 +553,6 @@ export default function ServiciosPage() {
                 </div>
               </div>
 
-              {/* Imagen */}
               <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src={IMAGES.postboda}
@@ -694,6 +563,191 @@ export default function ServiciosPage() {
                   loading="lazy"
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            ÁLBUM DE BODAS (add-on dedicado)
+        ═══════════════════════════════════════════════════════ */}
+        <section id="album-bodas" className="py-24 bg-background">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
+                Add-on disponible · Incluido en Pack Completo
+              </span>
+              <h2 className="text-3xl md:text-5xl font-serif text-primary mt-2 mb-6">
+                Álbum de Bodas
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Un recuerdo tangible, hecho a medida, que os acompañará toda la
+                vida. Diseñado por nosotros, impreso con la máxima calidad.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-secondary/20 to-background rounded-3xl p-8 md:p-12 border border-gray-100 shadow-xl">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                {/* Specs */}
+                <div className="lg:col-span-2 space-y-6">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="text-center bg-white rounded-2xl p-4 border border-gray-100">
+                      <span className="block text-3xl font-serif text-[#d4a574] font-bold">
+                        {ALBUM_BODAS.specs.size}
+                      </span>
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1 block">
+                        Tamaño
+                      </span>
+                    </div>
+                    <div className="text-center bg-white rounded-2xl p-4 border border-gray-100">
+                      <span className="block text-3xl font-serif text-[#d4a574] font-bold">
+                        {ALBUM_BODAS.specs.pages}
+                      </span>
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1 block">
+                        Páginas
+                      </span>
+                    </div>
+                    <div className="text-center bg-white rounded-2xl p-4 border border-gray-100">
+                      <span className="block text-3xl font-serif text-[#d4a574] font-bold">
+                        ~{ALBUM_BODAS.specs.photos}
+                      </span>
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1 block">
+                        Fotos
+                      </span>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d4a574] mt-1">✓</span>
+                      <span>Diseño personalizado adaptado a vuestra historia</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d4a574] mt-1">✓</span>
+                      <span>Impresión profesional en papel de alta calidad</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d4a574] mt-1">✓</span>
+                      <span>Encuadernación artesanal premium</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#d4a574] mt-1">✓</span>
+                      <span>
+                        Disponible para Boda solo foto y Boda Completa,
+                        incluido en el Pack Completo
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Precio + CTA */}
+                <div className="text-center bg-white rounded-2xl p-8 border-2 border-[#d4a574]/30">
+                  <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
+                    Add-on
+                  </p>
+                  <div className="text-5xl font-bold text-[#d4a574] mb-2">
+                    €400
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-6">
+                    Sumado a Boda solo foto o Boda Completa
+                  </p>
+                  <a
+                    href={getWhatsAppLink(ALBUM_BODAS.whatsappMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-[#d4a574] hover:bg-[#d4a574]/90 text-[#1a365d] py-3 px-6 rounded-xl font-semibold transition-all duration-300 text-sm uppercase tracking-wide"
+                  >
+                    Añadir a mi pack
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 max-w-3xl mx-auto">
+              <VideoPlaceholder
+                label="Así es un Álbum de Bodas — 28×28, 50 páginas"
+                id="video-album"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            ENTREGA — GALERÍA + CEREMONIA
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-24 bg-gradient-to-b from-secondary/10 to-background">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
+                Después de la boda
+              </span>
+              <h2 className="text-3xl md:text-5xl font-serif text-primary mt-2 mb-6">
+                Lo que recibiréis
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Una vez finalizado el trabajo, os entregaremos todo el material
+                a través de una galería privada online, para que podáis acceder
+                fácilmente, compartirlo con vuestros seres queridos y
+                conservarlo siempre.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* Galería online */}
+              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#d4a574]/10 flex items-center justify-center">
+                  <svg
+                    className="w-7 h-7 text-[#d4a574]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V4.5a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v15a1.5 1.5 0 001.5 1.5z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="font-serif text-xl text-primary mb-3">
+                  Galería Privada
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  900+ fotos editadas en alta resolución. Galería online
+                  privada descargable para compartir con familia y amigos.
+                  Entrega en 4-6 semanas.
+                </p>
+              </div>
+
+              {/* Ceremonia editada */}
+              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#d4a574]/10 flex items-center justify-center">
+                  <svg
+                    className="w-7 h-7 text-[#d4a574]"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <h3 className="font-serif text-xl text-primary mb-3">
+                  Ceremonia Editada
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Vuestra ceremonia completamente editada para revivir cada
+                  instante. Cada palabra, cada mirada, cada promesa — sin
+                  perder ni un solo detalle.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12 max-w-3xl mx-auto">
+              <VideoPlaceholder
+                label="Ejemplo de ceremonia editada"
+                id="video-ceremonia"
+              />
             </div>
           </div>
         </section>
@@ -781,7 +835,6 @@ export default function ServiciosPage() {
               </a>
             </p>
 
-            {/* Ver precios detallados */}
             <div className="mt-10 pt-8 border-t border-white/10">
               <Link
                 href="/#precios"

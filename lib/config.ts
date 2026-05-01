@@ -108,7 +108,7 @@ export const SERVICES: ServiceItem[] = [
     name: "Boda Completa",
     subtitle: "Foto + Vídeo",
     description:
-      "Cobertura completa del día de la boda (10h+) con fotografía y vídeo cinematográfico. Más de 900 fotos editadas, highlight reel y galería online privada descargable. Álbum de Bodas disponible como add-on.",
+      "Cobertura completa del día de la boda (10h+) con fotografía y vídeo cinematográfico. Más de 900 fotos editadas, highlight reel y galería online privada descargable. Posibilidad de Álbum de Bodas.",
     price: "€2.200",
     priceNumeric: 2200,
     features: [
@@ -138,15 +138,13 @@ export const SERVICES: ServiceItem[] = [
 ]
 
 // ============================================================
-// ÁLBUM DE BODAS (add-on)
-// ============================================================
 
 export const ALBUM_BODAS = {
   id: "album-bodas",
   name: "Álbum de Bodas",
   subtitle: "Recuerdo tangible para toda la vida",
   description:
-    "Álbum de bodas premium de 28×28 cm con 50 páginas y aproximadamente 200 imágenes. Diseño personalizado, impresión profesional y encuadernación artesanal. Add-on disponible para Boda solo foto y Boda Completa, e incluido en el Pack Completo.",
+    "Álbum de bodas premium de 28×28 cm con 50 páginas y aproximadamente 200 imágenes. Diseño personalizado, impresión profesional y encuadernación artesanal. Disponible adicionalmente para Boda solo foto y Boda Completa, e incluido en el Pack Completo.",
   price: "€400",
   priceNumeric: 400,
   specs: {
@@ -249,7 +247,7 @@ export const PRICING_DATA: PricingRow[] = [
   },
   {
     service: "Álbum de Bodas",
-    description: "28×28 cm · 50 páginas · ~200 fotos · add-on",
+    description: "28×28 cm · 50 páginas · ~200 fotos",
     photography: true,
     video: false,
     price: "€400",

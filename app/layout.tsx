@@ -8,7 +8,6 @@ import {
   SITE_URL,
   BUSINESS_INFO,
   PHONE_DISPLAY,
-  PHONE_LINK,
   EMAIL,
   SOCIAL_LINKS,
 } from "@/lib/config"
@@ -25,6 +24,8 @@ const playfair = Playfair_Display({
   display: "swap",
 })
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -33,12 +34,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
- title: {
+  title: {
     default:
       "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina",
     template: `%s | ${BUSINESS_INFO.name}`,
   },
- description:
+  description:
     "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
     "Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015. " +
     "Pack completo desde 3.300 €.",
@@ -262,7 +263,7 @@ const localBusinessSchema = {
           valueAddedTaxIncluded: false,
         },
       },
- {
+      {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
@@ -279,7 +280,7 @@ const localBusinessSchema = {
           valueAddedTaxIncluded: false,
         },
       },
-     {
+      {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
@@ -346,12 +347,7 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Inicio",
-      item: SITE_URL,
-    },
+    { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
   ],
 }
 
@@ -396,7 +392,7 @@ const faqPageSchema = {
       name: "¿Cuánto tardáis en entregar las fotos de la boda?",
       acceptedAnswer: {
         "@type": "Answer",
-        "text": "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución. Para el Álbum de Bodas (28×28 cm, 50 páginas, ~200 fotos) el plazo es de 8 a 12 semanas adicionales.",
+        text: "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución. Para el Álbum de Bodas (28×28 cm, 50 páginas, ~200 fotos) el plazo es de 8 a 12 semanas adicionales.",
       },
     },
     {
@@ -433,14 +429,49 @@ export default function RootLayout({
             ]),
           }}
         />
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-            strategy="afterInteractive"
-          />
+
+        {/* Consent Mode v2 — DEBE ir antes de gtag.js */}
+        {GA_ID && (
+          <Script id="ga-consent-default" strategy="beforeInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('consent', 'default', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'denied',
+                functionality_storage: 'granted',
+                security_storage: 'granted',
+                wait_for_update: 500
+              });
+              gtag('set', 'ads_data_redaction', true);
+            `}
+          </Script>
         )}
       </head>
       <body className="font-sans antialiased">
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', {
+                  anonymize_ip: true,
+                  send_page_view: true
+                });
+              `}
+            </Script>
+          </>
+        )}
         <Navbar />
         {children}
         <CookieBanner />

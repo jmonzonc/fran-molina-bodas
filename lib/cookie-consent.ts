@@ -25,6 +25,23 @@ export const ALL_ACCEPTED: ConsentCategories = {
   marketing: true,
 }
 
+declare global {
+  interface Window {
+    dataLayer?: unknown[]
+    gtag?: (...args: unknown[]) => void
+  }
+}
+
+function ensureGtag(): void {
+  if (typeof window === "undefined") return
+  window.dataLayer = window.dataLayer || []
+  if (!window.gtag) {
+    window.gtag = function gtag(...args: unknown[]) {
+      window.dataLayer!.push(args)
+    }
+  }
+}
+
 export function getConsent(): ConsentState | null {
   if (typeof window === "undefined") return null
   try {
@@ -48,9 +65,10 @@ export function saveConsent(categories: ConsentCategories): ConsentState {
   document.cookie =
     `${COOKIE_CONSENT_KEY}=${encodeURIComponent(JSON.stringify(categories))};` +
     `path=/;max-age=${COOKIE_CONSENT_MAX_AGE};SameSite=Lax;Secure`
-
   updateGoogleConsent(categories)
-  window.dispatchEvent(new CustomEvent("cookie-consent-change", { detail: state }))
+  window.dispatchEvent(
+    new CustomEvent("cookie-consent-change", { detail: state })
+  )
   return state
 }
 
@@ -59,42 +77,22 @@ export function clearConsent(): void {
   document.cookie = `${COOKIE_CONSENT_KEY}=;path=/;max-age=0;SameSite=Lax;Secure`
 }
 
-// Google Consent Mode v2
-declare global {
-  interface Window {
-    dataLayer?: unknown[]
-    gtag?: (...args: unknown[]) => void
-  }
-}
-
+/**
+ * Red de seguridad cliente-side. Los defaults REALES se inyectan
+ * inline desde layout.tsx antes de gtag.js. Esta función solo
+ * garantiza que window.gtag existe y re-aplica el consent guardado.
+ */
 export function initGoogleConsentDefaults(): void {
   if (typeof window === "undefined") return
-  window.dataLayer = window.dataLayer || []
-  const gtag = (...args: unknown[]) => window.dataLayer!.push(args)
-  window.gtag = window.gtag || gtag
-
-  // PRIMERO: consent default (antes de cualquier hit)
-  window.gtag("consent", "default", {
-    ad_storage:              "denied",
-    ad_user_data:            "denied",
-    ad_personalization:      "denied",
-    analytics_storage:       "denied",
-    functionality_storage:   "granted",
-    personalization_storage: "denied",
-    security_storage:        "granted",
-    wait_for_update:         500,
-  })
-
-  // DESPUÉS: config
-  window.gtag("js", new Date())
-  window.gtag("config", process.env.NEXT_PUBLIC_GA_ID!, {
-    send_page_view: true,
-  })
+  ensureGtag()
+  const stored = getConsent()
+  if (stored) updateGoogleConsent(stored.categories)
 }
 
 export function updateGoogleConsent(c: ConsentCategories): void {
-  if (typeof window === "undefined" || !window.gtag) return
-  window.gtag("consent", "update", {
+  if (typeof window === "undefined") return
+  ensureGtag()
+  window.gtag!("consent", "update", {
     ad_storage: c.marketing ? "granted" : "denied",
     ad_user_data: c.marketing ? "granted" : "denied",
     ad_personalization: c.marketing ? "granted" : "denied",

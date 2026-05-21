@@ -23,9 +23,9 @@ export const SOCIAL_LINKS = {
 // ============================================================
 
 export const BUSINESS_INFO = {
-  name: "Fran Molina Fotografía",
+  name: "Fran Momarch Fotografía",
   legalName: "Fran Molina March",
-  shortName: "Fran Molina",
+  shortName: "Fran Momarch",
   tagline: "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada",
   description:
     "Fotografía y vídeo de bodas premium en Tarragona, Reus, Salou, Cambrils y toda la Costa Daurada. Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015.",

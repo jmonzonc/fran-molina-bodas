@@ -40,7 +40,6 @@ export function ContactSection() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // GA4: lead cualificado (formulario completado + envío)
     trackEvent("qualify_lead", {
       method: "whatsapp_form",
       wedding_date: formData.weddingDate,
@@ -55,16 +54,17 @@ export function ContactSection() {
       `Mensaje: ${formData.message}`,
     ].join("\n")
 
-    window.open(getWhatsAppLink(message), "_blank")
+    // setTimeout garantiza que gtag escribe en dataLayer antes de que
+    // window.open interrumpa el hilo principal
+    setTimeout(() => window.open(getWhatsAppLink(message), "_blank"), 100)
   }
 
   const handleDirectWhatsApp = () => {
-    // GA4: lead directo (chat sin formulario)
     trackEvent("qualify_lead", {
       method: "whatsapp_direct",
     })
 
-    window.open(getWhatsAppLink(WHATSAPP_MESSAGES.general), "_blank")
+    setTimeout(() => window.open(getWhatsAppLink(WHATSAPP_MESSAGES.general), "_blank"), 100)
   }
 
   return (

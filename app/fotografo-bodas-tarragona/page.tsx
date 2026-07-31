@@ -221,7 +221,7 @@ export default function FotografoBodasTarragona() {
               </article>
               <article className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
                 <h3 className="text-2xl font-serif text-primary mb-3">Postboda en Tarragona</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">Sesión artística en la playa Larga, el Balcón del Mediterráneo, calas de l'Ametlla de Mar o rincones escondidos de la Costa Daurada. Incluye álbum de lujo. <strong>Desde 400 €.</strong></p>
+<p className="text-muted-foreground leading-relaxed mb-4">Sesión artística en la playa Larga, el Balcón del Mediterráneo, calas de l'Ametlla de Mar o rincones escondidos de la Costa Daurada. <strong>Desde 400 €.</strong></p>
                 <Link href="/#servicios" className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors">Ver detalles completos →</Link>
               </article>
             </div>

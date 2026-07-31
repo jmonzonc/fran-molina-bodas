@@ -145,13 +145,12 @@ export const PACK_COMPLETO = {
   name: "Pack Completo",
   subtitle: "Tu boda de principio a fin",
   description:
-    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda, Same Day Edit para sorprender a los invitados y Álbum de Bodas premium incluido.",
+    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda y Same Day Edit para sorprender a los invitados.",
   features: [
     "Sesión de Preboda",
     "Boda Completa — fotografía + vídeo (10h+)",
     "Same Day Edit para proyectar en el banquete",
     "Sesión de Postboda",
-    "Álbum de Bodas 28×28 cm — 50 páginas, ~200 fotos",
     "900+ fotos editadas + highlight reel",
     "Galería online privada descargable",
   ],

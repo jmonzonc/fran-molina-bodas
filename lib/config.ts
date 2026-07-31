@@ -14,8 +14,8 @@ export const EMAIL = "francescmolinamarch@gmail.com"
 export const SOCIAL_LINKS = {
   instagram:
     "https://www.instagram.com/fran_momarch_wedding?igsh=MWNmbHh5YzV3bWIzMg==",
-  facebook: "https://facebook.com/franmolinafotografia",
-  youtube: "https://youtube.com/@franmolinafoto",
+  facebook: "https://www.facebook.com/people/Fran-Momarch/61582643398027/",
+  youtube: "https://www.youtube.com/watch?v=VqVdUwGVQMg",
 } as const
 
 // ============================================================

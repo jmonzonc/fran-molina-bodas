@@ -7,6 +7,7 @@ import {
   SERVICES,
   PACK_COMPLETO,
   PHONE_DISPLAY,
+  PHONE_LINK,
   getWhatsAppLink,
 } from "@/lib/config"
 import { Footer } from "@/components/footer"
@@ -87,6 +88,21 @@ const breadcrumbSchema = {
   ],
 }
 
+// VideoObject dedicado para el vídeo de Same Day Edit embebido en esta página.
+// Distinto del showreel genérico en layout.tsx (ese es el vídeo hero del home).
+const sameDayEditVideoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "Ejemplo de Same Day Edit — Fran Molina March Bodas",
+  description:
+    "Ejemplo real de un Same Day Edit: resumen editado el mismo día de la boda para proyectar durante el banquete, con los momentos vividos horas antes.",
+  thumbnailUrl: "https://i.ytimg.com/vi/VqVdUwGVQMg/maxresdefault.jpg",
+  uploadDate: "2026-03-23",
+  embedUrl: "https://www.youtube.com/embed/VqVdUwGVQMg",
+  contentUrl: "https://www.youtube.com/watch?v=VqVdUwGVQMg",
+  publisher: { "@id": `${SITE_URL}/#business` },
+}
+
 // ─── IMAGES ──────────────────────────────────────────────────
 
 const IMAGES = {
@@ -132,6 +148,34 @@ function VideoPlaceholder({
   )
 }
 
+// ─── YOUTUBE EMBED ──────────────────────────────────────────
+
+function YouTubeEmbed({
+  videoId,
+  title,
+  id,
+}: {
+  videoId: string
+  title: string
+  id: string
+}) {
+  return (
+    <div
+      id={id}
+      className="relative w-full aspect-video rounded-2xl overflow-hidden bg-[#111827] border border-white/10"
+    >
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+        className="absolute inset-0 w-full h-full"
+      />
+    </div>
+  )
+}
+
 // ─── PAGE ────────────────────────────────────────────────────
 
 export default function ServiciosPage() {
@@ -148,6 +192,12 @@ export default function ServiciosPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(sameDayEditVideoSchema),
+        }}
       />
 
       <main itemScope itemType="https://schema.org/WebPage">
@@ -392,8 +442,9 @@ export default function ServiciosPage() {
                 </div>
               </div>
 
-              <VideoPlaceholder
-                label="Ejemplo de Same Day Edit — Emoción en estado puro"
+              <YouTubeEmbed
+                videoId="VqVdUwGVQMg"
+                title="Ejemplo de Same Day Edit — Fran Molina March Bodas"
                 id="video-same-day-edit"
               />
             </div>
@@ -716,7 +767,7 @@ export default function ServiciosPage() {
             <p className="mt-6 text-white/50 text-sm">
               o llámame al{" "}
               <a
-                href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`}
+                href={PHONE_LINK}
                 className="text-[#d4a574] hover:text-[#d4a574]/80 transition-colors"
               >
                 {PHONE_DISPLAY}

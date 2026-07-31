@@ -286,30 +286,13 @@ const localBusinessSchema = {
           "@type": "Service",
           name: "Pack Completo",
           description:
-            "Preboda + Boda Completa (foto y vídeo, 10h+) + Same Day Edit + Postboda + Álbum de Bodas 28×28 cm (50 páginas, ~200 fotos). 900+ fotos editadas, highlight reel y galería privada.",
+            "Preboda + Boda Completa (foto y vídeo, 10h+) + Same Day Edit + Postboda. 900+ fotos editadas, highlight reel y galería privada.",
         },
         price: "3300",
         priceCurrency: "EUR",
         priceSpecification: {
           "@type": "PriceSpecification",
           price: "3300",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Álbum de Bodas",
-          description:
-            "Álbum de bodas premium de 28×28 cm con 50 páginas y aproximadamente 200 imágenes. Add-on para Boda solo foto y Boda Completa, incluido en Pack Completo.",
-        },
-        price: "400",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "400",
           priceCurrency: "EUR",
           valueAddedTaxIncluded: false,
         },
@@ -392,7 +375,7 @@ const faqPageSchema = {
       name: "¿Cuánto tardáis en entregar las fotos de la boda?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución. Para el Álbum de Bodas (28×28 cm, 50 páginas, ~200 fotos) el plazo es de 8 a 12 semanas adicionales.",
+        text: "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución.",
       },
     },
     {

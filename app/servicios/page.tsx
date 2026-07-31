@@ -6,7 +6,6 @@ import {
   BUSINESS_INFO,
   SERVICES,
   PACK_COMPLETO,
-  ALBUM_BODAS,
   PHONE_DISPLAY,
   getWhatsAppLink,
 } from "@/lib/config"
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
   title:
     "Servicios de Fotografía y Vídeo de Bodas | Fran Molina — Tarragona",
   description:
-    "Servicios de fotografía y vídeo de bodas en Tarragona: preboda, boda completa, same day edit, postboda y álbum de bodas premium. Descubre cómo trabajamos.",
+    "Servicios de fotografía y vídeo de bodas en Tarragona: preboda, boda completa, same day edit y postboda. Descubre cómo trabajamos.",
   alternates: {
     canonical: `${SITE_URL}/servicios`,
   },
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
     title:
       "Servicios de Fotografía y Vídeo de Bodas | Fran Molina — Tarragona",
     description:
-      "Preboda, boda completa, same day edit, postboda y álbum de bodas. Conoce nuestro proceso y cada servicio en detalle. Pack completo desde 3.300 €.",
+      "Preboda, boda completa, same day edit y postboda. Conoce nuestro proceso y cada servicio en detalle. Pack completo desde 3.300 €.",
     url: `${SITE_URL}/servicios`,
     type: "website",
     locale: "es_ES",
@@ -49,7 +48,7 @@ const serviceSchema = {
   "@type": "Service",
   name: "Servicios de Fotografía y Vídeo de Bodas — Fran Molina",
   description:
-    "Servicios profesionales de fotografía y videografía de bodas en Tarragona y Cataluña. Preboda, boda completa con foto y vídeo, same day edit, postboda, álbum de bodas y pack completo.",
+    "Servicios profesionales de fotografía y videografía de bodas en Tarragona y Cataluña. Preboda, boda completa con foto y vídeo, same day edit, postboda y pack completo.",
   provider: { "@id": `${SITE_URL}/#business` },
   areaServed: {
     "@type": "AdministrativeArea",
@@ -64,13 +63,6 @@ const serviceSchema = {
       price: String(s.priceNumeric),
       priceCurrency: "EUR",
     })),
-    {
-      "@type": "Offer",
-      name: ALBUM_BODAS.name,
-      description: ALBUM_BODAS.description,
-      price: String(ALBUM_BODAS.priceNumeric),
-      priceCurrency: "EUR",
-    },
     {
       "@type": "Offer",
       name: PACK_COMPLETO.name,
@@ -563,110 +555,6 @@ export default function ServiciosPage() {
                   loading="lazy"
                 />
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════
-            ÁLBUM DE BODAS (add-on dedicado)
-        ═══════════════════════════════════════════════════════ */}
-        <section id="album-bodas" className="py-24 bg-background">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <span className="text-[#d4a574] text-sm font-medium uppercase tracking-wider">
-                Add-on disponible · Incluido en Pack Completo
-              </span>
-              <h2 className="text-3xl md:text-5xl font-serif text-primary mt-2 mb-6">
-                Álbum de Bodas
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Un recuerdo tangible, hecho a medida, que os acompañará toda la
-                vida. Diseñado por nosotros, impreso con la máxima calidad.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-secondary/20 to-background rounded-3xl p-8 md:p-12 border border-gray-100 shadow-xl">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                {/* Specs */}
-                <div className="lg:col-span-2 space-y-6">
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="text-center bg-white rounded-2xl p-4 border border-gray-100">
-                      <span className="block text-3xl font-serif text-[#d4a574] font-bold">
-                        {ALBUM_BODAS.specs.size}
-                      </span>
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1 block">
-                        Tamaño
-                      </span>
-                    </div>
-                    <div className="text-center bg-white rounded-2xl p-4 border border-gray-100">
-                      <span className="block text-3xl font-serif text-[#d4a574] font-bold">
-                        {ALBUM_BODAS.specs.pages}
-                      </span>
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1 block">
-                        Páginas
-                      </span>
-                    </div>
-                    <div className="text-center bg-white rounded-2xl p-4 border border-gray-100">
-                      <span className="block text-3xl font-serif text-[#d4a574] font-bold">
-                        ~{ALBUM_BODAS.specs.photos}
-                      </span>
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider mt-1 block">
-                        Fotos
-                      </span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d4a574] mt-1">✓</span>
-                      <span>Diseño personalizado adaptado a vuestra historia</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d4a574] mt-1">✓</span>
-                      <span>Impresión profesional en papel de alta calidad</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d4a574] mt-1">✓</span>
-                      <span>Encuadernación artesanal premium</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#d4a574] mt-1">✓</span>
-                      <span>
-                        Disponible para Boda solo foto y Boda Completa,
-                        incluido en el Pack Completo
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Precio + CTA */}
-                <div className="text-center bg-white rounded-2xl p-8 border-2 border-[#d4a574]/30">
-                  <p className="text-sm text-muted-foreground uppercase tracking-wider mb-2">
-                    Add-on
-                  </p>
-                  <div className="text-5xl font-bold text-[#d4a574] mb-2">
-                    €400
-                  </div>
-                  <p className="text-xs text-muted-foreground mb-6">
-                    Sumado a Boda solo foto o Boda Completa
-                  </p>
-                  <a
-                    href={getWhatsAppLink(ALBUM_BODAS.whatsappMessage)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full bg-[#d4a574] hover:bg-[#d4a574]/90 text-[#1a365d] py-3 px-6 rounded-xl font-semibold transition-all duration-300 text-sm uppercase tracking-wide"
-                  >
-                    Añadir a mi pack
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12 max-w-3xl mx-auto">
-              <VideoPlaceholder
-                label="Así es un Álbum de Bodas — 28×28, 50 páginas"
-                id="video-album"
-              />
             </div>
           </div>
         </section>

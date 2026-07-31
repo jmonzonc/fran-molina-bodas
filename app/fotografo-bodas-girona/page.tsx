@@ -221,7 +221,7 @@ export default function FotografoBodasGirona() {
               </article>
               <article className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
                 <h3 className="text-2xl font-serif text-primary mb-3">Postboda en Girona</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">Sesión artística en calas de la Costa Brava, pueblos con encanto del Baix Empordà, bosques de la Garrotxa o los volcanes de Olot. Incluye álbum de lujo. <strong>Desde 400 €.</strong></p>
+<p className="text-muted-foreground leading-relaxed mb-4">Sesión artística en calas de la Costa Brava, pueblos con encanto del Baix Empordà, bosques de la Garrotxa o los volcanes de Olot. <strong>Desde 400 €.</strong></p>
                 <Link href="/#servicios" className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors">Ver detalles completos →</Link>
               </article>
             </div>

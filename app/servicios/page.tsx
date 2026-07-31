@@ -217,7 +217,7 @@ export default function ServiciosPage() {
   priority
   sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-[#111827]" />
+<div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/45 to-[#111827]" />
           <header className="absolute inset-0 flex items-end pb-16 sm:pb-20">
             <div className="max-w-4xl mx-auto px-6 text-center w-full">
               <p className="text-[#d4a574] text-sm font-medium uppercase tracking-[0.25em] mb-4">

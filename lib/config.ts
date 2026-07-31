@@ -67,9 +67,8 @@ export const WHATSAPP_MESSAGES = {
     "Hola Fran, me interesa la Boda Completa con fotografía y vídeo",
   sameDayEdit: "Hola Fran, me interesa el Same Day Edit",
   postboda: "Hola Fran, me interesa la sesión de Postboda",
-  albumBodas: "Hola Fran, me interesa añadir el Álbum de Bodas a mi servicio",
   packCompleto:
-    "Hola Fran, me interesa el Pack Completo (Preboda + Boda + Same Day Edit + Postboda + Álbum de Bodas)",
+    "Hola Fran, me interesa el Pack Completo (Preboda + Boda + Same Day Edit + Postboda)",
 } as const
 
 // ============================================================
@@ -138,26 +137,6 @@ export const SERVICES: ServiceItem[] = [
 ]
 
 // ============================================================
-
-export const ALBUM_BODAS = {
-  id: "album-bodas",
-  name: "Álbum de Bodas",
-  subtitle: "Recuerdo tangible para toda la vida",
-  description:
-    "Álbum de bodas premium de 28×28 cm con 50 páginas y aproximadamente 200 imágenes. Diseño personalizado, impresión profesional y encuadernación artesanal. Disponible adicionalmente para Boda solo foto y Boda Completa, e incluido en el Pack Completo.",
-  price: "€400",
-  priceNumeric: 400,
-  specs: {
-    size: "28×28 cm",
-    pages: 50,
-    photos: 200,
-  },
-  availableFor: ["boda-completa"] as const,
-  includedIn: ["pack-completo"] as const,
-  whatsappMessage: WHATSAPP_MESSAGES.albumBodas,
-} as const
-
-// ============================================================
 // PACK COMPLETO
 // ============================================================
 
@@ -166,13 +145,12 @@ export const PACK_COMPLETO = {
   name: "Pack Completo",
   subtitle: "Tu boda de principio a fin",
   description:
-    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda, Same Day Edit para sorprender a los invitados y Álbum de Bodas premium incluido.",
+    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda y Same Day Edit para sorprender a los invitados.",
   features: [
     "Sesión de Preboda",
     "Boda Completa — fotografía + vídeo (10h+)",
     "Same Day Edit para proyectar en el banquete",
     "Sesión de Postboda",
-    "Álbum de Bodas 28×28 cm — 50 páginas, ~200 fotos",
     "900+ fotos editadas + highlight reel",
     "Galería online privada descargable",
   ],
@@ -240,14 +218,6 @@ export const PRICING_DATA: PricingRow[] = [
   {
     service: "Postboda",
     description: "Sesión artística post-ceremonia",
-    photography: true,
-    video: false,
-    price: "€400",
-    priceNumeric: 400,
-  },
-  {
-    service: "Álbum de Bodas",
-    description: "28×28 cm · 50 páginas · ~200 fotos",
     photography: true,
     video: false,
     price: "€400",
@@ -321,11 +291,6 @@ export const SEO_KEYWORDS: string[] = [
   "precio foto y video boda tarragona",
   "cuanto cuesta foto y video boda tarragona",
   "precio paquete bodas tarragona",
-
-  // ── ÁLBUM DE BODAS ────────────────────────────────────────
-  "album boda tarragona",
-  "álbum de bodas premium",
-  "album fotos boda 28x28",
 
   // ── LONG TAIL · ALTA INTENCIÓN ────────────────────────────
   "fotógrafo bodas tarragona opiniones",

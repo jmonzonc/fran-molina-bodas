@@ -506,7 +506,6 @@ export default function ServiciosPage() {
                     </div>
                     <p className="text-sm text-muted-foreground">
                       900+ fotos editadas, cobertura completa del día (10h+).
-                      Álbum de Bodas opcional (+€400)
                     </p>
                   </div>
                   <div className="bg-secondary/30 rounded-xl p-5 border border-gray-100">

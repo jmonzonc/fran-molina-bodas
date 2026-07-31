@@ -229,9 +229,9 @@ export default function FotografoBodasBarcelona() {
               </article>
               <article className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
                 <h3 className="text-2xl font-serif text-primary mb-3">Postboda en Barcelona</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Sesión artística en localizaciones exclusivas de Barcelona y alrededores: Montjuïc al atardecer, calas del Garraf, viñedos del Penedès o la arquitectura modernista de l'Eixample. Incluye álbum de lujo. <strong>Desde 400 €.</strong>
-                </p>
+               <p className="text-muted-foreground leading-relaxed mb-4">
+  Sesión artística en localizaciones exclusivas de Barcelona y alrededores: Montjuïc al atardecer, calas del Garraf, viñedos del Penedès o la arquitectura modernista de l'Eixample. <strong>Desde 400 €.</strong>
+</p>
                 <Link href="/#servicios" className="text-accent hover:text-accent/80 font-medium underline underline-offset-4 transition-colors">Ver detalles completos →</Link>
               </article>
             </div>

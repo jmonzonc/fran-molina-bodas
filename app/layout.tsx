@@ -38,11 +38,11 @@ export const metadata: Metadata = {
     default:
       "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina",
     template: `%s | ${BUSINESS_INFO.name}`,
-  },
-  description:
-    "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
-    "Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015. " +
-    "Pack completo desde 3.300 €.",
+// metadata.description
+description:
+  "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
+  "Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015. " +
+  "Pack completo desde 3.000 €.",
   authors: [{ name: "Fran Molina March", url: SITE_URL }],
   creator: "Fran Molina March",
   publisher: BUSINESS_INFO.name,
@@ -63,9 +63,10 @@ export const metadata: Metadata = {
     siteName: BUSINESS_INFO.name,
     title:
       "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina",
-    description:
-      "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
-      "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.300 €.",
+ // metadata.openGraph.description
+description:
+  "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
+  "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.000 €.",
     images: [
       {
         url: `${SITE_URL}/images/og-image.jpg`,
@@ -343,8 +344,8 @@ const faqPageSchema = {
       name: "¿Cuánto cuesta un fotógrafo de bodas en Tarragona?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "En Fran Molina Fotografía ofrecemos diferentes opciones según tus necesidades. La sesión de preboda o postboda comienza desde 400 €. El reportaje fotográfico de boda parte desde 1.200 € y el vídeo cinematográfico desde 1.400 €. La Boda Completa con fotografía y vídeo tiene un precio desde 2.200 €. Y el Pack Completo (preboda + boda completa + same day edit + postboda) desde 3.300 €. Todos los precios son orientativos y personalizamos cada propuesta según la ubicación y los detalles de tu boda en Tarragona, Reus, Salou, Cambrils o cualquier punto de la Costa Daurada.",
-      },
+       // faqPageSchema → primera pregunta
+text: "En Fran Molina Fotografía ofrecemos diferentes opciones según tus necesidades. La sesión de preboda o postboda comienza desde 400 €. El reportaje fotográfico de boda parte desde 1.200 € y el vídeo cinematográfico desde 1.400 €. La Boda Completa con fotografía y vídeo tiene un precio desde 2.200 €. Y el Pack Completo (preboda + boda completa + same day edit + postboda) desde 3.000 €. Todos los precios son orientativos y personalizamos cada propuesta según la ubicación y los detalles de tu boda en Tarragona, Reus, Salou, Cambrils o cualquier punto de la Costa Daurada.",
     },
     {
       "@type": "Question",

@@ -16,7 +16,7 @@ import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title:
-    "Servicios de Fotografía y Vídeo de Bodas | Fran Molina — Tarragona",
+    "Servicios de Fotografía y Vídeo de Bodas | Fran Momarch — Tarragona",
   description:
     "Servicios de fotografía y vídeo de bodas en Tarragona: preboda, boda completa, same day edit y postboda. Descubre cómo trabajamos.",
   alternates: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Servicios de Fotografía y Vídeo de Bodas | Fran Molina — Tarragona",
+      "Servicios de Fotografía y Vídeo de Bodas | Fran Momarch — Tarragona",
     description:
       "Preboda, boda completa, same day edit y postboda. Conoce nuestro proceso y cada servicio en detalle. Pack completo desde 3.000 €.",
     url: `${SITE_URL}/servicios`,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/images/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Servicios de fotografía de bodas — Fran Molina",
+        alt: "Servicios de fotografía de bodas — Fran Momarch",
       },
     ],
   },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Servicios de Fotografía y Vídeo de Bodas — Fran Molina",
+  name: "Servicios de Fotografía y Vídeo de Bodas — Fran Momarch",
   description:
     "Servicios profesionales de fotografía y videografía de bodas en Tarragona y Cataluña. Preboda, boda completa con foto y vídeo, same day edit, postboda y pack completo.",
   provider: { "@id": `${SITE_URL}/#business` },
@@ -92,7 +92,7 @@ const breadcrumbSchema = {
 const sameDayEditVideoSchema = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  name: "Ejemplo de Same Day Edit — Fran Molina March Bodas",
+  name: "Ejemplo de Same Day Edit — Fran Momarch Bodas",
   description:
     "Ejemplo real de un Same Day Edit: resumen editado el mismo día de la boda para proyectar durante el banquete, con los momentos vividos horas antes.",
   thumbnailUrl: "https://i.ytimg.com/vi/VqVdUwGVQMg/maxresdefault.jpg",
@@ -106,7 +106,7 @@ const sameDayEditVideoSchema = {
 const ceremoniaVideoSchema = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
-  name: "Ejemplo de ceremonia editada — Fran Molina March Bodas",
+  name: "Ejemplo de ceremonia editada — Fran Momarch Bodas",
   description:
     "Ejemplo real de una ceremonia de boda completamente editada, entregada en la galería online privada de los novios.",
   thumbnailUrl: "https://i.ytimg.com/vi/n5mSVcUFwcM/maxresdefault.jpg",
@@ -211,11 +211,11 @@ export default function ServiciosPage() {
         <section className="relative h-[58vh] min-h-[440px] w-full overflow-hidden">
           <Image
             src={IMAGES.hero}
-            alt="Servicios de fotografía y vídeo de bodas — Fran Molina"
+            alt="Servicios de fotografía y vídeo de bodas — Fran Momarch"
             fill
-            className="object-cover"
-            priority
-            sizes="100vw"
+  className="object-cover object-[50%_22%]"
+  priority
+  sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-[#111827]" />
           <header className="absolute inset-0 flex items-end pb-16 sm:pb-20">
@@ -418,7 +418,7 @@ export default function ServiciosPage() {
 
               <YouTubeEmbed
                 videoId="VqVdUwGVQMg"
-                title="Ejemplo de Same Day Edit — Fran Molina March Bodas"
+                title="Ejemplo de Same Day Edit — Fran Momarch Bodas"
                 id="video-same-day-edit"
               />
             </div>
@@ -633,7 +633,7 @@ export default function ServiciosPage() {
 
               <YouTubeEmbed
                 videoId="n5mSVcUFwcM"
-                title="Ejemplo de ceremonia editada — Fran Molina March Bodas"
+                title="Ejemplo de ceremonia editada — Fran Momarch Bodas"
                 id="video-ceremonia"
                 dark={false}
               />

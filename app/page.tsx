@@ -1,5 +1,6 @@
 import { HeroSection } from "@/components/hero-section"
 import { PortfolioSection } from "@/components/portfolio-section"
+import { ProcessSection } from "@/components/process-section"
 import { ServicesSection } from "@/components/services-section"
 import { PricingSection } from "@/components/pricing-section"
 import { FaqSection } from "@/components/faq-section"
@@ -11,6 +12,7 @@ export default function Home() {
     <main itemScope itemType="https://schema.org/WebPage">
       <HeroSection />
       <PortfolioSection />
+      <ProcessSection />
       <ServicesSection />
       <PricingSection />
       <FaqSection />

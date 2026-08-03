@@ -1,7 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
+
 import { BUSINESS_INFO } from "@/lib/config"
+import { HeroVideo } from "@/components/hero-video"
 
 const ANIMATION_CONFIG = {
   initial: { opacity: 0, y: 30 },
@@ -9,49 +11,57 @@ const ANIMATION_CONFIG = {
   transition: { duration: 0.8 },
 }
 
-// ⚠️  Token JWT con fecha de expiración. Cuando caduque, el vídeo dejará de cargar.
-// TODO: Hacer el bucket público en Supabase o generar URL sin token.
-const HERO_VIDEO_URL =
+/**
+ * Vídeo del hero.
+ *
+ * ⚠️  La URL firmada de Supabase caduca (exp. 2090) y el token viaja en el
+ * bundle. Migrar a bucket público o a Vercel Blob y sustituir estas dos
+ * constantes. HERO_VIDEO_WEBM es opcional: si no existe el archivo, borra
+ * la prop srcWebm y el componente cae a MP4.
+ *
+ * Transcodificado recomendado (sin pista de audio, loop de 6 s):
+ *   ffmpeg -i origen.mp4 -an -t 6 -vf "scale=1920:-2" \
+ *     -c:v libx264 -crf 24 -preset slow -movflags +faststart \
+ *     -pix_fmt yuv420p hero-1080.mp4
+ */
+const HERO_VIDEO_MP4 =
   "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc1MjI4NTAzLCJleHAiOjIwOTA1ODg1MDN9.su-8GN2oqVOuv92gQCXwINxy2cClzQQKI6-FsAOUePs"
 
+const HERO_POSTER = "/images/hero-poster.jpg"
+
 /**
- * Hero: H1 con keyword principal, claim poético en subtítulo
+ * Hero: H1 con keyword principal, claim poético en subtítulo.
+ *
+ * Cambio clave: el LCP ya no es el vídeo sino el poster servido por
+ * next/image con priority. El MP4 solo se descarga si el hero está en
+ * viewport y la conexión lo permite (ver components/hero-video.tsx).
  */
 export function HeroSection() {
   return (
     <section
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-[100svh] w-full overflow-hidden"
       aria-label={`Presentación - ${BUSINESS_INFO.name}`}
       itemScope
       itemType="https://schema.org/WPHeader"
     >
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-        poster="/images/hero-poster.jpg"
-        aria-hidden="true"
-      >
-        <source src={HERO_VIDEO_URL} type="video/mp4" />
-        <track
-          kind="descriptions"
-          label="Pareja de novios caminando de la mano al atardecer"
-        />
-      </video>
+      <HeroVideo
+        srcMp4={HERO_VIDEO_MP4}
+        poster={HERO_POSTER}
+        posterAlt={`${BUSINESS_INFO.tagline} — ${BUSINESS_INFO.shortName}`}
+        className="absolute inset-0"
+      />
 
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60"
+        className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/45 to-black/65"
         aria-hidden="true"
       />
 
       <header className="absolute inset-0 flex items-center justify-center">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
           <motion.h1
             {...ANIMATION_CONFIG}
             transition={{ ...ANIMATION_CONFIG.transition, delay: 0.2 }}
-            className="text-5xl md:text-7xl xl:text-8xl font-serif text-white/95 leading-[1.1] mb-6 drop-shadow-2xl text-balance"
+            className="mb-6 font-serif text-[clamp(2.25rem,1.6rem+3.2vw,4.5rem)] leading-[1.06] text-balance text-white/95 drop-shadow-2xl"
             itemProp="headline"
           >
             {BUSINESS_INFO.tagline}
@@ -60,23 +70,23 @@ export function HeroSection() {
           <motion.p
             {...ANIMATION_CONFIG}
             transition={{ ...ANIMATION_CONFIG.transition, delay: 0.4 }}
-            className="text-2xl md:text-3xl font-sans text-[#d4a574]/90 font-medium mb-10"
+            className="mb-10 font-sans text-[clamp(1.125rem,1rem+0.9vw,1.875rem)] font-medium text-[#d4a574]/90"
             itemProp="description"
           >
-            <strong>{BUSINESS_INFO.shortName}</strong> — Tu historia en momentos
-            eternos
+            <strong>{BUSINESS_INFO.shortName}</strong> — Vuestra historia en
+            momentos eternos
           </motion.p>
 
           <motion.a
             href="#contacto"
             {...ANIMATION_CONFIG}
             transition={{ ...ANIMATION_CONFIG.transition, delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-block bg-[#d4a574] hover:bg-[#d4a574]/90 text-[#1a365d] px-10 py-5 rounded-2xl text-xl font-semibold shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition-all duration-300 uppercase tracking-wide"
+            className="inline-block rounded-2xl bg-[#d4a574] px-8 py-4 text-base font-semibold uppercase tracking-wide text-[#1a365d] shadow-2xl transition-all duration-300 hover:bg-[#d4a574]/90 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] sm:px-10 sm:py-5 sm:text-lg"
             aria-label="Reserva tu sesión de fotografía de boda"
           >
-            Reserva tu fecha ahora
+            Reservad vuestra fecha
           </motion.a>
         </div>
       </header>
@@ -98,9 +108,9 @@ function ScrollIndicator() {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
-        className="w-6 h-10 rounded-full border-2 border-white/50 flex items-start justify-center p-2"
+        className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/50 p-2"
       >
-        <div className="w-1 h-2 bg-white/70 rounded-full" />
+        <div className="h-2 w-1 rounded-full bg-white/70" />
       </motion.div>
     </motion.div>
   )

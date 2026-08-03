@@ -42,7 +42,7 @@ const STEPS: ProcessStep[] = [
     label: "04",
     title: "Entrega",
     description:
-      "Avance en 48 h. Galería privada descargable en 4-6 semanas, con vídeo y álbum opcional cuando forman parte del pack.",
+      "Avance en 48 h. Galería privada descargable en 4-6 semanas, con el vídeo editado cuando forma parte del pack contratado.",
     meta: "4-6 semanas",
   },
 ]

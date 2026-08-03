@@ -73,9 +73,8 @@ export const WHATSAPP_MESSAGES = {
     "Hola Fran, me interesa la Boda Completa con fotografía y vídeo",
   sameDayEdit: "Hola Fran, me interesa el Same Day Edit",
   postboda: "Hola Fran, me interesa la sesión de Postboda",
-  albumBodas: "Hola Fran, me interesa añadir el Álbum de Bodas a mi servicio",
   packCompleto:
-    "Hola Fran, me interesa el Pack Completo (Preboda + Boda + Same Day Edit + Postboda + Álbum de Bodas)",
+    "Hola Fran, me interesa el Pack Completo (Preboda + Boda Completa + Same Day Edit + Postboda)",
 } as const
 
 // ============================================================
@@ -92,7 +91,6 @@ export const PRICE_LIST = {
   bodaCompleta: 2200,
   sameDayEdit: 400,
   postboda: 400,
-  albumBodas: 400,
 } as const
 
 export type PriceKey = keyof typeof PRICE_LIST
@@ -108,8 +106,6 @@ export const DELIVERABLES = {
   previewHours: 48,
   galleryWeeksMin: 4,
   galleryWeeksMax: 6,
-  albumWeeksMin: 8,
-  albumWeeksMax: 12,
   highlightMinutesMin: 3,
   highlightMinutesMax: 5,
   bookingMonthsMin: 9,
@@ -151,7 +147,7 @@ export const SERVICES: ServiceItem[] = [
     id: "boda-completa",
     name: "Boda Completa",
     subtitle: "Foto + Vídeo",
-    description: `Cobertura completa del día de la boda (${DELIVERABLES.coverageHours}h+) con fotografía y vídeo cinematográfico. Más de ${DELIVERABLES.photosWedding} fotos editadas, highlight reel y galería online privada descargable. Posibilidad de Álbum de Bodas.`,
+    description: `Cobertura completa del día de la boda (${DELIVERABLES.coverageHours}h+) con fotografía y vídeo cinematográfico. Más de ${DELIVERABLES.photosWedding} fotos editadas, highlight reel y galería online privada descargable.`,
     price: formatEUR(PRICE_LIST.bodaCompleta),
     priceNumeric: PRICE_LIST.bodaCompleta,
     features: [
@@ -159,7 +155,6 @@ export const SERVICES: ServiceItem[] = [
       "Fotografía y vídeo cinematográfico",
       `${DELIVERABLES.photosWedding}+ fotos editadas + highlight reel`,
       "Galería online privada descargable",
-      `Álbum de Bodas opcional (+${formatEUR(PRICE_LIST.albumBodas)})`,
     ],
     whatsappMessage: WHATSAPP_MESSAGES.bodaCompleta,
   },
@@ -181,28 +176,6 @@ export const SERVICES: ServiceItem[] = [
 ]
 
 // ============================================================
-// ÁLBUM DE BODAS
-// ============================================================
-
-export const ALBUM_BODAS = {
-  id: "album-bodas",
-  name: "Álbum de Bodas",
-  subtitle: "Recuerdo tangible para toda la vida",
-  description:
-    "Álbum de bodas premium de 28×28 cm con 50 páginas y aproximadamente 200 imágenes. Diseño personalizado, impresión profesional y encuadernación artesanal. Disponible adicionalmente para Boda solo foto y Boda Completa, e incluido en el Pack Completo.",
-  price: formatEUR(PRICE_LIST.albumBodas),
-  priceNumeric: PRICE_LIST.albumBodas,
-  specs: {
-    size: "28×28 cm",
-    pages: 50,
-    photos: 200,
-  },
-  availableFor: ["boda-completa"] as const,
-  includedIn: ["pack-completo"] as const,
-  whatsappMessage: WHATSAPP_MESSAGES.albumBodas,
-} as const
-
-// ============================================================
 // PACK COMPLETO
 //
 // La cesta de referencia usa bodaCompleta (2.200 €), NO
@@ -211,8 +184,8 @@ export const ALBUM_BODAS = {
 // referencia que nunca se aplica — precio ficticio a efectos del
 // art. 20.3 LGDCU tras el RDL 24/2021.
 //
-// Cesta real: 400 + 2.200 + 400 + 400 + 400 = 3.800 €
-// Ahorro real sobre 3.300 €: 500 €
+// Cesta real: 400 + 2.200 + 400 + 400 = 3.400 €
+// Ahorro real sobre 3.000 €: 400 €
 // ============================================================
 
 const PACK_BASKET: PriceKey[] = [
@@ -220,10 +193,9 @@ const PACK_BASKET: PriceKey[] = [
   "bodaCompleta",
   "sameDayEdit",
   "postboda",
-  "albumBodas",
 ]
 
-const PACK_PRICE = 3300
+const PACK_PRICE = 3000
 
 const PACK_INDIVIDUAL_TOTAL = PACK_BASKET.reduce(
   (total, key) => total + PRICE_LIST[key],
@@ -252,7 +224,7 @@ export const PACK_COMPLETO: PackCompleto = {
   name: "Pack Completo",
   subtitle: "Vuestra boda de principio a fin",
   description:
-    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda, Same Day Edit para sorprender a los invitados y Álbum de Bodas premium incluido.",
+    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda y Same Day Edit para sorprender a los invitados durante el banquete.",
   price: formatEUR(PACK_PRICE),
   priceNumeric: PACK_PRICE,
   individualTotal: PACK_INDIVIDUAL_TOTAL,
@@ -264,7 +236,6 @@ export const PACK_COMPLETO: PackCompleto = {
     `Boda Completa — fotografía + vídeo (${DELIVERABLES.coverageHours}h o más)`,
     "Same Day Edit para proyectar en el banquete",
     "Sesión de Postboda",
-    "Álbum de Bodas 28×28 cm — 50 páginas, ~200 fotos",
     `${DELIVERABLES.photosWedding}+ fotos editadas + highlight reel`,
     "Galería online privada descargable",
   ],

@@ -1,16 +1,22 @@
 import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
+import Script from "next/script"
+
 import { Navbar } from "@/components/navbar"
 import { CookieBanner } from "@/components/cookie-banner"
-import Script from "next/script"
-import "./globals.css"
 import {
   SITE_URL,
   BUSINESS_INFO,
   PHONE_DISPLAY,
   EMAIL,
   SOCIAL_LINKS,
+  PRICE_LIST,
+  DELIVERABLES,
+  PACK_COMPLETO,
 } from "@/lib/config"
+import { faqPageSchema } from "@/lib/faqs"
+import { schemaPrice } from "@/lib/format"
+import "./globals.css"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,7 +48,7 @@ export const metadata: Metadata = {
   description:
     "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
     "Reportajes de preboda, boda completa y postboda con estilo natural y elegante mediterráneo desde 2015. " +
-    "Pack completo desde 3.000 €.",
+    `Pack completo desde ${PACK_COMPLETO.price}.`,
   authors: [{ name: "Fran Molina March", url: SITE_URL }],
   creator: "Fran Molina March",
   publisher: BUSINESS_INFO.name,
@@ -65,7 +71,7 @@ export const metadata: Metadata = {
       "Fotógrafo y Videógrafo de Bodas en Tarragona y Costa Daurada | Fran Molina",
     description:
       "Fotógrafo y videógrafo de bodas premium en Tarragona y Costa Daurada. " +
-      "Preboda, boda completa, postboda y same day edit. Pack completo desde 3.000 €.",
+      `Preboda, boda completa, postboda y same day edit. Pack completo desde ${PACK_COMPLETO.price}.`,
     images: [
       {
         url: `${SITE_URL}/images/og-image.jpg`,
@@ -89,6 +95,29 @@ export const metadata: Metadata = {
 }
 
 // ─── JSON-LD ──────────────────────────────────────────────────────────────────
+
+/**
+ * Helper de Offer. Evita repetir el bloque priceSpecification siete veces y
+ * garantiza que el precio del schema y el de la UI salen del mismo número.
+ */
+function offer(name: string, description: string, amount: number) {
+  return {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name,
+      description,
+    },
+    price: schemaPrice(amount),
+    priceCurrency: "EUR",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      price: schemaPrice(amount),
+      priceCurrency: "EUR",
+      valueAddedTaxIncluded: false,
+    },
+  }
+}
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -115,7 +144,6 @@ const personSchema = {
     "Videografía de bodas",
     "Fotografía nupcial",
     "Same Day Edit",
-    "Álbumes de boda de lujo",
     "Preboda",
     "Postboda",
   ],
@@ -178,125 +206,41 @@ const localBusinessSchema = {
     "@type": "OfferCatalog",
     name: "Paquetes de Fotografía de Bodas — Tarragona y Costa Daurada",
     itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Preboda",
-          description:
-            "Sesión de preboda de 2-3 horas en ubicación elegida. Incluye 50+ fotos editadas profesionalmente y galería online privada descargable.",
-        },
-        price: "400",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "400",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Boda — Solo foto",
-          description:
-            "Reportaje fotográfico del día completo (10h+). Más de 400 fotos editadas y galería online privada descargable.",
-        },
-        price: "1200",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "1200",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Boda — Solo vídeo",
-          description:
-            "Vídeo cinematográfico del día completo (10h+) con highlight reel y galería online privada descargable.",
-        },
-        price: "1400",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "1400",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Boda Completa",
-          description:
-            "Cobertura completa del día de la boda (10h+) con fotografía y vídeo cinematográfico. Más de 400 fotos editadas y highlight reel.",
-        },
-        price: "2200",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "2200",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Same Day Edit",
-          description:
-            "Vídeo cinematográfico editado y listo para proyectar el mismo día de la boda durante el banquete.",
-        },
-        price: "400",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "400",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Postboda",
-          description:
-            "Sesión artística post-ceremonia en ubicación especial de la Costa Daurada.",
-        },
-        price: "400",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "400",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Pack Completo",
-          description:
-            "Preboda + Boda Completa (foto y vídeo, 10h+) + Same Day Edit + Postboda. 900+ fotos editadas, highlight reel y galería privada.",
-        },
-        price: "3000",
-        priceCurrency: "EUR",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "3000",
-          priceCurrency: "EUR",
-          valueAddedTaxIncluded: false,
-        },
-      },
+      offer(
+        "Preboda",
+        `Sesión de preboda de 2-3 horas en ubicación elegida. Incluye ${DELIVERABLES.photosSession}+ fotos editadas profesionalmente y galería online privada descargable.`,
+        PRICE_LIST.preboda,
+      ),
+      offer(
+        "Boda — Solo foto",
+        `Reportaje fotográfico del día completo (${DELIVERABLES.coverageHours}h+). Más de ${DELIVERABLES.photosWedding} fotos editadas y galería online privada descargable.`,
+        PRICE_LIST.bodaFoto,
+      ),
+      offer(
+        "Boda — Solo vídeo",
+        `Vídeo cinematográfico del día completo (${DELIVERABLES.coverageHours}h+) con highlight reel y galería online privada descargable.`,
+        PRICE_LIST.bodaVideo,
+      ),
+      offer(
+        "Boda Completa",
+        `Cobertura completa del día de la boda (${DELIVERABLES.coverageHours}h+) con fotografía y vídeo cinematográfico. Más de ${DELIVERABLES.photosWedding} fotos editadas y highlight reel.`,
+        PRICE_LIST.bodaCompleta,
+      ),
+      offer(
+        "Same Day Edit",
+        "Vídeo cinematográfico editado y listo para proyectar el mismo día de la boda durante el banquete.",
+        PRICE_LIST.sameDayEdit,
+      ),
+      offer(
+        "Postboda",
+        "Sesión artística post-ceremonia en ubicación especial de la Costa Daurada.",
+        PRICE_LIST.postboda,
+      ),
+      offer(
+        PACK_COMPLETO.name,
+        `Preboda + Boda Completa (foto y vídeo, ${DELIVERABLES.coverageHours}h+) + Same Day Edit + Postboda. ${DELIVERABLES.photosWedding}+ fotos editadas, highlight reel y galería online privada descargable. Ahorro de ${PACK_COMPLETO.savingsLabel} frente a la contratación por separado.`,
+        PACK_COMPLETO.priceNumeric,
+      ),
     ],
   },
 }
@@ -314,6 +258,11 @@ const websiteSchema = {
   publisher: { "@id": `${SITE_URL}/#business` },
 }
 
+/**
+ * ⚠️  contentUrl apunta a una URL firmada de Supabase con token embebido.
+ * Cuando el bucket pase a público, sustituir por la URL limpia: Google
+ * descarta VideoObject cuyo contentUrl devuelve 403 tras la expiración.
+ */
 const videoObjectSchema = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
@@ -334,61 +283,6 @@ const breadcrumbSchema = {
   ],
 }
 
-const faqPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "¿Cuánto cuesta un fotógrafo de bodas en Tarragona?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "En Fran Molina Fotografía ofrecemos diferentes opciones según tus necesidades. La sesión de preboda o postboda comienza desde 400 €. El reportaje fotográfico de boda parte desde 1.200 € y el vídeo cinematográfico desde 1.400 €. La Boda Completa con fotografía y vídeo tiene un precio desde 2.200 €. Y el Pack Completo (preboda + boda completa + same day edit + postboda) desde 3.000 €. Todos los precios son orientativos y personalizamos cada propuesta según la ubicación y los detalles de tu boda en Tarragona, Reus, Salou, Cambrils o cualquier punto de la Costa Daurada.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Con cuánta antelación debo reservar mi fotógrafo de bodas?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Recomendamos reservar con un mínimo de 9 a 12 meses de antelación, especialmente para bodas en primavera (abril–junio) y otoño (septiembre–octubre), las temporadas más demandadas en Tarragona y la Costa Daurada. Para bodas en 2026 y 2027 la disponibilidad es muy limitada. La reserva se confirma con la firma del contrato y un depósito del 20 %.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cubres bodas fuera de Tarragona y la Costa Daurada?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sí. Cubrimos bodas en toda Cataluña: Tarragona, Reus, Salou, Cambrils, Valls, Tortosa, Barcelona, Girona, Sitges, Lleida y alrededores. También viajamos a otras comunidades autónomas y al extranjero para bodas destino. Consúltanos disponibilidad y condiciones de desplazamiento sin compromiso.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué incluye el paquete de boda completa?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "La Boda Completa cubre el día entero desde los preparativos hasta el baile (10 horas o más). Incluye fotografía y vídeo cinematográfico en alta resolución, más de 400 fotos editadas profesionalmente entregadas en galería online privada, y un highlight reel de 3–5 minutos. Puedes añadir el Same Day Edit para proyectar un vídeo durante el banquete, y combinarlo con preboda y postboda en el Pack Completo con un ahorro de 400 €.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cuánto tardáis en entregar las fotos de la boda?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "El plazo habitual de entrega es de 4 a 6 semanas después de la boda. Recibiréis un avance de 30-50 fotos en las primeras 48 horas. El reportaje completo se entrega en galería online privada con descarga en alta resolución.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué es el Same Day Edit?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "El Same Day Edit es un vídeo cinematográfico que editamos el mismo día de tu boda para proyectarlo durante el banquete. Recoge los mejores momentos de los preparativos y la ceremonia en un montaje de 3–5 minutos que sorprende a todos los invitados. Está disponible como servicio individual por 400 € o incluido en el Pack Completo.",
-      },
-    },
-  ],
-}
-
 // ─── Root Layout ──────────────────────────────────────────────────────────────
 
 export default function RootLayout({
@@ -399,6 +293,14 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
       <head>
+        {/* Preconnect al origen de las imágenes y el vídeo: ahorra ~150 ms de
+            handshake TLS antes de la primera petición del hero. */}
+        <link
+          rel="preconnect"
+          href="https://clmmicwprzdhnkbeczoi.supabase.co"
+          crossOrigin="anonymous"
+        />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

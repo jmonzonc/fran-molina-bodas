@@ -115,13 +115,78 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ══════════════════════════════════════════════════════════
+     ESCALA TIPOGRÁFICA FLUIDA
+     Sustituye a text-3xl md:text-4xl lg:text-5xl encadenados.
+     Uso: className="text-[length:var(--text-h2)]" o directamente
+     el clamp inline como en process-section / faq-section.
+     ══════════════════════════════════════════════════════════ */
+  --text-eyebrow: 0.75rem;
+  --text-body-sm: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  --text-body: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --text-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  --text-h2: clamp(1.875rem, 1.5rem + 1.9vw, 3.25rem);
+  --text-h1: clamp(2.25rem, 1.6rem + 3.2vw, 4.5rem);
+
+  --leading-display: 1.06;
+  --leading-heading: 1.15;
+  --leading-body: 1.65;
+
+  --tracking-eyebrow: 0.22em;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Evita viudas y cortes feos en titulares largos en español */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    hyphens: manual;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Compensa el header fijo al saltar a un ancla (#servicios, #faq…) */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Medida de lectura máxima para bloques de prosa */
+  .prose-measure {
+    max-width: 68ch;
+  }
+
+  /* Números alineados en tabla de precios y contadores */
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }

@@ -1,21 +1,27 @@
+import { formatEUR } from "@/lib/format"
+
 // ============================================================
 // CONTACTO
 // ============================================================
 
 export const WHATSAPP_NUMBER = "34638475783"
 export const PHONE_DISPLAY = "+34 638 475 783"
-export const PHONE_LINK = "tel:+34638475783"           // fix: prefijo tel:
+export const PHONE_LINK = "tel:+34638475783"
 export const EMAIL = "francescmolinamarch@gmail.com"
 
 // ============================================================
 // REDES SOCIALES
+//
+// sameAs de Schema.org exige URLs de PERFIL, no de contenido.
+// youtube apuntaba a /watch?v=... — Google y los motores generativos
+// no resuelven la entidad desde la URL de un vídeo suelto.
 // ============================================================
 
 export const SOCIAL_LINKS = {
   instagram:
     "https://www.instagram.com/fran_momarch_wedding?igsh=MWNmbHh5YzV3bWIzMg==",
   facebook: "https://www.facebook.com/people/Fran-Momarch/61582643398027/",
-  youtube: "https://www.youtube.com/watch?v=VqVdUwGVQMg",
+  youtube: "https://www.youtube.com/@franmomarch",
 } as const
 
 // ============================================================
@@ -35,7 +41,7 @@ export const BUSINESS_INFO = {
     country: "ES",
   },
   coordinates: {
-    lat: 41.1189,                                      // alineado con layout.tsx
+    lat: 41.1189,
     lng: 1.2445,
   },
   priceRange: "€€-€€€",
@@ -67,8 +73,48 @@ export const WHATSAPP_MESSAGES = {
     "Hola Fran, me interesa la Boda Completa con fotografía y vídeo",
   sameDayEdit: "Hola Fran, me interesa el Same Day Edit",
   postboda: "Hola Fran, me interesa la sesión de Postboda",
+  albumBodas: "Hola Fran, me interesa añadir el Álbum de Bodas a mi servicio",
   packCompleto:
-    "Hola Fran, me interesa el Pack Completo (Preboda + Boda + Same Day Edit + Postboda)",
+    "Hola Fran, me interesa el Pack Completo (Preboda + Boda + Same Day Edit + Postboda + Álbum de Bodas)",
+} as const
+
+// ============================================================
+// PRECIOS — fuente numérica única
+//
+// Ningún importe se escribe dos veces. Todo lo demás se deriva de aquí:
+// SERVICES, PACK_COMPLETO, PRICING_DATA, lib/faqs.ts y el JSON-LD.
+// ============================================================
+
+export const PRICE_LIST = {
+  preboda: 400,
+  bodaFoto: 1200,
+  bodaVideo: 1400,
+  bodaCompleta: 2200,
+  sameDayEdit: 400,
+  postboda: 400,
+  albumBodas: 400,
+} as const
+
+export type PriceKey = keyof typeof PRICE_LIST
+
+// ============================================================
+// ENTREGABLES — cifras únicas citadas en UI, FAQ y JSON-LD
+// ============================================================
+
+export const DELIVERABLES = {
+  photosWedding: 900,
+  photosSession: 50,
+  coverageHours: 10,
+  previewHours: 48,
+  galleryWeeksMin: 4,
+  galleryWeeksMax: 6,
+  albumWeeksMin: 8,
+  albumWeeksMax: 12,
+  highlightMinutesMin: 3,
+  highlightMinutesMax: 5,
+  bookingMonthsMin: 9,
+  bookingMonthsMax: 12,
+  depositPercent: 20,
 } as const
 
 // ============================================================
@@ -77,12 +123,12 @@ export const WHATSAPP_MESSAGES = {
 
 export interface ServiceItem {
   id: string
-  name: string                // canónico Schema.org — componentes leen .name
+  name: string
   subtitle?: string
-  description: string         // JSON-LD + futuras páginas /servicios/[slug]
+  description: string
   price: string
   priceNumeric: number
-  features: string[]          // lista UI + fuente JSON-LD
+  features: string[]
   whatsappMessage: string
 }
 
@@ -91,13 +137,12 @@ export const SERVICES: ServiceItem[] = [
     id: "preboda",
     name: "Preboda",
     subtitle: "Sesión de pareja",
-    description:
-      "Sesión de pareja de 2-3 horas en ubicación elegida. 50+ fotos editadas profesionalmente y galería online privada descargable.",
-    price: "€400",
-    priceNumeric: 400,
+    description: `Sesión de pareja de 2-3 horas en ubicación elegida. ${DELIVERABLES.photosSession}+ fotos editadas profesionalmente y galería online privada descargable.`,
+    price: formatEUR(PRICE_LIST.preboda),
+    priceNumeric: PRICE_LIST.preboda,
     features: [
       "Sesión de 2-3 horas en ubicación elegida",
-      "50+ fotos editadas profesionalmente",
+      `${DELIVERABLES.photosSession}+ fotos editadas profesionalmente`,
       "Galería online privada",
     ],
     whatsappMessage: WHATSAPP_MESSAGES.preboda,
@@ -106,16 +151,15 @@ export const SERVICES: ServiceItem[] = [
     id: "boda-completa",
     name: "Boda Completa",
     subtitle: "Foto + Vídeo",
-    description:
-      "Cobertura completa del día de la boda (10h+) con fotografía y vídeo cinematográfico. Más de 900 fotos editadas, highlight reel y galería online privada descargable. Posibilidad de Álbum de Bodas.",
-    price: "€2.200",
-    priceNumeric: 2200,
+    description: `Cobertura completa del día de la boda (${DELIVERABLES.coverageHours}h+) con fotografía y vídeo cinematográfico. Más de ${DELIVERABLES.photosWedding} fotos editadas, highlight reel y galería online privada descargable. Posibilidad de Álbum de Bodas.`,
+    price: formatEUR(PRICE_LIST.bodaCompleta),
+    priceNumeric: PRICE_LIST.bodaCompleta,
     features: [
-      "Cobertura del día completo (10h+)",
+      `Cobertura del día completo (${DELIVERABLES.coverageHours}h+)`,
       "Fotografía y vídeo cinematográfico",
-      "900+ fotos editadas + highlight reel",
+      `${DELIVERABLES.photosWedding}+ fotos editadas + highlight reel`,
       "Galería online privada descargable",
-      "Álbum de Bodas opcional (+€400)",
+      `Álbum de Bodas opcional (+${formatEUR(PRICE_LIST.albumBodas)})`,
     ],
     whatsappMessage: WHATSAPP_MESSAGES.bodaCompleta,
   },
@@ -125,8 +169,8 @@ export const SERVICES: ServiceItem[] = [
     subtitle: "Sesión artística",
     description:
       "Sesión artística post-ceremonia en ubicación especial de la Costa Daurada. Las últimas fotos con el vestido, sin prisas y con la pareja en su momento más auténtico.",
-    price: "€400",
-    priceNumeric: 400,
+    price: formatEUR(PRICE_LIST.postboda),
+    priceNumeric: PRICE_LIST.postboda,
     features: [
       "Sesión artística post-ceremonia",
       "Ubicación especial Costa Daurada",
@@ -137,29 +181,95 @@ export const SERVICES: ServiceItem[] = [
 ]
 
 // ============================================================
-// PACK COMPLETO
+// ÁLBUM DE BODAS
 // ============================================================
 
-export const PACK_COMPLETO = {
+export const ALBUM_BODAS = {
+  id: "album-bodas",
+  name: "Álbum de Bodas",
+  subtitle: "Recuerdo tangible para toda la vida",
+  description:
+    "Álbum de bodas premium de 28×28 cm con 50 páginas y aproximadamente 200 imágenes. Diseño personalizado, impresión profesional y encuadernación artesanal. Disponible adicionalmente para Boda solo foto y Boda Completa, e incluido en el Pack Completo.",
+  price: formatEUR(PRICE_LIST.albumBodas),
+  priceNumeric: PRICE_LIST.albumBodas,
+  specs: {
+    size: "28×28 cm",
+    pages: 50,
+    photos: 200,
+  },
+  availableFor: ["boda-completa"] as const,
+  includedIn: ["pack-completo"] as const,
+  whatsappMessage: WHATSAPP_MESSAGES.albumBodas,
+} as const
+
+// ============================================================
+// PACK COMPLETO
+//
+// La cesta de referencia usa bodaCompleta (2.200 €), NO
+// bodaFoto + bodaVideo (2.600 €). Boda Completa se vende públicamente
+// a 2.200 € en PRICING_DATA, así que 2.600 sería un precio de
+// referencia que nunca se aplica — precio ficticio a efectos del
+// art. 20.3 LGDCU tras el RDL 24/2021.
+//
+// Cesta real: 400 + 2.200 + 400 + 400 + 400 = 3.800 €
+// Ahorro real sobre 3.300 €: 500 €
+// ============================================================
+
+const PACK_BASKET: PriceKey[] = [
+  "preboda",
+  "bodaCompleta",
+  "sameDayEdit",
+  "postboda",
+  "albumBodas",
+]
+
+const PACK_PRICE = 3300
+
+const PACK_INDIVIDUAL_TOTAL = PACK_BASKET.reduce(
+  (total, key) => total + PRICE_LIST[key],
+  0,
+)
+
+const PACK_SAVINGS = PACK_INDIVIDUAL_TOTAL - PACK_PRICE
+
+export interface PackCompleto {
+  id: string
+  name: string
+  subtitle: string
+  description: string
+  price: string
+  priceNumeric: number
+  individualTotal: number
+  individualTotalLabel: string
+  savings: number
+  savingsLabel: string
+  features: string[]
+  whatsappMessage: string
+}
+
+export const PACK_COMPLETO: PackCompleto = {
   id: "pack-completo",
   name: "Pack Completo",
-  subtitle: "Tu boda de principio a fin",
+  subtitle: "Vuestra boda de principio a fin",
   description:
-    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda y Same Day Edit para sorprender a los invitados.",
+    "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda, Same Day Edit para sorprender a los invitados y Álbum de Bodas premium incluido.",
+  price: formatEUR(PACK_PRICE),
+  priceNumeric: PACK_PRICE,
+  individualTotal: PACK_INDIVIDUAL_TOTAL,
+  individualTotalLabel: formatEUR(PACK_INDIVIDUAL_TOTAL),
+  savings: PACK_SAVINGS,
+  savingsLabel: formatEUR(PACK_SAVINGS),
   features: [
     "Sesión de Preboda",
-    "Boda Completa — fotografía + vídeo (10h+)",
+    `Boda Completa — fotografía + vídeo (${DELIVERABLES.coverageHours}h o más)`,
     "Same Day Edit para proyectar en el banquete",
     "Sesión de Postboda",
-    "900+ fotos editadas + highlight reel",
+    "Álbum de Bodas 28×28 cm — 50 páginas, ~200 fotos",
+    `${DELIVERABLES.photosWedding}+ fotos editadas + highlight reel`,
     "Galería online privada descargable",
   ],
-  price: "€3.000",
-  priceNumeric: 3000,
-  individualTotal: 3800,
-  savings: 800,
   whatsappMessage: WHATSAPP_MESSAGES.packCompleto,
-} as const
+}
 
 // ============================================================
 // TABLA DE PRECIOS
@@ -180,48 +290,48 @@ export const PRICING_DATA: PricingRow[] = [
     description: "Sesión de pareja, 2-3 horas",
     photography: true,
     video: false,
-    price: "€400",
-    priceNumeric: 400,
+    price: formatEUR(PRICE_LIST.preboda),
+    priceNumeric: PRICE_LIST.preboda,
   },
   {
     service: "Boda — Solo foto",
     description: "Reportaje fotográfico del día completo",
     photography: true,
     video: false,
-    price: "€1.200",
-    priceNumeric: 1200,
+    price: formatEUR(PRICE_LIST.bodaFoto),
+    priceNumeric: PRICE_LIST.bodaFoto,
   },
   {
     service: "Boda — Solo vídeo",
     description: "Vídeo cinematográfico del día completo",
     photography: false,
     video: true,
-    price: "€1.400",
-    priceNumeric: 1400,
+    price: formatEUR(PRICE_LIST.bodaVideo),
+    priceNumeric: PRICE_LIST.bodaVideo,
   },
   {
     service: "Boda Completa",
     description: "Fotografía + vídeo del día completo",
     photography: true,
     video: true,
-    price: "€2.200",
-    priceNumeric: 2200,
+    price: formatEUR(PRICE_LIST.bodaCompleta),
+    priceNumeric: PRICE_LIST.bodaCompleta,
   },
   {
     service: "Same Day Edit",
     description: "Vídeo editado para proyectar en el banquete",
     photography: false,
     video: true,
-    price: "€400",
-    priceNumeric: 400,
+    price: formatEUR(PRICE_LIST.sameDayEdit),
+    priceNumeric: PRICE_LIST.sameDayEdit,
   },
   {
     service: "Postboda",
     description: "Sesión artística post-ceremonia",
     photography: true,
     video: false,
-    price: "€400",
-    priceNumeric: 400,
+    price: formatEUR(PRICE_LIST.postboda),
+    priceNumeric: PRICE_LIST.postboda,
   },
 ]
 

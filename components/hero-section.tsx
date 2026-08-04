@@ -27,7 +27,16 @@ const ANIMATION_CONFIG = {
 const HERO_VIDEO_MP4 =
   "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/loop%20video.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzL2xvb3AgdmlkZW8ubXA0IiwiaWF0IjoxNzc1MjI4NTAzLCJleHAiOjIwOTA1ODg1MDN9.su-8GN2oqVOuv92gQCXwINxy2cClzQQKI6-FsAOUePs"
 
+/**
+ * Poster del hero — foto de ceremonia (Ángela & Ángel, 2025).
+ * 2400×1565, 408 KB, recortada un 2 % por abajo para eliminar la marca de
+ * agua residual del archivo original. Es el LCP de la home y la imagen que
+ * queda visible si el vídeo no carga.
+ */
 const HERO_POSTER = "/images/hero-poster.jpg"
+
+const HERO_POSTER_ALT =
+  "Novios riendo durante la lectura de los votos en su ceremonia de boda en Tarragona"
 
 /**
  * Hero: H1 con keyword principal, claim poético en subtítulo.
@@ -47,7 +56,8 @@ export function HeroSection() {
       <HeroVideo
         srcMp4={HERO_VIDEO_MP4}
         poster={HERO_POSTER}
-        posterAlt={`${BUSINESS_INFO.tagline} — ${BUSINESS_INFO.shortName}`}
+        posterAlt={HERO_POSTER_ALT}
+        posterPosition="center 32%"
         className="absolute inset-0"
       />
 

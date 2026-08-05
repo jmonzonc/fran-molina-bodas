@@ -233,13 +233,25 @@ export function ServicesSection() {
 
                 <div className="mt-auto">
                   <div className="mb-5 text-center sm:mb-6">
-                    <span
-                      className="tabular text-xl font-bold text-accent sm:text-2xl"
-                      itemProp="price"
-                    >
-                      Desde {service.price}
-                    </span>
+                    <div className="tabular flex flex-wrap items-baseline justify-center gap-x-2.5">
+                      <span
+                        className="text-xl font-bold text-accent sm:text-2xl"
+                        itemProp="price"
+                      >
+                        Desde {service.price}
+                      </span>
+                      {service.individualTotalLabel && (
+                        <span className="text-sm text-muted-foreground/60 line-through">
+                          {service.individualTotalLabel}
+                        </span>
+                      )}
+                    </div>
                     <meta itemProp="priceCurrency" content="EUR" />
+                    {service.savingsLabel && (
+                      <p className="mt-1.5 text-xs font-medium text-emerald-700">
+                        Ahorro de {service.savingsLabel}
+                      </p>
+                    )}
                   </div>
 
                   <a

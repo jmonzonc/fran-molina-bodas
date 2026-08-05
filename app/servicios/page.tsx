@@ -1,32 +1,53 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+
 import {
   SITE_URL,
+  ATOMIC_PRICES,
+  BODA_COMPLETA,
   BUSINESS_INFO,
+  DELIVERABLES,
   SERVICES,
   PACK_COMPLETO,
   PHONE_DISPLAY,
   PHONE_LINK,
   getWhatsAppLink,
 } from "@/lib/config"
+import { formatEUR, schemaPrice } from "@/lib/format"
+import { Container, Section } from "@/components/ui/container"
 import { Footer } from "@/components/footer"
+
+/**
+ * Cambios vs versión previa:
+ *
+ * - Todos los importes derivan de lib/config. Antes había "€1.200",
+ *   "€2.200", "€400" y "+€400" escritos a mano en el JSX, además de
+ *   `€{PACK_COMPLETO.savings}` sin formatear (imprimía "€800" por suerte,
+ *   pero "€1200" en cuanto el número pasara de tres dígitos).
+ * - Álbum de Bodas eliminado: quedaban dos menciones en las cards de
+ *   modalidad y una en el paso 04 del timeline.
+ * - Boda Completa muestra su ahorro (2.200 € frente a 2.600 €).
+ * - Container/Section: la página mezclaba max-w-4xl, max-w-5xl y max-w-6xl
+ *   entre secciones contiguas, que es el origen de los huecos laterales.
+ * - Los dos iframes de YouTube pasan a fachada con clic: 3 iframes en una
+ *   página cargan ~1,3 MB de JS de terceros antes de cualquier interacción.
+ * - `object-[50%_22%]` del hero se mantiene, pero la clase estaba
+ *   desindentada y fuera del bloque de props.
+ */
 
 // ─── METADATA ────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title:
-    "Servicios de Fotografía y Vídeo de Bodas | Fran Momarch — Tarragona",
+  title: "Servicios de Fotografía y Vídeo de Bodas | Fran Momarch — Tarragona",
   description:
     "Servicios de fotografía y vídeo de bodas en Tarragona: preboda, boda completa, same day edit y postboda. Descubre cómo trabajamos.",
   alternates: {
     canonical: `${SITE_URL}/servicios`,
   },
   openGraph: {
-    title:
-      "Servicios de Fotografía y Vídeo de Bodas | Fran Momarch — Tarragona",
-    description:
-      "Preboda, boda completa, same day edit y postboda. Conoce nuestro proceso y cada servicio en detalle. Pack completo desde 3.000 €.",
+    title: "Servicios de Fotografía y Vídeo de Bodas | Fran Momarch — Tarragona",
+    description: `Preboda, boda completa, same day edit y postboda. Conoce nuestro proceso y cada servicio en detalle. Pack completo desde ${PACK_COMPLETO.price}.`,
     url: `${SITE_URL}/servicios`,
     type: "website",
     locale: "es_ES",
@@ -61,14 +82,14 @@ const serviceSchema = {
       "@type": "Offer",
       name: s.name,
       description: s.description,
-      price: String(s.priceNumeric),
+      price: schemaPrice(s.priceNumeric),
       priceCurrency: "EUR",
     })),
     {
       "@type": "Offer",
       name: PACK_COMPLETO.name,
-      description: PACK_COMPLETO.description,
-      price: String(PACK_COMPLETO.priceNumeric),
+      description: `${PACK_COMPLETO.description} Ahorro de ${PACK_COMPLETO.savingsLabel} frente a contratar cada servicio por separado.`,
+      price: schemaPrice(PACK_COMPLETO.priceNumeric),
       priceCurrency: "EUR",
     },
   ],
@@ -88,7 +109,6 @@ const breadcrumbSchema = {
   ],
 }
 
-// VideoObject dedicado al vídeo de Same Day Edit embebido en esta página.
 const sameDayEditVideoSchema = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
@@ -102,7 +122,6 @@ const sameDayEditVideoSchema = {
   publisher: { "@id": `${SITE_URL}/#business` },
 }
 
-// VideoObject dedicado al vídeo de ceremonia editada embebido en esta página.
 const ceremoniaVideoSchema = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
@@ -116,7 +135,9 @@ const ceremoniaVideoSchema = {
   publisher: { "@id": `${SITE_URL}/#business` },
 }
 
-// ─── IMAGES ──────────────────────────────────────────────────
+// ─── IMÁGENES ────────────────────────────────────────────────
+// ⚠️  URLs firmadas de Supabase con token embebido en el bundle.
+// Migrar a bucket público y pre-redimensionar a 2560 px.
 
 const IMAGES = {
   hero: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006384.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYzODQuSlBHIiwiaWF0IjoxNzc0MzgwMDcwLCJleHAiOjIwODk3NDAwNzB9.Qysf3DS2sKpoW13L03lk5vRWkU7yrM9W31ddpWk5Ru0",
@@ -125,13 +146,17 @@ const IMAGES = {
   boda: "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_05_10_ANGELA&ANGEL%202081.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDVfMTBfQU5HRUxBJkFOR0VMIDIwODEuSlBHIiwiaWF0IjoxNzc0MzA0MzgxLCJleHAiOjIwODk2NjQzODF9.BlvlBjCPkwHh80JfMZlQlB-ASsnK0kfHhe0tYM2wgHA",
   postboda:
     "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/4.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzQuSlBHIiwiaWF0IjoxNzc1NjcxNzMyLCJleHAiOjIwOTEwMzE3MzJ9.DTiLk2R8b7k683nZxbOOI2LjV2yeDNQjkuDJPApZRhM",
-  celebracion:
-    "https://clmmicwprzdhnkbeczoi.supabase.co/storage/v1/object/sign/Web's%20components/2025_09_27%20BODA%20BERTA&SANTI%20006030.JPG?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZjI4ZmRhYS05MDQzLTQ1NDQtODIzNy1kZjI4MmYxYTBkMzEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJXZWIncyBjb21wb25lbnRzLzIwMjVfMDlfMjcgQk9EQSBCRVJUQSZTQU5USSAwMDYwMzAuSlBHIiwiaWF0IjoxNzc0MzgwMDU3LCJleHAiOjIwODk3NDAwNTd9.sPL31GapjedhVsHE3t-NvbVIPb1bRqEhknvrs-Vsgt4",
 }
 
-// ─── YOUTUBE EMBED ──────────────────────────────────────────
+// ─── COMPONENTES ─────────────────────────────────────────────
 
-function YouTubeEmbed({
+/**
+ * Fachada de YouTube: miniatura estática + play. El iframe real solo se
+ * inyecta al hacer clic. Tres iframes de YouTube en una página cargan
+ * ~1,3 MB de JS de terceros y hunden el INP aunque nadie los reproduzca.
+ * Sin "use client": se resuelve con <details>, cero JavaScript.
+ */
+function YouTubeFacade({
   videoId,
   title,
   id,
@@ -143,184 +168,250 @@ function YouTubeEmbed({
   dark?: boolean
 }) {
   return (
-    <div
+    <details
       id={id}
-      className={`relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl ${
+      className={`group relative aspect-video w-full overflow-hidden rounded-2xl shadow-xl ${
         dark
-          ? "bg-[#111827] border border-white/10"
-          : "bg-secondary/20 border border-black/5"
+          ? "border border-white/10 bg-[#111827]"
+          : "border border-black/5 bg-secondary/20"
       }`}
     >
+      <summary className="absolute inset-0 flex cursor-pointer list-none items-center justify-center [&::-webkit-details-marker]:hidden group-open:hidden">
+        <Image
+          src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 1024px) 100vw, 55vw"
+          loading="lazy"
+        />
+        <span
+          className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15"
+          aria-hidden="true"
+        />
+        <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-[#d4a574] shadow-2xl transition-transform duration-300 group-hover:scale-110">
+          <svg
+            className="ml-1 h-7 w-7 text-[#1a365d]"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <span className="sr-only">Reproducir: {title}</span>
+        </span>
+      </summary>
+
       <iframe
-        src={`https://www.youtube.com/embed/${videoId}`}
+        src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`}
         title={title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         loading="lazy"
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 h-full w-full"
       />
-    </div>
+    </details>
   )
 }
 
-// ─── SECTION EYEBROW ────────────────────────────────────────
-
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#d4a574]">
-      <span className="w-6 h-px bg-[#d4a574]" aria-hidden="true" />
+    <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#d4a574]">
+      <span className="h-px w-6 bg-[#d4a574]" aria-hidden="true" />
       {children}
     </span>
   )
 }
 
-// ─── PAGE ────────────────────────────────────────────────────
+function PriceCta({
+  price,
+  href,
+  label,
+  strikethrough,
+  savings,
+}: {
+  price: string
+  href: string
+  label: string
+  strikethrough?: string
+  savings?: string
+}) {
+  return (
+    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <div className="tabular">
+        <div className="flex items-baseline gap-2.5">
+          <span className="text-2xl font-bold text-[#d4a574]">
+            Desde {price}
+          </span>
+          {strikethrough && (
+            <span className="text-base text-muted-foreground/60 line-through">
+              {strikethrough}
+            </span>
+          )}
+        </div>
+        {savings && (
+          <p className="mt-1 text-xs font-medium text-emerald-700">
+            Ahorro de {savings}
+          </p>
+        )}
+      </div>
+
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="rounded-xl border-2 border-[#d4a574]/30 bg-[#d4a574]/10 px-6 py-3 text-sm font-semibold text-[#d4a574] transition-all duration-300 hover:bg-[#d4a574] hover:text-[#1a365d]"
+      >
+        {label}
+      </a>
+    </div>
+  )
+}
+
+// ─── TIMELINE ────────────────────────────────────────────────
+
+const PROCESS_STEPS = [
+  {
+    step: "01",
+    title: "Reunión",
+    text: "Definimos estilo y visión juntos",
+  },
+  {
+    step: "02",
+    title: "Preboda",
+    text: "Generamos confianza antes del gran día",
+  },
+  {
+    step: "03",
+    title: "La boda",
+    text: "Capturamos cada instante con naturalidad",
+  },
+  {
+    step: "04",
+    title: "Entrega",
+    text: `Galería privada y vídeo editado en ${DELIVERABLES.galleryWeeksMin}-${DELIVERABLES.galleryWeeksMax} semanas`,
+  },
+]
+
+// ─── PÁGINA ──────────────────────────────────────────────────
 
 export default function ServiciosPage() {
   const whatsappGeneral = getWhatsAppLink(
-    "Hola Fran, me gustaría más información sobre vuestros servicios de fotografía y vídeo de bodas."
+    "Hola Fran, me gustaría más información sobre vuestros servicios de fotografía y vídeo de bodas.",
   )
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(sameDayEditVideoSchema),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(ceremoniaVideoSchema),
+          __html: JSON.stringify([
+            serviceSchema,
+            breadcrumbSchema,
+            sameDayEditVideoSchema,
+            ceremoniaVideoSchema,
+          ]),
         }}
       />
 
       <main itemScope itemType="https://schema.org/WebPage">
-        {/* ═══════════════════════════════════════════════════════
-            HERO — compacto, una sola idea, sin relleno
-        ═══════════════════════════════════════════════════════ */}
-        <section className="relative h-[58vh] min-h-[440px] w-full overflow-hidden">
+        {/* ═══ HERO ═══ */}
+        <section className="relative h-[58svh] min-h-[440px] w-full overflow-hidden">
           <Image
             src={IMAGES.hero}
             alt="Servicios de fotografía y vídeo de bodas — Fran Momarch"
             fill
-  className="object-cover object-[50%_22%]"
-  priority
-  sizes="100vw"
+            priority
+            fetchPriority="high"
+            quality={72}
+            sizes="100vw"
+            className="object-cover object-[50%_22%]"
           />
-<div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/45 to-[#111827]" />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/45 to-[#111827]"
+            aria-hidden="true"
+          />
           <header className="absolute inset-0 flex items-end pb-16 sm:pb-20">
-            <div className="max-w-4xl mx-auto px-6 text-center w-full">
-              <p className="text-[#d4a574] text-sm font-medium uppercase tracking-[0.25em] mb-4">
+            <Container width="content" className="text-center">
+              <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-[#d4a574]">
                 Preboda · Boda · Same Day Edit · Postboda
               </p>
-              <h1 className="text-4xl md:text-6xl font-serif text-white leading-[1.1] drop-shadow-2xl text-balance">
+              <h1 className="font-serif text-[clamp(2.25rem,1.6rem+3.2vw,4.5rem)] leading-[1.08] text-balance text-white drop-shadow-2xl">
                 Cada momento, una historia
               </h1>
-            </div>
+            </Container>
           </header>
         </section>
 
-        {/* BREADCRUMB — integrado en la franja oscura del hero, sin salto de color */}
-        <div className="bg-[#111827] border-b border-white/10">
-          <nav
-            className="max-w-3xl mx-auto px-6 py-3 text-sm text-white/50"
-            aria-label="Breadcrumb"
-          >
-            <Link href="/" className="hover:text-[#d4a574] transition-colors">
-              Inicio
-            </Link>
-            <span className="mx-2">›</span>
-            <span className="text-white/80">Servicios</span>
-          </nav>
+        <div className="border-b border-white/10 bg-[#111827]">
+          <Container width="content">
+            <nav className="py-3 text-sm text-white/50" aria-label="Breadcrumb">
+              <Link href="/" className="transition-colors hover:text-[#d4a574]">
+                Inicio
+              </Link>
+              <span className="mx-2" aria-hidden="true">
+                ›
+              </span>
+              <span className="text-white/80">Servicios</span>
+            </nav>
+          </Container>
         </div>
 
-        {/* ═══════════════════════════════════════════════════════
-            CÓMO TRABAJAMOS — timeline conectada, más compacta
-        ═══════════════════════════════════════════════════════ */}
-        <section id="como-trabajamos" className="py-20 bg-background">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-14">
+        {/* ═══ CÓMO TRABAJAMOS ═══ */}
+        <Section id="como-trabajamos" className="bg-background">
+          <Container width="content">
+            <div className="mx-auto mb-14 max-w-[52ch] text-center">
               <Eyebrow>Nuestro proceso</Eyebrow>
-              <h2 className="text-3xl md:text-4xl font-serif text-primary mt-3 mb-4">
+              <h2 className="mb-4 mt-3 font-serif text-[clamp(1.875rem,1.5rem+1.9vw,3rem)] leading-[1.1] text-balance text-primary">
                 ¿Cómo trabajamos?
               </h2>
-              <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+              <p className="text-muted-foreground leading-relaxed">
                 Un proceso emocional tanto como técnico: todo empieza con una
-                reunión donde alineamos estilo, ritmo y el tipo de recuerdo
-                que queréis construir.
+                reunión donde alineamos estilo, ritmo y el tipo de recuerdo que
+                queréis construir.
               </p>
             </div>
 
-            {/* Timeline horizontal con línea conectora — el orden aquí es real */}
-            <div className="relative">
+            <ol className="relative">
               <div
-                className="hidden md:block absolute top-5 left-[12.5%] right-[12.5%] h-px bg-border"
+                className="absolute left-[12.5%] right-[12.5%] top-5 hidden h-px bg-border md:block"
                 aria-hidden="true"
               />
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
-                {[
-                  {
-                    step: "01",
-                    title: "Reunión",
-                    text: "Definimos estilo y visión juntos",
-                  },
-                  {
-                    step: "02",
-                    title: "Preboda",
-                    text: "Generamos confianza antes del gran día",
-                  },
-                  {
-                    step: "03",
-                    title: "La boda",
-                    text: "Capturamos cada instante con naturalidad",
-                  },
-                  {
-                    step: "04",
-                    title: "Entrega",
-                    text: "Galería privada, vídeo y álbum opcional",
-                  },
-                ].map((item) => (
-                  <div key={item.step} className="relative text-center">
-                    <span className="relative z-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-background border-2 border-[#d4a574] text-[#d4a574] text-sm font-serif mb-4">
+              <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+                {PROCESS_STEPS.map((item) => (
+                  <li key={item.step} className="relative text-center">
+                    <span
+                      className="relative z-10 mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#d4a574] bg-background font-serif text-sm text-[#d4a574]"
+                      aria-hidden="true"
+                    >
                       {item.step}
                     </span>
-                    <h3 className="text-base font-serif text-primary mb-1.5">
+                    <h3 className="mb-1.5 font-serif text-base text-primary">
                       {item.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm leading-snug">
+                    <p className="text-sm leading-snug text-muted-foreground">
                       {item.text}
                     </p>
-                  </div>
+                  </li>
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
+            </ol>
+          </Container>
+        </Section>
 
-        {/* ═══════════════════════════════════════════════════════
-            PREBODA — sin vídeo, imagen + texto + CTA compacto
-        ═══════════════════════════════════════════════════════ */}
-        <section
+        {/* ═══ PREBODA ═══ */}
+        <Section
           id="preboda"
-          className="py-20 bg-gradient-to-b from-secondary/15 to-background"
+          className="bg-gradient-to-b from-secondary/15 to-background"
         >
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-xl group">
+          <Container width="wide">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div className="group relative h-[420px] overflow-hidden rounded-2xl shadow-xl">
                 <Image
                   src={IMAGES.preboda}
                   alt="Sesión de preboda — pareja relajada disfrutando de la sesión fotográfica"
                   fill
+                  quality={72}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   loading="lazy"
@@ -329,12 +420,12 @@ export default function ServiciosPage() {
 
               <div>
                 <Eyebrow>El inicio de todo</Eyebrow>
-                <h2 className="text-3xl md:text-4xl font-serif text-primary mt-3 mb-5">
+                <h2 className="mb-5 mt-3 font-serif text-[clamp(1.875rem,1.5rem+1.9vw,3rem)] leading-[1.1] text-primary">
                   Preboda
                 </h2>
-                <div className="space-y-3 text-muted-foreground leading-relaxed">
+                <div className="space-y-3 leading-relaxed text-muted-foreground">
                   <p>
-                    Antes del gran día, nos encontramos para la sesión de
+                    Antes del gran día nos encontramos para la sesión de
                     preboda. No es solo una sesión de fotos:{" "}
                     <strong className="text-foreground">
                       es el momento en el que nos conocemos de verdad.
@@ -342,53 +433,54 @@ export default function ServiciosPage() {
                   </p>
                   <p>
                     Creamos un espacio cómodo, sin prisas, donde podéis ser
-                    vosotros mismos. Esa confianza es la que hace que, el día
-                    de la boda, todo fluya con naturalidad.
+                    vosotros mismos. Esa confianza es la que hace que el día de
+                    la boda todo fluya con naturalidad.
                   </p>
                 </div>
 
-                <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-muted-foreground">
+                <ul className="mt-6 grid grid-cols-1 gap-x-4 gap-y-2 text-sm text-muted-foreground sm:grid-cols-2">
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> 2-3 horas en ubicación elegida
+                    <span className="text-[#d4a574]" aria-hidden="true">
+                      ✓
+                    </span>{" "}
+                    2-3 horas en ubicación elegida
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> 50+ fotos editadas
+                    <span className="text-[#d4a574]" aria-hidden="true">
+                      ✓
+                    </span>{" "}
+                    {DELIVERABLES.photosSession}+ fotos editadas
                   </li>
-                  <li className="flex items-center gap-2 col-span-2">
-                    <span className="text-[#d4a574]">✓</span> Galería online privada descargable
+                  <li className="col-span-full flex items-center gap-2">
+                    <span className="text-[#d4a574]" aria-hidden="true">
+                      ✓
+                    </span>{" "}
+                    Galería online privada descargable
                   </li>
                 </ul>
 
-                <div className="mt-8 flex items-center gap-6">
-                  <span className="text-2xl font-bold text-[#d4a574]">
-                    Desde €400
-                  </span>
-                  <a
-                    href={getWhatsAppLink("Hola Fran, me interesa la sesión de Preboda")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#d4a574]/10 text-[#d4a574] border-2 border-[#d4a574]/30 px-6 py-3 rounded-xl font-semibold hover:bg-[#d4a574] hover:text-[#1a365d] transition-all duration-300 text-sm"
-                  >
-                    Reservar preboda
-                  </a>
-                </div>
+                <PriceCta
+                  price={formatEUR(ATOMIC_PRICES.preboda)}
+                  href={getWhatsAppLink(
+                    "Hola Fran, me interesa la sesión de Preboda",
+                  )}
+                  label="Reservar preboda"
+                />
               </div>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* ═══════════════════════════════════════════════════════
-            SAME DAY EDIT
-        ═══════════════════════════════════════════════════════ */}
-        <section id="same-day-edit" className="py-20 bg-[#111827]">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* ═══ SAME DAY EDIT ═══ */}
+        <Section id="same-day-edit" className="bg-[#111827]">
+          <Container width="wide">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
                 <Eyebrow>Emoción en tiempo real</Eyebrow>
-                <h2 className="text-3xl md:text-4xl font-serif text-white mt-3 mb-5">
+                <h2 className="mb-5 mt-3 font-serif text-[clamp(1.875rem,1.5rem+1.9vw,3rem)] leading-[1.1] text-white">
                   Same Day Edit
                 </h2>
-                <div className="space-y-3 text-white/70 leading-relaxed">
+                <div className="space-y-3 leading-relaxed text-white/70">
                   <p>
                     Imaginad poder revivir vuestra boda…{" "}
                     <strong className="text-white">el mismo día.</strong>
@@ -396,46 +488,39 @@ export default function ServiciosPage() {
                   <p>
                     Durante el banquete proyectamos un resumen editado con los
                     momentos vividos horas antes: miradas, abrazos, nervios,
-                    felicidad. Un recuerdo inmediato que se convierte en uno
-                    de los momentos más especiales del día.
+                    felicidad. Un recuerdo inmediato que se convierte en uno de
+                    los momentos más especiales del día.
                   </p>
                 </div>
 
-                <div className="mt-8 flex items-center gap-6">
-                  <span className="text-2xl font-bold text-[#d4a574]">
-                    Desde €400
-                  </span>
-                  <a
-                    href={getWhatsAppLink("Hola Fran, me interesa el Same Day Edit")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#d4a574]/10 text-[#d4a574] border-2 border-[#d4a574]/30 px-6 py-3 rounded-xl font-semibold hover:bg-[#d4a574] hover:text-[#1a365d] transition-all duration-300 text-sm"
-                  >
-                    Añadir a mi boda
-                  </a>
-                </div>
+                <PriceCta
+                  price={formatEUR(ATOMIC_PRICES.sameDayEdit)}
+                  href={getWhatsAppLink(
+                    "Hola Fran, me interesa el Same Day Edit",
+                  )}
+                  label="Añadir a mi boda"
+                />
               </div>
 
-              <YouTubeEmbed
+              <YouTubeFacade
                 videoId="VqVdUwGVQMg"
                 title="Ejemplo de Same Day Edit — Fran Momarch Bodas"
                 id="video-same-day-edit"
               />
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* ═══════════════════════════════════════════════════════
-            LA BODA — comparativa de modalidades como cards, no lista
-        ═══════════════════════════════════════════════════════ */}
-        <section id="boda" className="py-20 bg-background">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-14">
-              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-xl lg:order-2 group">
+        {/* ═══ LA BODA ═══ */}
+        <Section id="boda" className="bg-background">
+          <Container width="wide">
+            <div className="mb-14 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <div className="group relative h-[420px] overflow-hidden rounded-2xl shadow-xl lg:order-2">
                 <Image
                   src={IMAGES.boda}
                   alt="Día de la boda — pareja durante la ceremonia en Tarragona"
                   fill
+                  quality={72}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   loading="lazy"
@@ -444,150 +529,171 @@ export default function ServiciosPage() {
 
               <div className="lg:order-1">
                 <Eyebrow>Donde ocurre la magia</Eyebrow>
-                <h2 className="text-3xl md:text-4xl font-serif text-primary mt-3 mb-5">
+                <h2 className="mb-5 mt-3 font-serif text-[clamp(1.875rem,1.5rem+1.9vw,3rem)] leading-[1.1] text-primary">
                   La Boda
                 </h2>
-                <div className="space-y-3 text-muted-foreground leading-relaxed">
+                <div className="space-y-3 leading-relaxed text-muted-foreground">
                   <p>
-                    El día de la boda es una suma de instantes irrepetibles:
-                    los preparativos, las miradas cómplices, las lágrimas, la
+                    El día de la boda es una suma de instantes irrepetibles: los
+                    preparativos, las miradas cómplices, las lágrimas, la
                     celebración.
                   </p>
                   <p>
                     Nuestro trabajo es{" "}
                     <strong className="text-foreground">
-                      acompañaros sin invadir, capturar sin forzar, y
-                      transformar cada instante en un recuerdo eterno.
+                      acompañaros sin invadir, capturar sin forzar y transformar
+                      cada instante en un recuerdo eterno.
                     </strong>
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Modalidades como cards comparativas */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              <div className="rounded-2xl p-6 border border-border bg-card">
-                <h3 className="font-serif text-lg text-primary mb-1">Solo Fotografía</h3>
-                <p className="text-[#d4a574] font-bold text-xl mb-3">Desde €1.200</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  900+ fotos editadas, cobertura completa del día (10h+).
-                  Álbum de Bodas opcional (+€400).
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              <div className="rounded-2xl border border-border bg-card p-6">
+                <h3 className="mb-1 font-serif text-lg text-primary">
+                  Solo Fotografía
+                </h3>
+                <p className="tabular mb-3 text-xl font-bold text-[#d4a574]">
+                  Desde {formatEUR(ATOMIC_PRICES.bodaFoto)}
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {DELIVERABLES.photosWedding}+ fotos editadas y cobertura
+                  completa del día ({DELIVERABLES.coverageHours}h+).
                 </p>
               </div>
-              <div className="rounded-2xl p-6 border border-border bg-card">
-                <h3 className="font-serif text-lg text-primary mb-1">Solo Vídeo</h3>
-                <p className="text-[#d4a574] font-bold text-xl mb-3">Desde €1.400</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Vídeo cinematográfico documental + highlight reel de 3-5
-                  minutos.
+
+              <div className="rounded-2xl border border-border bg-card p-6">
+                <h3 className="mb-1 font-serif text-lg text-primary">
+                  Solo Vídeo
+                </h3>
+                <p className="tabular mb-3 text-xl font-bold text-[#d4a574]">
+                  Desde {formatEUR(ATOMIC_PRICES.bodaVideo)}
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Vídeo cinematográfico documental y highlight reel de{" "}
+                  {DELIVERABLES.highlightMinutesMin}-
+                  {DELIVERABLES.highlightMinutesMax} minutos.
                 </p>
               </div>
-              <div className="rounded-2xl p-6 border-2 border-[#d4a574]/40 bg-[#1a365d]/[0.04] relative">
-                <span className="absolute -top-3 left-6 bg-[#d4a574] text-[#1a365d] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+
+              <div className="relative rounded-2xl border-2 border-[#d4a574]/40 bg-[#1a365d]/[0.04] p-6">
+                <span className="absolute -top-3 left-6 rounded-full bg-[#d4a574] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1a365d]">
                   Recomendado
                 </span>
-                <h3 className="font-serif text-lg text-primary mb-1 mt-1">
+                <h3 className="mb-1 mt-1 font-serif text-lg text-primary">
                   Boda Completa
                 </h3>
-                <p className="text-[#d4a574] font-bold text-xl mb-3">Desde €2.200</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Foto + vídeo, 10h+ de cobertura. 900+ fotos editadas +
-                  highlight reel. Álbum opcional (+€400).
+                <div className="tabular mb-3 flex items-baseline gap-2">
+                  <span className="text-xl font-bold text-[#d4a574]">
+                    Desde {BODA_COMPLETA.price}
+                  </span>
+                  <span className="text-sm text-muted-foreground/60 line-through">
+                    {BODA_COMPLETA.individualTotalLabel}
+                  </span>
+                </div>
+                <p className="mb-3 text-xs font-medium text-emerald-700">
+                  Ahorro de {BODA_COMPLETA.savingsLabel} frente a contratar foto
+                  y vídeo por separado
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Foto + vídeo con {DELIVERABLES.coverageHours}h+ de cobertura,{" "}
+                  {DELIVERABLES.photosWedding}+ fotos editadas y highlight reel.
                 </p>
               </div>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* ═══════════════════════════════════════════════════════
-            POSTBODA
-        ═══════════════════════════════════════════════════════ */}
-        <section id="postboda" className="py-20 bg-gradient-to-b from-secondary/15 to-background">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* ═══ POSTBODA ═══ */}
+        <Section
+          id="postboda"
+          className="bg-gradient-to-b from-secondary/15 to-background"
+        >
+          <Container width="wide">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
                 <Eyebrow>El broche final</Eyebrow>
-                <h2 className="text-3xl md:text-4xl font-serif text-primary mt-3 mb-5">
+                <h2 className="mb-5 mt-3 font-serif text-[clamp(1.875rem,1.5rem+1.9vw,3rem)] leading-[1.1] text-primary">
                   Postboda
                 </h2>
-                <div className="space-y-3 text-muted-foreground leading-relaxed">
+                <div className="space-y-3 leading-relaxed text-muted-foreground">
                   <p>
-                    Las últimas fotos con el vestido, sin prisas, sin
-                    protocolos, sin horarios.{" "}
-                    <strong className="text-foreground">
-                      Solo disfrutar.
-                    </strong>
+                    Las últimas fotos con el vestido, sin prisas, sin protocolos,
+                    sin horarios.{" "}
+                    <strong className="text-foreground">Solo disfrutar.</strong>
                   </p>
                   <p>
-                    Ya nos conocemos, ya hay confianza — y ahí es donde la
-                    magia ocurre casi sin proponérselo.
+                    Ya nos conocemos, ya hay confianza — y ahí es donde la magia
+                    ocurre casi sin proponérselo.
                   </p>
                 </div>
 
-                <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-muted-foreground">
+                <ul className="mt-6 grid grid-cols-1 gap-x-4 gap-y-2 text-sm text-muted-foreground sm:grid-cols-2">
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> Sesión artística de 2-3h
+                    <span className="text-[#d4a574]" aria-hidden="true">
+                      ✓
+                    </span>{" "}
+                    Sesión artística de 2-3 h
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-[#d4a574]">✓</span> 50+ fotos editadas
+                    <span className="text-[#d4a574]" aria-hidden="true">
+                      ✓
+                    </span>{" "}
+                    {DELIVERABLES.photosSession}+ fotos editadas
                   </li>
-                  <li className="flex items-center gap-2 col-span-2">
-                    <span className="text-[#d4a574]">✓</span> Galería online privada descargable
+                  <li className="col-span-full flex items-center gap-2">
+                    <span className="text-[#d4a574]" aria-hidden="true">
+                      ✓
+                    </span>{" "}
+                    Galería online privada descargable
                   </li>
                 </ul>
 
-                <div className="mt-8 flex items-center gap-6">
-                  <span className="text-2xl font-bold text-[#d4a574]">
-                    Desde €400
-                  </span>
-                  <a
-                    href={getWhatsAppLink("Hola Fran, me interesa la sesión de Postboda")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#d4a574]/10 text-[#d4a574] border-2 border-[#d4a574]/30 px-6 py-3 rounded-xl font-semibold hover:bg-[#d4a574] hover:text-[#1a365d] transition-all duration-300 text-sm"
-                  >
-                    Reservar postboda
-                  </a>
-                </div>
+                <PriceCta
+                  price={formatEUR(ATOMIC_PRICES.postboda)}
+                  href={getWhatsAppLink(
+                    "Hola Fran, me interesa la sesión de Postboda",
+                  )}
+                  label="Reservar postboda"
+                />
               </div>
 
-              <div className="relative h-[420px] rounded-2xl overflow-hidden shadow-xl group">
+              <div className="group relative h-[420px] overflow-hidden rounded-2xl shadow-xl">
                 <Image
                   src={IMAGES.postboda}
                   alt="Sesión de postboda en la playa — pareja disfrutando junto al mar en Tarragona"
                   fill
+                  quality={72}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   loading="lazy"
                 />
               </div>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* ═══════════════════════════════════════════════════════
-            ENTREGA — galería + ceremonia editada (vídeo real)
-        ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 bg-gradient-to-b from-secondary/15 to-background">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="text-center mb-12">
+        {/* ═══ LO QUE RECIBIRÉIS ═══ */}
+        <Section className="bg-gradient-to-b from-secondary/15 to-background">
+          <Container width="wide">
+            <div className="mx-auto mb-12 max-w-[52ch] text-center">
               <Eyebrow>Después de la boda</Eyebrow>
-              <h2 className="text-3xl md:text-4xl font-serif text-primary mt-3 mb-4">
+              <h2 className="mb-4 mt-3 font-serif text-[clamp(1.875rem,1.5rem+1.9vw,3rem)] leading-[1.1] text-balance text-primary">
                 Lo que recibiréis
               </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Todo el material a través de una galería privada online, lista
-                para compartir con vuestros seres queridos y conservar
-                siempre.
+              <p className="text-muted-foreground leading-relaxed">
+                Todo el material en una galería privada online, lista para
+                compartir con vuestros seres queridos y conservar siempre.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-8 items-stretch max-w-5xl mx-auto">
+            <div className="mx-auto grid max-w-5xl grid-cols-1 items-stretch gap-8 lg:grid-cols-[1fr_1.3fr]">
               <div className="flex flex-col gap-4">
-                <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 flex-1">
-                  <div className="w-12 h-12 mb-4 rounded-full bg-[#d4a574]/10 flex items-center justify-center">
+                <div className="flex-1 rounded-2xl border border-border bg-card p-6 shadow-md">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#d4a574]/10">
                     <svg
-                      className="w-5 h-5 text-[#d4a574]"
+                      className="h-5 w-5 text-[#d4a574]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -601,19 +707,21 @@ export default function ServiciosPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="font-serif text-lg text-primary mb-2">
+                  <h3 className="mb-2 font-serif text-lg text-primary">
                     Galería Privada
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    900+ fotos editadas en alta resolución, descargable, para
-                    compartir con familia y amigos. Entrega en 4-6 semanas.
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {DELIVERABLES.photosWedding}+ fotos editadas en alta
+                    resolución, descargables, para compartir con familia y
+                    amigos. Entrega en {DELIVERABLES.galleryWeeksMin}-
+                    {DELIVERABLES.galleryWeeksMax} semanas.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 flex-1">
-                  <div className="w-12 h-12 mb-4 rounded-full bg-[#d4a574]/10 flex items-center justify-center">
+                <div className="flex-1 rounded-2xl border border-border bg-card p-6 shadow-md">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#d4a574]/10">
                     <svg
-                      className="w-5 h-5 text-[#d4a574]"
+                      className="h-5 w-5 text-[#d4a574]"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -621,62 +729,67 @@ export default function ServiciosPage() {
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                  <h3 className="font-serif text-lg text-primary mb-2">
+                  <h3 className="mb-2 font-serif text-lg text-primary">
                     Ceremonia Editada
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
                     Vuestra ceremonia completa editada para revivir cada
                     instante — cada palabra, cada mirada, cada promesa.
                   </p>
                 </div>
               </div>
 
-              <YouTubeEmbed
+              <YouTubeFacade
                 videoId="n5mSVcUFwcM"
                 title="Ejemplo de ceremonia editada — Fran Momarch Bodas"
                 id="video-ceremonia"
                 dark={false}
               />
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* ═══════════════════════════════════════════════════════
-            PACK COMPLETO DESTACADO
-        ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 bg-[#1a365d]">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <span className="inline-block bg-[#d4a574] text-[#1a365d] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-              Mejor valor — Ahorro de €{PACK_COMPLETO.savings}
+        {/* ═══ PACK COMPLETO ═══ */}
+        <Section rhythm="loose" className="bg-[#1a365d]">
+          <Container width="content" className="text-center">
+            <span className="mb-6 inline-block rounded-full bg-[#d4a574] px-4 py-1 text-xs font-bold uppercase tracking-wider text-[#1a365d]">
+              Mejor valor — ahorro de {PACK_COMPLETO.savingsLabel}
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif text-white mb-4">
+            <h2 className="mb-4 font-serif text-[clamp(1.875rem,1.5rem+2.4vw,3.5rem)] leading-[1.08] text-white">
               Pack Completo
             </h2>
-            <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="mx-auto mb-8 max-w-[52ch] text-lg leading-relaxed text-white/70">
               {PACK_COMPLETO.description}
             </p>
 
-            <div className="bg-white/5 rounded-2xl p-8 border border-white/10 mb-10 max-w-xl mx-auto text-left">
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="mx-auto mb-10 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-8 text-left">
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {PACK_COMPLETO.features.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2.5 text-white/80 text-sm"
+                    className="flex items-start gap-2.5 text-sm text-white/80"
                   >
-                    <span className="text-[#d4a574] mt-0.5 shrink-0">✓</span>
+                    <span
+                      className="mt-0.5 shrink-0 text-[#d4a574]"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="mb-8">
+            <div className="tabular mb-8">
               <span className="text-5xl font-bold text-white">
                 {PACK_COMPLETO.price}
               </span>
-              <p className="text-white/50 text-sm mt-2">
-                Valor individual: €
-                {PACK_COMPLETO.individualTotal.toLocaleString("es-ES")}
+              <p className="mt-2 text-sm text-white/50">
+                Valor individual:{" "}
+                <span className="line-through">
+                  {PACK_COMPLETO.individualTotalLabel}
+                </span>
               </p>
             </div>
 
@@ -684,23 +797,21 @@ export default function ServiciosPage() {
               href={getWhatsAppLink(PACK_COMPLETO.whatsappMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-[#d4a574] text-[#1a365d] px-12 py-5 rounded-2xl text-xl font-semibold hover:bg-[#d4a574]/90 shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(212,165,116,0.4)] transition-all duration-300 uppercase tracking-wide"
+              className="inline-block rounded-2xl bg-[#d4a574] px-12 py-5 text-xl font-semibold uppercase tracking-wide text-[#1a365d] shadow-2xl transition-all duration-300 hover:bg-[#d4a574]/90 hover:shadow-[0_25px_50px_-12px_rgba(212,165,116,0.4)]"
             >
               Quiero el Pack Completo
             </a>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
-        {/* ═══════════════════════════════════════════════════════
-            CTA FINAL
-        ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 bg-gradient-to-b from-[#111827] to-gray-900">
-          <div className="max-w-lg mx-auto px-6 text-center">
-            <h2 className="text-4xl md:text-5xl font-serif text-white mb-4">
+        {/* ═══ CTA FINAL ═══ */}
+        <Section className="bg-gradient-to-b from-[#111827] to-gray-900">
+          <Container width="prose" className="text-center">
+            <h2 className="mb-4 font-serif text-[clamp(2rem,1.5rem+2.4vw,3.5rem)] leading-[1.08] text-balance text-white">
               ¿Hablamos de vuestra boda?
             </h2>
-            <p className="text-white/70 mb-10 text-lg">
-              Contadme sobre vuestro día y os preparo una propuesta
+            <p className="mb-10 text-lg leading-relaxed text-white/70">
+              Contadnos cómo imagináis vuestro día y os preparamos una propuesta
               personalizada en menos de 24 horas. Sin compromiso.
             </p>
 
@@ -708,32 +819,32 @@ export default function ServiciosPage() {
               href={whatsappGeneral}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white py-5 px-10 rounded-2xl text-xl font-semibold shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(34,197,94,0.4)] uppercase tracking-wide transition-all duration-300"
+              className="inline-flex items-center gap-3 rounded-2xl bg-emerald-500 px-10 py-5 text-xl font-semibold uppercase tracking-wide text-white shadow-2xl transition-all duration-300 hover:bg-emerald-600 hover:shadow-[0_25px_50px_-12px_rgba(16,185,129,0.4)]"
               aria-label="Contactar por WhatsApp"
             >
-              💬 Chatear por WhatsApp
+              Chatear por WhatsApp
             </a>
 
-            <p className="mt-6 text-white/50 text-sm">
-              o llámame al{" "}
+            <p className="mt-6 text-sm text-white/50">
+              o llamadnos al{" "}
               <a
                 href={PHONE_LINK}
-                className="text-[#d4a574] hover:text-[#d4a574]/80 transition-colors"
+                className="text-[#d4a574] transition-colors hover:text-[#d4a574]/80"
               >
                 {PHONE_DISPLAY}
               </a>
             </p>
 
-            <div className="mt-10 pt-8 border-t border-white/10">
+            <div className="mt-10 border-t border-white/10 pt-8">
               <Link
                 href="/#precios"
-                className="text-white/50 hover:text-[#d4a574] text-sm transition-colors underline underline-offset-4"
+                className="text-sm text-white/50 underline underline-offset-4 transition-colors hover:text-[#d4a574]"
               >
                 Ver tabla de precios detallada →
               </Link>
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
 
         <Footer />
       </main>

@@ -80,9 +80,15 @@ export function HeroVideo({
     const video = videoRef.current
     if (!video) return
 
-    // iOS: forzar muted por propiedad. El atributo puede no estar en el SSR.
+    // iOS: forzar muted por propiedad. React lo fija como prop JS, no como
+    // atributo, así que en el HTML servido no aparece y Safari lo mira.
     video.muted = true
     video.defaultMuted = true
+
+    // Atributo legacy para Safari iOS antiguo. Se aplica por setAttribute
+    // porque en JSX obliga a suprimir tipos y la directiva queda sin uso
+    // en React 19, lo que rompe el build ("Unused '@ts-expect-error'").
+    video.setAttribute("webkit-playsinline", "true")
 
     const play = () => {
       const promise = video.play()
@@ -150,8 +156,6 @@ export function HeroVideo({
           muted
           loop
           playsInline
-          // @ts-expect-error — atributo legacy de iOS, aún necesario en Safari antiguo
-          webkit-playsinline="true"
           preload="metadata"
           disablePictureInPicture
           aria-hidden="true"

@@ -1,23 +1,18 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
 interface HeroVideoProps {
-  /** MP4 (H.264) — fallback universal */
+  /** MP4 (H.264). Debe estar codificado con -movflags +faststart. */
   srcMp4: string
-  /** WebM/AV1 opcional — ~40 % menos peso en Chrome/Firefox */
+  /** WebM/AV1 opcional. iOS lo ignora: siempre cae al MP4. */
   srcWebm?: string
   /** Imagen de respaldo. Es el LCP real y lo que se ve si el vídeo falla. */
   poster: string
   posterAlt: string
-  /**
-   * object-position del poster. El hero es 100svh: en móvil una foto 3:2
-   * se recorta mucho en vertical, y con "center" las caras se van fuera
-   * de cuadro. "center 32%" las mantiene en el tercio superior.
-   */
+  /** object-position del poster. El hero es 100svh y recorta mucho en móvil. */
   posterPosition?: string
-  /** Color visible mientras carga y si todo falla. */
   fallbackColor?: string
   className?: string
 }
@@ -28,18 +23,20 @@ interface NetworkInformation {
 }
 
 /**
- * Jerarquía de respaldo, de mejor a peor caso:
+ * Notas de iOS Safari — cada línea marcada resuelve un fallo real:
  *
- *   1. Poster + vídeo        → funcionamiento normal
- *   2. Poster sin vídeo      → conexión lenta, Save-Data, reduced-motion,
- *                              o el MP4 devuelve error / se corta a mitad
- *   3. Vídeo sin poster      → el JPG no existe o da 404
- *   4. Ni uno ni otro        → color sólido, nunca un icono roto
- *
- * El poster va montado DEBAJO del vídeo, no en su lugar: si el MP4 nunca
- * dispara `playing`, el vídeo se queda en opacity-0 y la foto permanece
- * visible sin lógica adicional. `onError` cubre el caso de un vídeo que
- * empieza y luego se rompe, que si no dejaría un frame congelado encima.
+ *  · `stalled` es un evento RUTINARIO durante el buffering en iOS. Tratarlo
+ *    como error desmonta el vídeo antes de que llegue a reproducirse.
+ *    Solo `error` indica fallo real.
+ *  · React fija `muted` como propiedad JS, no como atributo HTML, así que en
+ *    el markup servido no aparece. iOS mira el atributo para decidir si
+ *    permite autoplay inline → hay que forzarlo por ref antes de play().
+ *  · `play()` sobre un elemento con preload="none" se rechaza porque no hay
+ *    datos: primero load(), luego play().
+ *  · En Modo de Bajo Consumo iOS rechaza todo autoplay. No es un error:
+ *    el poster se queda visible y ya está.
+ *  · autoPlay + muted + playsInline es la tríada obligatoria; falta uno y
+ *    Safari no considera el elemento candidato.
  */
 export function HeroVideo({
   srcMp4,
@@ -66,8 +63,6 @@ export function HeroVideo({
       navigator as Navigator & { connection?: NetworkInformation }
     ).connection
 
-    // Si el poster falla, el vídeo pasa a ser el único contenido visual:
-    // se carga aunque la conexión sea mala.
     if (!posterFailed) {
       if (connection?.saveData) return
       if (
@@ -81,6 +76,34 @@ export function HeroVideo({
     setShouldLoad(true)
   }, [posterFailed])
 
+  const attemptPlay = useCallback(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // iOS: forzar muted por propiedad. El atributo puede no estar en el SSR.
+    video.muted = true
+    video.defaultMuted = true
+
+    const play = () => {
+      const promise = video.play()
+      // Safari <15 devuelve undefined en lugar de una promesa.
+      if (promise !== undefined) {
+        promise.catch(() => {
+          // Autoplay bloqueado (Modo de Bajo Consumo, ajuste del usuario).
+          // No es un fallo del recurso: el poster se mantiene visible.
+        })
+      }
+    }
+
+    if (video.readyState >= 2) {
+      play()
+      return
+    }
+
+    video.load()
+    video.addEventListener("loadeddata", play, { once: true })
+  }, [])
+
   useEffect(() => {
     const video = videoRef.current
     if (!video || !shouldLoad || videoFailed) return
@@ -88,17 +111,17 @@ export function HeroVideo({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          void video.play().catch(() => setVideoFailed(true))
-        } else {
+          attemptPlay()
+        } else if (!video.paused) {
           video.pause()
         }
       },
-      { threshold: 0.15 },
+      { threshold: 0.1 },
     )
 
     observer.observe(video)
     return () => observer.disconnect()
-  }, [shouldLoad, videoFailed])
+  }, [shouldLoad, videoFailed, attemptPlay])
 
   const showVideo = shouldLoad && !videoFailed
 
@@ -123,15 +146,19 @@ export function HeroVideo({
         <video
           ref={videoRef}
           poster={posterFailed ? undefined : poster}
+          autoPlay
           muted
           loop
           playsInline
-          preload={posterFailed ? "auto" : "none"}
+          // @ts-expect-error — atributo legacy de iOS, aún necesario en Safari antiguo
+          webkit-playsinline="true"
+          preload="metadata"
+          disablePictureInPicture
           aria-hidden="true"
           tabIndex={-1}
+          onLoadedData={attemptPlay}
           onPlaying={() => setIsPlaying(true)}
           onError={() => setVideoFailed(true)}
-          onStalled={() => setVideoFailed(true)}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
             isPlaying || posterFailed ? "opacity-100" : "opacity-0"
           }`}

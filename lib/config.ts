@@ -78,19 +78,84 @@ export const WHATSAPP_MESSAGES = {
 } as const
 
 // ============================================================
-// PRECIOS — fuente numérica única
+// PRECIOS
 //
-// Ningún importe se escribe dos veces. Todo lo demás se deriva de aquí:
-// SERVICES, PACK_COMPLETO, PRICING_DATA, lib/faqs.ts y el JSON-LD.
+// Dos niveles, deliberadamente separados:
+//
+//   ATOMIC_PRICES  servicios indivisibles. Son la única fuente numérica
+//                  real y la base de todo cálculo de ahorro.
+//   BUNDLES        paquetes con precio propio + la cesta de átomos que
+//                  sustituyen. El valor de referencia y el ahorro se
+//                  derivan, nunca se escriben a mano.
+//
+// Así el descuento anunciado siempre es comprobable sumando los precios
+// que figuran en la tabla pública (art. 20.3 LGDCU, RDL 24/2021).
 // ============================================================
 
-export const PRICE_LIST = {
+export const ATOMIC_PRICES = {
   preboda: 400,
   bodaFoto: 1200,
   bodaVideo: 1400,
-  bodaCompleta: 2200,
   sameDayEdit: 400,
   postboda: 400,
+} as const
+
+export type AtomicPriceKey = keyof typeof ATOMIC_PRICES
+
+export interface Bundle {
+  price: string
+  priceNumeric: number
+  individualTotal: number
+  individualTotalLabel: string
+  savings: number
+  savingsLabel: string
+  basket: AtomicPriceKey[]
+}
+
+function createBundle(price: number, basket: AtomicPriceKey[]): Bundle {
+  const individualTotal = basket.reduce(
+    (total, key) => total + ATOMIC_PRICES[key],
+    0,
+  )
+  const savings = individualTotal - price
+
+  return {
+    price: formatEUR(price),
+    priceNumeric: price,
+    individualTotal,
+    individualTotalLabel: formatEUR(individualTotal),
+    savings,
+    savingsLabel: formatEUR(savings),
+    basket,
+  }
+}
+
+/**
+ * Boda Completa — 2.200 €
+ * Cesta: foto 1.200 + vídeo 1.400 = 2.600 €  →  ahorro 400 €
+ */
+export const BODA_COMPLETA = createBundle(2200, ["bodaFoto", "bodaVideo"])
+
+/**
+ * Pack Completo — 3.000 €
+ * Cesta: 400 + 1.200 + 1.400 + 400 + 400 = 3.800 €  →  ahorro 800 €
+ */
+export const PACK_BUNDLE = createBundle(3000, [
+  "preboda",
+  "bodaFoto",
+  "bodaVideo",
+  "sameDayEdit",
+  "postboda",
+])
+
+/**
+ * Vista plana para consumidores que solo necesitan el importe de venta
+ * (PRICING_DATA, FAQ, JSON-LD). bodaCompleta es un bundle, no un átomo:
+ * su valor sale de BODA_COMPLETA para que no pueda desincronizarse.
+ */
+export const PRICE_LIST = {
+  ...ATOMIC_PRICES,
+  bodaCompleta: BODA_COMPLETA.priceNumeric,
 } as const
 
 export type PriceKey = keyof typeof PRICE_LIST
@@ -124,6 +189,10 @@ export interface ServiceItem {
   description: string
   price: string
   priceNumeric: number
+  /** Presente solo en paquetes: valor de la cesta equivalente. */
+  individualTotalLabel?: string
+  /** Presente solo en paquetes: descuento frente a esa cesta. */
+  savingsLabel?: string
   features: string[]
   whatsappMessage: string
 }
@@ -148,13 +217,16 @@ export const SERVICES: ServiceItem[] = [
     name: "Boda Completa",
     subtitle: "Foto + Vídeo",
     description: `Cobertura completa del día de la boda (${DELIVERABLES.coverageHours}h+) con fotografía y vídeo cinematográfico. Más de ${DELIVERABLES.photosWedding} fotos editadas, highlight reel y galería online privada descargable.`,
-    price: formatEUR(PRICE_LIST.bodaCompleta),
-    priceNumeric: PRICE_LIST.bodaCompleta,
+    price: BODA_COMPLETA.price,
+    priceNumeric: BODA_COMPLETA.priceNumeric,
+    individualTotalLabel: BODA_COMPLETA.individualTotalLabel,
+    savingsLabel: BODA_COMPLETA.savingsLabel,
     features: [
       `Cobertura del día completo (${DELIVERABLES.coverageHours}h+)`,
       "Fotografía y vídeo cinematográfico",
       `${DELIVERABLES.photosWedding}+ fotos editadas + highlight reel`,
       "Galería online privada descargable",
+      `Ahorro de ${BODA_COMPLETA.savingsLabel} frente a contratar foto y vídeo por separado`,
     ],
     whatsappMessage: WHATSAPP_MESSAGES.bodaCompleta,
   },
@@ -177,60 +249,24 @@ export const SERVICES: ServiceItem[] = [
 
 // ============================================================
 // PACK COMPLETO
-//
-// La cesta de referencia usa bodaCompleta (2.200 €), NO
-// bodaFoto + bodaVideo (2.600 €). Boda Completa se vende públicamente
-// a 2.200 € en PRICING_DATA, así que 2.600 sería un precio de
-// referencia que nunca se aplica — precio ficticio a efectos del
-// art. 20.3 LGDCU tras el RDL 24/2021.
-//
-// Cesta real: 400 + 2.200 + 400 + 400 = 3.400 €
-// Ahorro real sobre 3.000 €: 400 €
 // ============================================================
 
-const PACK_BASKET: PriceKey[] = [
-  "preboda",
-  "bodaCompleta",
-  "sameDayEdit",
-  "postboda",
-]
-
-const PACK_PRICE = 3000
-
-const PACK_INDIVIDUAL_TOTAL = PACK_BASKET.reduce(
-  (total, key) => total + PRICE_LIST[key],
-  0,
-)
-
-const PACK_SAVINGS = PACK_INDIVIDUAL_TOTAL - PACK_PRICE
-
-export interface PackCompleto {
+export interface PackCompleto extends Bundle {
   id: string
   name: string
   subtitle: string
   description: string
-  price: string
-  priceNumeric: number
-  individualTotal: number
-  individualTotalLabel: string
-  savings: number
-  savingsLabel: string
   features: string[]
   whatsappMessage: string
 }
 
 export const PACK_COMPLETO: PackCompleto = {
+  ...PACK_BUNDLE,
   id: "pack-completo",
   name: "Pack Completo",
   subtitle: "Vuestra boda de principio a fin",
   description:
     "La experiencia completa: desde la sesión de preboda hasta la postboda, con cobertura total del día de la boda y Same Day Edit para sorprender a los invitados durante el banquete.",
-  price: formatEUR(PACK_PRICE),
-  priceNumeric: PACK_PRICE,
-  individualTotal: PACK_INDIVIDUAL_TOTAL,
-  individualTotalLabel: formatEUR(PACK_INDIVIDUAL_TOTAL),
-  savings: PACK_SAVINGS,
-  savingsLabel: formatEUR(PACK_SAVINGS),
   features: [
     "Sesión de Preboda",
     `Boda Completa — fotografía + vídeo (${DELIVERABLES.coverageHours}h o más)`,
@@ -253,6 +289,10 @@ export interface PricingRow {
   video: boolean
   price: string
   priceNumeric: number
+  /** Solo en paquetes: precio de referencia tachado. */
+  individualTotalLabel?: string
+  /** Solo en paquetes: descuento frente a esa referencia. */
+  savingsLabel?: string
 }
 
 export const PRICING_DATA: PricingRow[] = [
@@ -285,8 +325,10 @@ export const PRICING_DATA: PricingRow[] = [
     description: "Fotografía + vídeo del día completo",
     photography: true,
     video: true,
-    price: formatEUR(PRICE_LIST.bodaCompleta),
-    priceNumeric: PRICE_LIST.bodaCompleta,
+    price: BODA_COMPLETA.price,
+    priceNumeric: BODA_COMPLETA.priceNumeric,
+    individualTotalLabel: BODA_COMPLETA.individualTotalLabel,
+    savingsLabel: BODA_COMPLETA.savingsLabel,
   },
   {
     service: "Same Day Edit",
@@ -303,6 +345,16 @@ export const PRICING_DATA: PricingRow[] = [
     video: false,
     price: formatEUR(PRICE_LIST.postboda),
     priceNumeric: PRICE_LIST.postboda,
+  },
+  {
+    service: PACK_COMPLETO.name,
+    description: "Preboda + Boda Completa + Same Day Edit + Postboda",
+    photography: true,
+    video: true,
+    price: PACK_COMPLETO.price,
+    priceNumeric: PACK_COMPLETO.priceNumeric,
+    individualTotalLabel: PACK_COMPLETO.individualTotalLabel,
+    savingsLabel: PACK_COMPLETO.savingsLabel,
   },
 ]
 

@@ -1,4 +1,5 @@
 import {
+  BODA_COMPLETA,
   BUSINESS_INFO,
   DELIVERABLES,
   PACK_COMPLETO,
@@ -29,7 +30,7 @@ export const FAQS: Faq[] = [
   {
     id: "precio",
     question: `¿Cuánto cuesta un fotógrafo de bodas en ${city}?`,
-    answer: `La sesión de preboda o postboda parte de ${formatEURProse(PRICE_LIST.preboda)}. El reportaje fotográfico de boda arranca en ${formatEURProse(PRICE_LIST.bodaFoto)} y el vídeo cinematográfico en ${formatEURProse(PRICE_LIST.bodaVideo)}. La Boda Completa, con fotografía y vídeo, cuesta desde ${formatEURProse(PRICE_LIST.bodaCompleta)}. El Pack Completo (preboda + boda completa + Same Day Edit + postboda) está en ${PACK_COMPLETO.price}, frente a ${PACK_COMPLETO.individualTotalLabel} si se contratan por separado. Son precios orientativos: personalizamos cada propuesta según la ubicación y los detalles de vuestra boda en ${city}, Reus, Salou, Cambrils o cualquier punto de la ${region}.`,
+    answer: `La sesión de preboda o postboda parte de ${formatEURProse(PRICE_LIST.preboda)}. El reportaje fotográfico de boda arranca en ${formatEURProse(PRICE_LIST.bodaFoto)} y el vídeo cinematográfico en ${formatEURProse(PRICE_LIST.bodaVideo)}. La Boda Completa, con fotografía y vídeo, cuesta desde ${formatEURProse(BODA_COMPLETA.priceNumeric)} frente a los ${formatEURProse(BODA_COMPLETA.individualTotal)} que suman ambos servicios por separado: ${BODA_COMPLETA.savingsLabel} de ahorro. El Pack Completo (preboda + boda completa + Same Day Edit + postboda) está en ${PACK_COMPLETO.price}, frente a ${PACK_COMPLETO.individualTotalLabel} contratando cada servicio por separado, con ${PACK_COMPLETO.savingsLabel} de ahorro. Son precios orientativos: personalizamos cada propuesta según la ubicación y los detalles de vuestra boda en ${city}, Reus, Salou, Cambrils o cualquier punto de la ${region}.`,
   },
   {
     id: "antelacion",
@@ -44,7 +45,7 @@ export const FAQS: Faq[] = [
   {
     id: "boda-completa",
     question: "¿Qué incluye el paquete de Boda Completa?",
-    answer: `Cubre el día entero, desde los preparativos hasta el baile (${DELIVERABLES.coverageHours} horas o más). Incluye fotografía y vídeo cinematográfico en alta resolución, más de ${DELIVERABLES.photosWedding} fotos editadas profesionalmente en galería online privada y un highlight reel de ${DELIVERABLES.highlightMinutesMin}–${DELIVERABLES.highlightMinutesMax} minutos. Se puede añadir el Same Day Edit para proyectar durante el banquete, o combinarlo todo en el Pack Completo con un ahorro de ${PACK_COMPLETO.savingsLabel}.`,
+    answer: `Cubre el día entero, desde los preparativos hasta el baile (${DELIVERABLES.coverageHours} horas o más). Incluye fotografía y vídeo cinematográfico en alta resolución, más de ${DELIVERABLES.photosWedding} fotos editadas profesionalmente en galería online privada y un highlight reel de ${DELIVERABLES.highlightMinutesMin}–${DELIVERABLES.highlightMinutesMax} minutos. Contratada como paquete cuesta ${BODA_COMPLETA.price} en lugar de los ${BODA_COMPLETA.individualTotalLabel} que suman la cobertura de foto y la de vídeo por separado. Se puede añadir el Same Day Edit para proyectar durante el banquete, o combinarlo todo en el Pack Completo, con un ahorro total de ${PACK_COMPLETO.savingsLabel}.`,
   },
   {
     id: "plazos",

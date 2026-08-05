@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar"
 import { CookieBanner } from "@/components/cookie-banner"
 import {
   SITE_URL,
+  BODA_COMPLETA,
   BUSINESS_INFO,
   PHONE_DISPLAY,
   EMAIL,
@@ -223,8 +224,8 @@ const localBusinessSchema = {
       ),
       offer(
         "Boda Completa",
-        `Cobertura completa del día de la boda (${DELIVERABLES.coverageHours}h+) con fotografía y vídeo cinematográfico. Más de ${DELIVERABLES.photosWedding} fotos editadas y highlight reel.`,
-        PRICE_LIST.bodaCompleta,
+        `Cobertura completa del día de la boda (${DELIVERABLES.coverageHours}h+) con fotografía y vídeo cinematográfico. Más de ${DELIVERABLES.photosWedding} fotos editadas y highlight reel. Ahorro de ${BODA_COMPLETA.savingsLabel} frente a contratar la cobertura de foto y la de vídeo por separado.`,
+        BODA_COMPLETA.priceNumeric,
       ),
       offer(
         "Same Day Edit",
